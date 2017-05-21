@@ -6,4 +6,5 @@
     <color name="color_teal_600">#00897B</color>
     <color name="color_grey_400">#BDBDBD</color>
     <color name="color_white">#FFF</color>
+    <color name="color_grey_200">#EEEEEE</color>
 </resources>

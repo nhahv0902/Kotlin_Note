@@ -2,4 +2,8 @@
     <string name="app_name">Note Diaro</string>
     <string name="title_notebook">Notebook</string>
     <string name="title_setting">Setting</string>
+    <string name="text_splash_screen">Note Diary</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
