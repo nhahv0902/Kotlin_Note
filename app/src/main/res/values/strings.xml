@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Note Diaro</string>
+    <string name="title_notebook">Notebook</string>
+    <string name="title_setting">Setting</string>
+</resources>
