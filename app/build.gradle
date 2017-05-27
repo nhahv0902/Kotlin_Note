@@ -51,4 +51,6 @@ dependencies {
   compile "org.jetbrains.anko:anko-sdk25:$anko_sdk"
   // sdk15, sdk19, sdk21, sdk23 are also available
   compile "org.jetbrains.anko:anko-appcompat-v7:$anko_sdk"
+
+  compile 'com.github.bumptech.glide:glide:3.8.0'
 }

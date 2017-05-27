@@ -1,13 +1,22 @@
 <resources>
-    <string name="app_name">Note Diaro</string>
+    <string name="app_name">Note Diary</string>
     <string name="title_notebook">Notebook</string>
     <string name="title_setting">Setting</string>
     <string name="text_splash_screen">Note Diary</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_welcome_to_app">Welcome to Note Diary</string>
     <string name="text_facebook">Facebook</string>
     <string name="text_google">Google</string>
     <string name="content">I was finally comfortable developing for android with eclipse but then Google rolled out the stable version of Android studio and ended support for eclipse so I had to switch to android studio and I was introduced to the world of Gradle.</string>
+
+    <string name="action_reminders">Reminders</string>
+    <string name="text_sub_reminders">Set writing reminders</string>
+
+    <string name="msg_login_error">Login fails</string>
+    <string name="action_security">Security code</string>
+    <string name="text_sub_security">Set security code to lock the app</string>
+    <string name="action_language">Language</string>
+    <string name="text_sub_language">Change app language</string>
+    <string name="action_logout">Logout</string>
+    <string name="text_sub_logout">Logout the app</string>
 </resources>
