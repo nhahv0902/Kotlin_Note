@@ -1,8 +1,10 @@
 package com.nhahv.note.ui.main
 
+import android.content.Context
 import com.nhahv.note.R
 import com.nhahv.note.ui.BaseViewModel
 import com.nhahv.note.ui.notebook.NotebookFragment
+import com.nhahv.note.ui.notecreation.NoteCreationActivity
 import com.nhahv.note.ui.setting.SettingFragment
 
 /**
@@ -12,12 +14,14 @@ import com.nhahv.note.ui.setting.SettingFragment
 
 class MainViewModel(activity: MainActivity) : BaseViewModel(activity) {
 
+  val mContext: Context = activity.applicationContext
+
   init {
     onStartNotebook()
   }
 
   fun onStartNoteCreation() {
-
+    mContext.startActivity(NoteCreationActivity.newIntent(mContext.applicationContext))
   }
 
   fun onStartNotebook() {

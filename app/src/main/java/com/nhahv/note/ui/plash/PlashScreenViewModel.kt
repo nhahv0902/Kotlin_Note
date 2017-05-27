@@ -1,12 +1,16 @@
 package com.nhahv.note.ui.plash
 
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.util.Base64
 import android.util.Log
 import com.nhahv.note.ui.BaseViewModel
+import com.nhahv.note.ui.login.LoginActivity
 import com.nhahv.note.ui.main.MainActivity
 import com.nhahv.note.util.TimeUtil.TIME_DELAY
+import com.nhahv.note.util.sharepreference.IS_LOGIN
+import com.nhahv.note.util.sharepreference.SharePreference
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -16,6 +20,9 @@ import java.security.NoSuchAlgorithmException
  */
 
 class PlashScreenViewModel(activity: PlashScreenActivity) : BaseViewModel(activity) {
+
+  val mPreference: SharePreference = SharePreference.getIntances(activity)
+  val mContext: Context = activity.applicationContext
 
   init {
     start()
@@ -37,12 +44,12 @@ class PlashScreenViewModel(activity: PlashScreenActivity) : BaseViewModel(activi
     }
 
     Handler().postDelayed({
-      /* if (SharePreference.getInstances(mActivity).getBoolean(PREF_IS_LOGIN)) {
-
-       } else {
-         mActivity.startActivity(LoginActivity.getIntent(mActivity))
-       }*/
-      mActivity.startActivity(MainActivity.newIntent(mActivity))
+      val isLogin: Boolean = mPreference[IS_LOGIN, Boolean::class.java]
+      if (isLogin) {
+        mContext.startActivity(MainActivity.newIntent(mContext))
+      } else {
+        mContext.startActivity(LoginActivity.newIntent(mContext))
+      }
       mActivity.finish()
     }, TIME_DELAY.toLong())
   }

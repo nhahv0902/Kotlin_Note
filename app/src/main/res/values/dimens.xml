@@ -5,4 +5,15 @@
     <dimen name="dp_25">25dp</dimen>
     <dimen name="dp_200">200dp</dimen>
     <dimen name="sp_60">60sp</dimen>
+    <dimen name="dp_160">160dp</dimen>
+    <dimen name="sp_46">46sp</dimen>
+    <dimen name="dp_56">56dp</dimen>
+    <dimen name="dp_270">270dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+    <dimen name="dp_240">240dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="sp_18">18sp</dimen>
 </resources>

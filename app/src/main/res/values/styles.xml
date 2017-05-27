@@ -9,4 +9,12 @@
     </style>
 
     <style name="AppTheme.Base" parent="AppTheme"/>
+
+    <style name="NoteCardView" parent="CardView">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/color_white</item>
+        <item name="cardElevation">@dimen/dp_4</item>
+        <item name="cardCornerRadius">@dimen/dp_2</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
 </resources>

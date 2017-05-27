@@ -6,4 +6,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_welcome_to_app">Welcome to Note Diary</string>
+    <string name="text_facebook">Facebook</string>
+    <string name="text_google">Google</string>
+    <string name="content">I was finally comfortable developing for android with eclipse but then Google rolled out the stable version of Android studio and ended support for eclipse so I had to switch to android studio and I was introduced to the world of Gradle.</string>
 </resources>

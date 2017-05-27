@@ -1,12 +1,14 @@
 package com.nhahv.note.util
 
-import android.content.Context
 import android.databinding.BindingAdapter
 import android.graphics.Typeface
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.TextView
 import com.nhahv.note.R
 import com.nhahv.note.ui.main.MainViewModel
+import com.nhahv.note.ui.notebook.NotebookAdapter
 
 /**
  * Created by Hoang Van Nha on 5/21/2017.
@@ -42,6 +44,7 @@ fun bottomNavigation(view: BottomNavigationView, viewModel: MainViewModel) {
 fun fontFamily(view: TextView, font: String) {
   view.typeface = Typeface.createFromAsset(view.context.assets, font)
 }
+
 
 
 
