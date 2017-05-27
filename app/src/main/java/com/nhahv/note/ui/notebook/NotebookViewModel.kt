@@ -30,7 +30,5 @@ class NotebookViewModel(activity: AppCompatActivity) : BaseViewModel(activity) {
     mNotebooks.add(Notebook())
     mAdapter = NotebookAdapter(this, mNotebooks)
   }
-
-
 }
 

@@ -5,4 +5,6 @@ package com.nhahv.note.util.sharepreference
  * <>>
  */
 
-const val IS_LOGIN = "IS_LOGIN"
+const val PREF_IS_LOGIN = "PREF_IS_LOGIN"
+const val PREF_PASSWORD_SECURITY = "PREF_PASSWORD_SECURITY"
+const val PREF_IS_SECURITY = "PREF_IS_SECURITY"

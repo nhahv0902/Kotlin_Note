@@ -19,4 +19,42 @@
     <string name="text_sub_language">Change app language</string>
     <string name="action_logout">Logout</string>
     <string name="text_sub_logout">Logout the app</string>
+    <string name="action_forget_security_code">Forget security code?</string>
+
+    <string name="action_number_0">0</string>
+    <string name="action_number_1">1</string>
+    <string name="action_number_2">2</string>
+    <string name="action_number_3">3</string>
+    <string name="action_number_4">4</string>
+    <string name="action_number_5">5</string>
+    <string name="action_number_6">6</string>
+    <string name="action_number_7">7</string>
+    <string name="action_number_8">8</string>
+    <string name="action_number_9">9</string>
+
+    <string name="action_day_of_week_1">SUN</string>
+    <string name="action_day_of_week_2">MON</string>
+    <string name="action_day_of_week_3">TWE</string>
+    <string name="action_day_of_week_4">WED</string>
+    <string name="action_day_of_week_5">THU</string>
+    <string name="action_day_of_week_6">FRI</string>
+    <string name="action_day_of_week_7">SAT</string>
+
+    <string name="text_input_security">Input password security</string>
+    <string name="text_cancel_security">Input password to cancel security</string>
+    <string name="text_repeat_security">Repeat password security</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_email_content">Enter your email to remind security code, in case you forget it</string>
+    <string name="action_disagree">DISAGREE</string>
+    <string name="action_agree">AGREE</string>
+    <string name="msg_email_matchs">Email is empty or matches</string>
+    <string name="msg_password_error">Password not matches</string>
+    <string name="text_reminder_content">Setting time and weekdays when you want to be notified to write in Note Diary</string>
+
+    <string name="action_turn_on_reminder">Turn on</string>
+    <string name="action_turn_off_reminder">Turn off</string>
+
+
 </resources>

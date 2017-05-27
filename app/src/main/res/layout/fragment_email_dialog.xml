@@ -1,0 +1,84 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    >
+    <data>
+        <import type="java.lang.Boolean"/>
+        <variable
+            name="viewModel"
+            type="com.nhahv.note.ui.security.emaildialog.EmailDialogViewModel"
+            />
+
+
+    </data>
+    <LinearLayout
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16"
+        >
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/text_email_content"
+            android:textColor="@color/color_grey_757575"
+            android:textSize="@dimen/sp_18"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="horizontal"
+            >
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_email_blue_24dp"
+                />
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_16"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.MEmail}"
+                android:textColor="@color/color_grey_757575"
+                bind:endCursor="@{Boolean.TRUE}"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:gravity="end"
+            android:orientation="horizontal"
+            >
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_16"
+                android:onClick="@{() -> viewModel.onClickDisAgree()}"
+                android:padding="@dimen/dp_8"
+                android:text="@string/action_disagree"
+                android:textColor="@color/color_blue_300"
+                android:textSize="@dimen/sp_18"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onClickAgree()}"
+                android:padding="@dimen/dp_8"
+                android:text="@string/action_agree"
+                android:textColor="@color/color_blue_300"
+                android:textSize="@dimen/sp_18"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

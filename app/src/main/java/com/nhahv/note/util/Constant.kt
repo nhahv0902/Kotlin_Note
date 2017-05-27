@@ -11,9 +11,19 @@ object DataUtil {
 }
 
 object TimeUtil {
-  @JvmStatic val TIME_DELAY = 1000
+  @JvmStatic val TIME_DELAY: Long = 1000L
 }
 
 object Font {
   @JvmStatic val CALLIGRAPHY = "Calligraphy.ttf"
+}
+
+object BundleConstant {
+  @JvmStatic val BUNDLE_SECURITY_TYPE: String = "BUNDLE_SECURITY_TYPE"
+  @JvmStatic val BUNDLE_PASSWORD: String = "BUNDLE_PASSWORD"
+}
+
+object Request {
+  @JvmStatic val REQUEST_SECURITY: Int = 1
+  @JvmStatic val REQUEST_REMINDER: Int = 2
 }

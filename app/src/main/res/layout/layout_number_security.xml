@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nhahv.note.ui.security.SecurityViewModel"
+            />
+        <variable
+            name="numberLabel"
+            type="java.lang.String"
+            />
+        <variable
+            name="number"
+            type="int"
+            />
+    </data>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/state_icon_action_security"
+        android:gravity="center"
+        android:onClick="@{()-> viewModel.onClickNumber(number)}"
+        android:text="@{numberLabel}"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/sp_28"
+        />
+</layout>

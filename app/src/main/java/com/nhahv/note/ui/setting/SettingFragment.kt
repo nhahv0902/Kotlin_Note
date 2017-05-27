@@ -1,5 +1,6 @@
 package com.nhahv.note.ui.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -23,9 +24,14 @@ class SettingFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
-    mViewModel = SettingViewModel(activity as AppCompatActivity)
+    mViewModel = SettingViewModel(activity as AppCompatActivity, this)
     val binding: FragmentSettingBinding = FragmentSettingBinding.inflate(inflater, container, false)
     binding.viewModel = mViewModel
     return binding.root
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    mViewModel?.onActivityResult(requestCode, resultCode, data)
   }
 }

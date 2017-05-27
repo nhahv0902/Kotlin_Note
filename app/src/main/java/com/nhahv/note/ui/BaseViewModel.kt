@@ -9,6 +9,6 @@ import com.nhahv.note.ui.main.MainActivity
  * <.
  */
 open class BaseViewModel(activity: AppCompatActivity) : BaseObservable() {
-  protected var mActivity: AppCompatActivity = activity
+  var mActivity: AppCompatActivity = activity
 
 }

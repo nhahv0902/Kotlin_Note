@@ -75,21 +75,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="@dimen/dp_16"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16"
                     >
                     <android.support.v7.widget.AppCompatImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
+                        android:onClick="@{ () -> viewModel.onReminder()}"
                         app:srcCompat="@drawable/ic_alarm_grey"
                         />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="@{ () -> viewModel.onReminder()}"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/dp_16"
-                        android:paddingRight="@dimen/dp_16"
+                        android:padding="@dimen/dp_16"
                         >
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="match_parent"
@@ -109,6 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedReminder(checked)}"
                         app:buttonTint="@color/state_check_box"
                         />
                 </LinearLayout>
@@ -118,6 +121,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onClickSecurity()}"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_16"
                     >
@@ -153,6 +157,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:checked="@{viewModel.MChecked}"
+                        android:enabled="false"
                         app:buttonTint="@color/state_check_box"
                         />
                 </LinearLayout>
@@ -162,6 +168,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onChangeLanguage()}"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_16"
                     >
@@ -199,6 +206,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.onLogout()}"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_16"
                     >
@@ -239,6 +247,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8"
+            android:onClick="@{ () -> viewModel.onEditInfo()}"
             app:backgroundTint="@color/color_teal_600"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom|end"

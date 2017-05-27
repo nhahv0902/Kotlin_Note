@@ -16,9 +16,20 @@ import kotlin.String
  * <>>
  */
 
-class SharePreference private constructor(context: Context) : ISharePrefercence {
+class SharePreference private constructor(context: Context) : ISharePreference {
   private val mPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(
       context)
+
+  companion object {
+    private var mInstances: SharePreference? = null
+
+    fun getInstances(context: Context): SharePreference {
+      if (mInstances == null) {
+        mInstances = SharePreference(context)
+      }
+      return mInstances as SharePreference
+    }
+  }
 
   override fun <T> get(key: String, tClass: Class<T>): T {
     if (tClass == String::class.java) {
@@ -55,14 +66,8 @@ class SharePreference private constructor(context: Context) : ISharePrefercence 
     mPreferences.edit().clear().apply()
   }
 
-  companion object {
-    private var mInstances: SharePreference? = null
 
-    fun getIntances(context: Context): SharePreference {
-      if (mInstances == null) {
-        mInstances = SharePreference(context)
-      }
-      return mInstances as SharePreference
-    }
+  override fun remove(key: String) {
+    mPreferences.edit().remove(key).apply()
   }
 }
