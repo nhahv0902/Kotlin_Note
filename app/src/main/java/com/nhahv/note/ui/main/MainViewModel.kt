@@ -21,7 +21,7 @@ class MainViewModel(activity: MainActivity) : BaseViewModel(activity) {
   }
 
   fun onStartNoteCreation() {
-    mContext.startActivity(NoteCreationActivity.newIntent(mContext.applicationContext))
+    mActivity.startActivity(NoteCreationActivity.newIntent(mContext))
   }
 
   fun onStartNotebook() {
