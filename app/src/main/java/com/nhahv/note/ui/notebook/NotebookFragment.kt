@@ -9,25 +9,26 @@ import android.view.ViewGroup
 
 import com.nhahv.note.R
 import com.nhahv.note.databinding.FragmentNotebookBinding
+import com.nhahv.note.ui.BaseActivity
 
 /**
  * A simple [Fragment] subclass.
  */
 class NotebookFragment : Fragment() {
 
-  companion object {
-    fun newInstance(): NotebookFragment {
-      return NotebookFragment()
+    companion object {
+	fun newInstance(): NotebookFragment {
+	    return NotebookFragment()
+	}
     }
-  }
 
-  var mViewModel: NotebookViewModel? = null
+    var mViewModel: NotebookViewModel? = null
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    mViewModel = NotebookViewModel(activity as AppCompatActivity)
-    val binding = FragmentNotebookBinding.inflate(inflater, container, false)
-    binding.viewModel = mViewModel
-    return binding.root
-  }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+	savedInstanceState: Bundle?): View? {
+	mViewModel = NotebookViewModel(activity as BaseActivity)
+	val binding = FragmentNotebookBinding.inflate(inflater, container, false)
+	binding.viewModel = mViewModel
+	return binding.root
+    }
 }

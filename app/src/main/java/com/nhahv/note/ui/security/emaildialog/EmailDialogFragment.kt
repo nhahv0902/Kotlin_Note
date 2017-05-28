@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import com.nhahv.note.databinding.FragmentEmailDialogBinding
+import com.nhahv.note.ui.BaseActivity
 import com.nhahv.note.util.BundleConstant.BUNDLE_PASSWORD
 
 /**
@@ -16,31 +17,31 @@ import com.nhahv.note.util.BundleConstant.BUNDLE_PASSWORD
  */
 class EmailDialogFragment : DialogFragment() {
 
-  private var mViewModel: EmailDialogViewModel? = null
+    private var mViewModel: EmailDialogViewModel? = null
 
-  companion object {
-    fun newInstance(password: String): EmailDialogFragment {
-      val bundle: Bundle = Bundle()
-      bundle.putString(BUNDLE_PASSWORD, password)
-      val fragment = EmailDialogFragment()
-      fragment.arguments = bundle
-      return fragment
+    companion object {
+	fun newInstance(password: String): EmailDialogFragment {
+	    val bundle: Bundle = Bundle()
+	    bundle.putString(BUNDLE_PASSWORD, password)
+	    val fragment = EmailDialogFragment()
+	    fragment.arguments = bundle
+	    return fragment
+	}
     }
-  }
 
-  private fun getPassword(): String {
-    val bundle: Bundle = arguments
-    return bundle.getString(BUNDLE_PASSWORD)
-  }
-
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    mViewModel = EmailDialogViewModel(activity as AppCompatActivity, this, getPassword())
-    if (dialog != null && dialog.window != null) {
-      dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
+    private fun getPassword(): String {
+	val bundle: Bundle = arguments
+	return bundle.getString(BUNDLE_PASSWORD)
     }
-    val binding = FragmentEmailDialogBinding.inflate(inflater, container, false)
-    binding.viewModel = mViewModel
-    return binding.root
-  }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+	savedInstanceState: Bundle?): View? {
+	mViewModel = EmailDialogViewModel(activity as BaseActivity, this, getPassword())
+	if (dialog != null && dialog.window != null) {
+	    dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
+	}
+	val binding = FragmentEmailDialogBinding.inflate(inflater, container, false)
+	binding.viewModel = mViewModel
+	return binding.root
+    }
 }

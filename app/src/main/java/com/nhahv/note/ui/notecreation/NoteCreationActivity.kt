@@ -3,12 +3,12 @@ package com.nhahv.note.ui.notecreation
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nhahv.note.R
 import com.nhahv.note.databinding.ActivityNoteCreationBinding
+import com.nhahv.note.ui.BaseActivity
 
-class NoteCreationActivity : AppCompatActivity() {
+class NoteCreationActivity : BaseActivity() {
 
   companion object {
     fun newIntent(context: Context): Intent {

@@ -1,6 +1,6 @@
 package com.nhahv.note.ui.notecreation
 
-import android.support.v7.app.AppCompatActivity
+import com.nhahv.note.ui.BaseActivity
 import com.nhahv.note.ui.BaseViewModel
 
 /**
@@ -8,7 +8,7 @@ import com.nhahv.note.ui.BaseViewModel
  * <>
  */
 
-class NoteCreationViewModel(activity: AppCompatActivity) : BaseViewModel(activity) {
+class NoteCreationViewModel(activity: BaseActivity) : BaseViewModel(activity) {
 
 
 }

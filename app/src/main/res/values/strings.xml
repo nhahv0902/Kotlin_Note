@@ -44,8 +44,7 @@
     <string name="text_cancel_security">Input password to cancel security</string>
     <string name="text_repeat_security">Repeat password security</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="text_email_content">Enter your email to remind security code, in case you forget it</string>
     <string name="action_disagree">DISAGREE</string>
     <string name="action_agree">AGREE</string>
@@ -56,5 +55,9 @@
     <string name="action_turn_on_reminder">Turn on</string>
     <string name="action_turn_off_reminder">Turn off</string>
 
+    <string name="facebook_app_id">1825962241020545</string>
+    <string name="fb_login_protocol_scheme">fb1825962241020545</string>
+
+    <string name="server_client_id">84423249164-t3rk0r53k5225hnl0tq4rooas2iut270.apps.googleusercontent.com</string>
 
 </resources>

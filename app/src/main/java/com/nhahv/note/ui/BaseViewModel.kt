@@ -8,7 +8,6 @@ import com.nhahv.note.ui.main.MainActivity
  * Created by Hoang Van Nha on 5/21/2017.
  * <.
  */
-open class BaseViewModel(activity: AppCompatActivity) : BaseObservable() {
-  var mActivity: AppCompatActivity = activity
-
+open class BaseViewModel(activity: BaseActivity) : BaseObservable() {
+    var mActivity: BaseActivity = activity
 }

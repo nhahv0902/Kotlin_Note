@@ -5,6 +5,7 @@ import android.databinding.ObservableField
 import android.support.v7.app.AppCompatActivity
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.ui.BaseActivity
 import com.nhahv.note.ui.BaseViewModel
 
 /**
@@ -12,23 +13,23 @@ import com.nhahv.note.ui.BaseViewModel
  * <>
  */
 
-class NotebookViewModel(activity: AppCompatActivity) : BaseViewModel(activity) {
+class NotebookViewModel(activity: BaseActivity) : BaseViewModel(activity) {
 
-  @get: Bindable
-  var mAdapter: NotebookAdapter? = null
-    set(adapter) {
-      field = adapter
-      notifyPropertyChanged(BR.mAdapter)
+    @get: Bindable
+    var mAdapter: NotebookAdapter? = null
+	set(adapter) {
+	    field = adapter
+	    notifyPropertyChanged(BR.mAdapter)
+	}
+    var mNotebooks: ArrayList<Notebook> = ArrayList<Notebook>()
+
+    init {
+	mNotebooks.add(Notebook())
+	mNotebooks.add(Notebook())
+	mNotebooks.add(Notebook())
+	mNotebooks.add(Notebook())
+	mNotebooks.add(Notebook())
+	mAdapter = NotebookAdapter(this, mNotebooks)
     }
-  var mNotebooks: ArrayList<Notebook> = ArrayList<Notebook>()
-
-  init {
-    mNotebooks.add(Notebook())
-    mNotebooks.add(Notebook())
-    mNotebooks.add(Notebook())
-    mNotebooks.add(Notebook())
-    mNotebooks.add(Notebook())
-    mAdapter = NotebookAdapter(this, mNotebooks)
-  }
 }
 

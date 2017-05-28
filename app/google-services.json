@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "84423249164",
+    "firebase_url": "https://androidnote-70e49.firebaseio.com",
+    "project_id": "androidnote-70e49",
+    "storage_bucket": "androidnote-70e49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84423249164:android:e4e49b6b0e9e52e4",
+        "android_client_info": {
+          "package_name": "com.nhahv.note"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84423249164-se7p6nkur6brido5i8j6am2rctng417g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nhahv.note",
+            "certificate_hash": "9a90312583150aac32cbaded484933b580dbf302"
+          }
+        },
+        {
+          "client_id": "84423249164-f53qvtvsavkn9l3tpe12igq3i05v3n63.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "84423249164-d42acdimjgavp2rk66ju0qkjf53jhrf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnKfMRFqArsv3zsScP8GlBvFg-0JDoqq8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84423249164-f53qvtvsavkn9l3tpe12igq3i05v3n63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

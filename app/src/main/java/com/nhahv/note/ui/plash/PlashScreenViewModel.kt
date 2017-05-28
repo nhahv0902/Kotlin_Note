@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Handler
 import android.util.Base64
 import android.util.Log
+import com.nhahv.note.ui.BaseActivity
 import com.nhahv.note.ui.BaseViewModel
 import com.nhahv.note.ui.loadpicture.LoaderPicture
 import com.nhahv.note.ui.loadpicture.model.Folder
@@ -27,7 +28,7 @@ import java.security.NoSuchAlgorithmException
  * <>
  */
 
-class PlashScreenViewModel(activity: PlashScreenActivity) : BaseViewModel(activity) {
+class PlashScreenViewModel(activity: BaseActivity) : BaseViewModel(activity) {
 
     val mPreference: SharePreference = SharePreference.getInstances(activity)
     val mContext: Context = activity.applicationContext
@@ -51,7 +52,7 @@ class PlashScreenViewModel(activity: PlashScreenActivity) : BaseViewModel(activi
 	    e.printStackTrace()
 	}
 
-	/*Handler().postDelayed({
+	Handler().postDelayed({
 	    val isLogin: Boolean = mPreference[PREF_IS_LOGIN, Boolean::class.java]
 	    if (isLogin) {
 		val isSecurity: Boolean = mPreference[PREF_IS_SECURITY, Boolean::class.java]
@@ -64,15 +65,15 @@ class PlashScreenViewModel(activity: PlashScreenActivity) : BaseViewModel(activi
 		mActivity.startActivity(LoginActivity.newIntent(mContext))
 	    }
 	    mActivity.finish()
-	}, TIME_DELAY)*/
+	}, TIME_DELAY)
 
-	val loaderPicture = LoaderPicture(mContext)
+	/*val loaderPicture = LoaderPicture(mContext)
 	async {
 	    val folders: ArrayList<Folder> = loaderPicture.loadImages()
 	    for ((name, images) in folders) {
 		Log.d(NOTE_TAG, "folder = $name  -  - ${images.size}")
 	    }
-	}
+	}*/
     }
 
 }

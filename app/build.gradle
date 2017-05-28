@@ -30,6 +30,8 @@ kapt {
 
 def android_sdk = "25.3.1"
 def anko_sdk = "0.10.0"
+def firebase_sdk = "10.2.6"
+
 
 dependencies {
   compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -41,18 +43,25 @@ dependencies {
   compile "com.android.support:recyclerview-v7:$android_sdk"
   compile "com.android.support:support-v4:$android_sdk"
   compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
   // Kotlin
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
   kapt 'com.android.databinding:compiler:2.3.1'
-
   // Anko Commons
   compile "org.jetbrains.anko:anko-commons:$anko_sdk"
   // Anko Layouts
   compile "org.jetbrains.anko:anko-sdk25:$anko_sdk"
   // sdk15, sdk19, sdk21, sdk23 are also available
   compile "org.jetbrains.anko:anko-appcompat-v7:$anko_sdk"
-
   compile 'com.github.bumptech.glide:glide:3.8.0'
   debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+  compile 'com.facebook.android:facebook-android-sdk:4.23.0'
+
+  //firebase
+  compile "com.google.firebase:firebase-core:$firebase_sdk"
+  compile "com.google.firebase:firebase-database:$firebase_sdk"
+  compile "com.google.firebase:firebase-storage:$firebase_sdk"
+  compile "com.google.firebase:firebase-auth:$firebase_sdk"
+  compile "com.google.firebase:firebase-messaging:$firebase_sdk"
+  compile "com.google.android.gms:play-services-auth:$firebase_sdk"
 }
+apply plugin: 'com.google.gms.google-services'

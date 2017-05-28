@@ -3,13 +3,13 @@ package com.nhahv.note.ui.reminder
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.nhahv.note.R
 import com.nhahv.note.databinding.ActivityReminderBinding
+import com.nhahv.note.ui.BaseActivity
 
-class ReminderActivity : AppCompatActivity() {
+class ReminderActivity : BaseActivity() {
 
   companion object {
     fun newIntent(context: Context): Intent {
