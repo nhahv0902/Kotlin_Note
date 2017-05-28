@@ -60,4 +60,9 @@
 
     <string name="server_client_id">84423249164-t3rk0r53k5225hnl0tq4rooas2iut270.apps.googleusercontent.com</string>
 
+    <string name="title_note_creation">Create Notebook</string>
+    <string name="hint_title_notebook">Entry title…</string>
+    <string name="hint_text_notebook">Entry content…</string>
+    <string name="action_pick_image">Pick image</string>
+
 </resources>

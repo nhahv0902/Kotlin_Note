@@ -10,52 +10,51 @@ import com.nhahv.note.BR
  */
 
 class Notebook : BaseObservable() {
-  @get:Bindable
-  var mId: String? = null
-    set(id) {
-      field = id
-      notifyPropertyChanged(BR.mId)
-    }
+    @get:Bindable
+    var mId: String? = null
+        set(id) {
+            field = id
+            notifyPropertyChanged(BR.mId)
+        }
 
-  @get: Bindable
-  var mTitle: String? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mTitle)
-    }
+    @get: Bindable
+    var mTitle: String? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mTitle)
+        }
 
-  @get: Bindable
-  var mContent: String? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mContent)
-    }
+    @get: Bindable
+    var mContent: String? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mContent)
+        }
 
-  @get: Bindable
-  var mPlace: String? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mPlace)
-    }
+    @get: Bindable
+    var mPlace: String? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mPlace)
+        }
 
-  @get: Bindable
-  var mPictures: List<String>? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mPictures)
-    }
+    @get: Bindable
+    var mPictures: ArrayList<String>? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mPictures)
+        }
 
-  @get: Bindable
-  var mDate: String? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mDate)
-    }
-  @get: Bindable
-  var mTime: String? = null
-    set(title) {
-      field = title
-      notifyPropertyChanged(BR.mTime)
-    }
-
+    @get: Bindable
+    var mDate: Long? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mDate)
+        }
+    @get: Bindable
+    var mTime: String? = null
+        set(title) {
+            field = title
+            notifyPropertyChanged(BR.mTime)
+        }
 }

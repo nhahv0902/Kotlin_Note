@@ -6,14 +6,17 @@ import android.content.Intent
 import android.databinding.Bindable
 import android.support.v4.app.Fragment
 import com.android.databinding.library.baseAdapters.BR
+import com.google.firebase.auth.FirebaseAuth
 import com.nhahv.note.ui.BaseActivity
 import com.nhahv.note.ui.BaseViewModel
+import com.nhahv.note.ui.login.LoginActivity
 import com.nhahv.note.ui.reminder.ReminderActivity
 import com.nhahv.note.ui.security.SecurityActivity
 import com.nhahv.note.ui.security.SecurityViewModel.Companion.TITLE_CANCEL_SECURITY
 import com.nhahv.note.ui.security.SecurityViewModel.Companion.TITLE_INPUT_SECURITY
 import com.nhahv.note.util.Request.REQUEST_REMINDER
 import com.nhahv.note.util.Request.REQUEST_SECURITY
+import com.nhahv.note.util.sharepreference.PREF_IS_LOGIN
 import com.nhahv.note.util.sharepreference.PREF_IS_SECURITY
 import com.nhahv.note.util.sharepreference.SharePreference
 
@@ -28,6 +31,7 @@ class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : Base
     val mContext: Context = activity.applicationContext
     val mFragment: Fragment = fragment
     val mPreferences = SharePreference.getInstances(mContext)
+    var mUser = FirebaseAuth.getInstance().currentUser
 
     @get : Bindable
     var mChecked: Boolean = mPreferences[PREF_IS_SECURITY, Boolean::class.java]
@@ -73,6 +77,9 @@ class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : Base
     }
 
     fun onLogout() {
+	mPreferences.remove(PREF_IS_LOGIN)
+	FirebaseAuth.getInstance().signOut()
+	mActivity.startActivity(LoginActivity.newIntent(mContext))
     }
 
 
@@ -84,7 +91,6 @@ class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : Base
 		mChecked = mPreferences[PREF_IS_SECURITY, Boolean::class.java]
 	    }
 	    REQUEST_REMINDER -> {
-
 	    }
 	}
     }
