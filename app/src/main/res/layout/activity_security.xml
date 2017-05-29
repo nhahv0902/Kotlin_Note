@@ -7,10 +7,10 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.security.SecurityViewModel"
+            type="com.nhahv.note.screen.security.SecurityViewModel"
             />
         <import type="com.nhahv.note.util.Font"/>
-        <import type="com.nhahv.note.ui.security.NumberSecurity"/>
+        <import type="com.nhahv.note.screen.security.NumberSecurity"/>
 
 
     </data>

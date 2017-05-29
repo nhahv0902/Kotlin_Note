@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="position"
+            type="int"
+            />
+        <variable
+            name="viewModel"
+            type="com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerViewModel"
+            />
+        <variable
+            name="imagePick"
+            type="com.nhahv.note.screen.loadpicture.model.ImagePicker"
+            />
+    </data>
+
+    <com.nhahv.note.widget.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_1"
+        >
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->viewModel.onImagePicker(position)}"
+            android:scaleType="fitCenter"
+            bind:bindError="@{@drawable/icon_photo_48dp}"
+            bind:imageUrl="@{imagePick.mImagePath}"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dp_8"
+            app:srcCompat="@drawable/state_image_picker"
+            />
+        <!--
+         bind:onChecked="@{imagePicker}"
+            bind:viewModel="@{viewModel}"
+        -->
+    </com.nhahv.note.widget.SquareRelativeLayout>
+</layout>

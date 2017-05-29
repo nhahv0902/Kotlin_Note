@@ -6,7 +6,6 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
@@ -14,10 +13,11 @@ import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.nhahv.note.R
-import com.nhahv.note.ui.BaseActivity
-import com.nhahv.note.ui.main.MainViewModel
-import com.nhahv.note.ui.security.SecurityViewModel
+import com.nhahv.note.screen.BaseActivity
+import com.nhahv.note.screen.main.MainViewModel
+import com.nhahv.note.screen.security.SecurityViewModel
 
 
 /**
@@ -63,6 +63,10 @@ fun imageUrl(view: ImageView, url: String, error: Drawable) {
             .asBitmap()
             .error(error)
             .placeholder(error)
+            .dontTransform()
+            .dontAnimate()
+            .thumbnail(0.5F)
+            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
             .centerCrop()
             .into(view)
 }
@@ -75,6 +79,10 @@ fun imageUrl(view: ImageView, uri: Uri, error: Drawable) {
             .error(error)
             .placeholder(error)
             .centerCrop()
+            .dontTransform()
+            .dontAnimate()
+            .thumbnail(0.5F)
+            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
             .into(view)
 }
 

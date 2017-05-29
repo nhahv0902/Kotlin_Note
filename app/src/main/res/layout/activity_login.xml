@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.login.LoginViewModel"
+            type="com.nhahv.note.screen.login.LoginViewModel"
             />
         <import type="com.nhahv.note.util.Font"/>
     </data>

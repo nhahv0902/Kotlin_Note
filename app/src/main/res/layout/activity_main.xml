@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.main.MainViewModel"
+            type="com.nhahv.note.screen.main.MainViewModel"
             />
     </data>
 

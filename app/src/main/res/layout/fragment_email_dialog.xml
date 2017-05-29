@@ -6,7 +6,7 @@
         <import type="java.lang.Boolean"/>
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.security.emaildialog.EmailDialogViewModel"
+            type="com.nhahv.note.screen.security.emaildialog.EmailDialogViewModel"
             />
 
 

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.security.SecurityViewModel"
+            type="com.nhahv.note.screen.security.SecurityViewModel"
             />
         <variable
             name="numberLabel"

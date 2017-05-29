@@ -4,11 +4,11 @@
     xmlns:bind="http://schemas.android.com/tools"
     >
     <data>
-        <import type="com.nhahv.note.ui.reminder.DayOfWeek"/>
+        <import type="com.nhahv.note.screen.reminder.DayOfWeek"/>
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.reminder.ReminderViewModel"
+            type="com.nhahv.note.screen.reminder.ReminderViewModel"
             />
 
     </data>

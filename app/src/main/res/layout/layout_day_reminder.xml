@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.nhahv.note.ui.reminder.ReminderViewModel"
+            type="com.nhahv.note.screen.reminder.ReminderViewModel"
             />
         <variable
             name="color"
