@@ -2,7 +2,6 @@ package com.nhahv.note.screen.loadpicture.folder
 
 import android.databinding.Bindable
 import com.android.databinding.library.baseAdapters.BR
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerActivity
 import com.nhahv.note.screen.loadpicture.model.Folder
 
@@ -11,7 +10,21 @@ import com.nhahv.note.screen.loadpicture.model.Folder
  * <
  */
 
-class FolderViewModel(activity: FolderActivity) : BaseViewModel(activity) {
+class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity) {
+
+    private var mPresenter: AlbumContract.Presenter? = null
+
+    override fun onStart() {
+        mPresenter?.onStart()
+    }
+
+    override fun onStop() {
+        mPresenter?.onStop()
+    }
+
+    override fun setPresenter(presenter: AlbumContract.Presenter) {
+        mPresenter = presenter
+    }
 
     private var mFolders: ArrayList<Folder> = ArrayList()
     private val mContext = activity.applicationContext

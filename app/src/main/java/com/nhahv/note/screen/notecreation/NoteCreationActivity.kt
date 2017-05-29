@@ -13,7 +13,7 @@ import com.nhahv.note.screen.BaseActivity
 
 class NoteCreationActivity : BaseActivity() {
 
-    var mViewModel: NoteCreationViewModel? = null
+    var mViewModel: NoteCreationContract.ViewModel? = null
 
     companion object {
         fun newIntent(context: Context): Intent {
@@ -23,10 +23,15 @@ class NoteCreationActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mViewModel = NoteCreationViewModel(this)
+        val presenter = NoteCreationPresenter(mViewModel as NoteCreationViewModel)
+        mViewModel?.setPresenter(presenter)
+
+
         val binding: ActivityNoteCreationBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_note_creation)
-        binding.viewModel = mViewModel
+        binding.viewModel = mViewModel as NoteCreationViewModel
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

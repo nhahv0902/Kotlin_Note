@@ -11,23 +11,36 @@ import com.nhahv.note.screen.BaseViewModel
  * <>
  */
 
-class NotebookViewModel(activity: BaseActivity) : BaseViewModel(activity) {
+class NotebookViewModel(activity: BaseActivity) : NotebookContract.ViewModel(activity) {
+
+    private var mPresenter: NotebookContract.Presenter? = null
 
     @get: Bindable
     var mAdapter: NotebookAdapter? = null
-	set(adapter) {
-	    field = adapter
-	    notifyPropertyChanged(BR.mAdapter)
-	}
+        set(adapter) {
+            field = adapter
+            notifyPropertyChanged(BR.mAdapter)
+        }
     var mNotebooks: ArrayList<Notebook> = ArrayList<Notebook>()
 
     init {
-	mNotebooks.add(Notebook())
-	mNotebooks.add(Notebook())
-	mNotebooks.add(Notebook())
-	mNotebooks.add(Notebook())
-	mNotebooks.add(Notebook())
-	mAdapter = NotebookAdapter(this, mNotebooks)
+        mNotebooks.add(Notebook())
+        mNotebooks.add(Notebook())
+        mNotebooks.add(Notebook())
+        mNotebooks.add(Notebook())
+        mNotebooks.add(Notebook())
+        mAdapter = NotebookAdapter(this, mNotebooks)
+    }
+
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+    }
+
+    override fun setPresenter(presenter: NotebookContract.Presenter) {
+        mPresenter = presenter
     }
 }
 

@@ -15,7 +15,7 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.loadpicture.folder.FolderViewModel"
+            type="com.nhahv.note.screen.loadpicture.folder.AlbumViewModel"
             />
         <variable
             name="position"

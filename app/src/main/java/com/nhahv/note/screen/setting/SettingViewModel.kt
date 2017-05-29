@@ -25,9 +25,11 @@ import com.nhahv.note.util.sharepreference.SharePreference
  * <>
  */
 
-class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : BaseViewModel(
-    activity) {
+class SettingViewModel(activity: BaseActivity,
+        fragment: SettingFragment) : SettingContract.ViewModel(
+        activity) {
 
+    private var mPresenter: SettingContract.Presenter? = null
     val mContext: Context = activity.applicationContext
     val mFragment: Fragment = fragment
     val mPreferences = SharePreference.getInstances(mContext)
@@ -35,19 +37,30 @@ class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : Base
 
     @get : Bindable
     var mChecked: Boolean = mPreferences[PREF_IS_SECURITY, Boolean::class.java]
-	set(value) {
-	    field = value
-	    notifyPropertyChanged(BR.mChecked)
-	}
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mChecked)
+        }
 
     @get: Bindable
     var mImageUrl: String = ""
-	set(value) {
-	    field = value
-	    notifyPropertyChanged(BR.mImageUrl)
-	}
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mImageUrl)
+        }
 
     init {
+    }
+
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+    }
+
+    override fun setPresenter(presenter: SettingContract.Presenter) {
+        mPresenter = presenter
     }
 
     fun onEditInfo() {
@@ -55,44 +68,43 @@ class SettingViewModel(activity: BaseActivity, fragment: SettingFragment) : Base
     }
 
     fun onReminder() {
-	mFragment.startActivityForResult(ReminderActivity.newIntent(mContext), REQUEST_REMINDER)
+        mFragment.startActivityForResult(ReminderActivity.newIntent(mContext), REQUEST_REMINDER)
     }
 
     fun onCheckedReminder(checked: Boolean) {
     }
 
     fun onClickSecurity() {
-	if (mChecked) {
-	    mFragment.startActivityForResult(
-		SecurityActivity.newIntent(mContext, TITLE_CANCEL_SECURITY),
-		REQUEST_SECURITY)
-	} else {
-	    mFragment.startActivityForResult(
-		SecurityActivity.newIntent(mContext, TITLE_INPUT_SECURITY),
-		REQUEST_SECURITY)
-	}
+        if (mChecked) {
+            mFragment.startActivityForResult(
+                    SecurityActivity.newIntent(mContext, TITLE_CANCEL_SECURITY),
+                    REQUEST_SECURITY)
+        } else {
+            mFragment.startActivityForResult(
+                    SecurityActivity.newIntent(mContext, TITLE_INPUT_SECURITY),
+                    REQUEST_SECURITY)
+        }
     }
 
     fun onChangeLanguage() {
     }
 
     fun onLogout() {
-	mPreferences.remove(PREF_IS_LOGIN)
-	FirebaseAuth.getInstance().signOut()
-	mActivity.startActivity(LoginActivity.newIntent(mContext))
+        mPreferences.remove(PREF_IS_LOGIN)
+        FirebaseAuth.getInstance().signOut()
+        mActivity.startActivity(LoginActivity.newIntent(mContext))
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != RESULT_OK) return
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-	if (resultCode != RESULT_OK) return
-
-	when (requestCode) {
-	    REQUEST_SECURITY -> {
-		mChecked = mPreferences[PREF_IS_SECURITY, Boolean::class.java]
-	    }
-	    REQUEST_REMINDER -> {
-	    }
-	}
+        when (requestCode) {
+            REQUEST_SECURITY -> {
+                mChecked = mPreferences[PREF_IS_SECURITY, Boolean::class.java]
+            }
+            REQUEST_REMINDER -> {
+            }
+        }
     }
 
 }

@@ -15,24 +15,28 @@ import com.nhahv.note.screen.BaseActivity
 class SettingFragment : Fragment() {
 
     companion object {
-	fun newInstance(): SettingFragment {
-	    return SettingFragment()
-	}
+        fun newInstance(): SettingFragment {
+            return SettingFragment()
+        }
     }
 
-    var mViewModel: SettingViewModel? = null
+    var mViewModel: SettingContract.ViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-	savedInstanceState: Bundle?): View? {
-	mViewModel = SettingViewModel(activity as BaseActivity, this)
-	val binding: FragmentSettingBinding = FragmentSettingBinding.inflate(inflater, container,
-	    false)
-	binding.viewModel = mViewModel
-	return binding.root
+            savedInstanceState: Bundle?): View? {
+
+        mViewModel = SettingViewModel(activity as BaseActivity, this)
+        val presenter = SettingPresenter(mViewModel as SettingViewModel)
+        mViewModel?.setPresenter(presenter)
+
+        val binding = FragmentSettingBinding.inflate(inflater, container, false)
+        binding.viewModel = mViewModel as SettingViewModel
+
+        return binding.root
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-	super.onActivityResult(requestCode, resultCode, data)
-	mViewModel?.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+        mViewModel?.onActivityResult(requestCode, resultCode, data)
     }
 }

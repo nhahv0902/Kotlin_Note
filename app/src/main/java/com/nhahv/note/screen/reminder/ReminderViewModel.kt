@@ -14,15 +14,17 @@ import java.util.*
  * <>
  */
 
-class ReminderViewModel(activity: BaseActivity) : BaseViewModel(
+class ReminderViewModel(activity: ReminderActivity) : ReminderContract.ViewModel(
         activity), TimePickerDialog.OnTimeSetListener {
 
     val MAX_DAY = 7
     val mContext = activity.applicationContext
+    private var mPresenter: ReminderContract.Presenter? = null
     var mHourOfDay: Int = 0
     var mMinute: Int = 0
 
     var mCalendar: Calendar = Calendar.getInstance()
+
 
     @get: Bindable
     var mTextTime: String = ""
@@ -53,6 +55,18 @@ class ReminderViewModel(activity: BaseActivity) : BaseViewModel(
         mHourOfDay = mCalendar.get(Calendar.HOUR_OF_DAY)
         mMinute = mCalendar.get(Calendar.MINUTE)
         mTextTime = convertTimeToText(mHourOfDay, mMinute)
+    }
+
+
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+    }
+
+    override fun setPresenter(presenter: ReminderContract.Presenter) {
+        mPresenter = presenter
     }
 
     fun onClickWeekday(dayOfWeekData: Int) {

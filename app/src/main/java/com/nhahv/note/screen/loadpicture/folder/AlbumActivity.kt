@@ -14,23 +14,28 @@ import com.nhahv.note.util.permission.mHashPermission
 import com.nhahv.note.util.permission.readStoragePermission
 import com.nhahv.note.util.toast
 
-class FolderActivity : BaseActivity() {
+class AlbumActivity : BaseActivity() {
 
-    private var mViewModel: FolderViewModel? = null
+    private var mViewModel: AlbumViewModel? = null
 
     companion object {
         fun newIntent(context: Context): Intent {
-            return Intent(context, FolderActivity::class.java)
+            return Intent(context, AlbumActivity::class.java)
         }
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mViewModel = AlbumViewModel(this)
+        val presenter = AlbumPresenter(mViewModel as AlbumContract.ViewModel)
+        mViewModel?.setPresenter(presenter)
+
         val binding: ActivityFolderBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_folder)
-        mViewModel = FolderViewModel(this)
         binding.viewModel = mViewModel
+
 
         if (readStoragePermission(applicationContext,
                 R.string.msg_permission_request_read_storage_external, this)) {

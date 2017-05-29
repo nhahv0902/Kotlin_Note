@@ -18,34 +18,48 @@ import com.nhahv.note.util.toast
  * <>
  */
 class EmailDialogViewModel(activity: BaseActivity,
-    dialog: EmailDialogFragment, password: String) : BaseViewModel(activity) {
+        dialog: EmailDialogFragment, password: String) : EmailDialogContract.ViewModel(activity) {
 
     private val mContext: Context = activity.applicationContext
     private val mPassword: String = password
     private val mDialog: EmailDialogFragment = dialog
+    private var mPresenter: EmailDialogContract.Presenter? = null
+
     @get: Bindable
     var mEmail: String? = ""
-	set(value) {
-	    field = value
-	    notifyPropertyChanged(BR.mEmail)
-	}
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mEmail)
+        }
 
     private val mPreference = SharePreference.getInstances(mContext)
 
+
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+    }
+
+    override fun setPresenter(presenter: EmailDialogContract.Presenter) {
+        mPresenter = presenter
+    }
+
     fun onClickDisAgree() {
-	mDialog.dismiss()
+        mDialog.dismiss()
     }
 
     fun onClickAgree() {
-	if (!TextUtils.isEmpty(mEmail)
-	    && android.util.Patterns.EMAIL_ADDRESS.matcher(mEmail?.trim()).matches()) {
-	    mPreference.put(PREF_PASSWORD_SECURITY, mPassword)
-	    mPreference.put(PREF_IS_SECURITY, true)
-	    mDialog.dismiss()
-	    mActivity.setResult(RESULT_OK)
-	    mActivity.finish()
-	} else {
-	    mContext.toast(mContext, R.string.msg_email_matchs)
-	}
+        if (!TextUtils.isEmpty(mEmail)
+                && android.util.Patterns.EMAIL_ADDRESS.matcher(mEmail?.trim()).matches()) {
+            mPreference.put(PREF_PASSWORD_SECURITY, mPassword)
+            mPreference.put(PREF_IS_SECURITY, true)
+            mDialog.dismiss()
+            mActivity.setResult(RESULT_OK)
+            mActivity.finish()
+        } else {
+            mContext.toast(mContext, R.string.msg_email_matchs)
+        }
     }
 }

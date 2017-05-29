@@ -5,7 +5,7 @@ import android.databinding.Bindable
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.screen.BaseViewModel
-import com.nhahv.note.screen.loadpicture.folder.FolderActivity
+import com.nhahv.note.screen.loadpicture.folder.AlbumActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import java.util.*
@@ -15,9 +15,10 @@ import java.util.*
  * <>
  */
 
-class NoteCreationViewModel(activity: NoteCreationActivity) : BaseViewModel(
+class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContract.ViewModel(
         activity), TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
+    private var mPresenter: NoteCreationContract.Presenter? = null
 
     val mContext: Context = activity.applicationContext
     var mCalendar = Calendar.getInstance()
@@ -59,8 +60,20 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : BaseViewModel(
         convertDateTime()
     }
 
-    fun onPickPicture() {
-        mActivity.startActivity(FolderActivity.newIntent(mContext))
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+
+    }
+
+    override fun setPresenter(presenter: NoteCreationContract.Presenter) {
+        mPresenter = presenter
+    }
+
+    override fun onPickPicture() {
+        mActivity.startActivity(AlbumActivity.newIntent(mContext))
     }
 
     fun onDoneCreateNotebook() {

@@ -36,6 +36,9 @@ class ImagePickerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         getDataFromIntent()
         mViewModel = ImagePickerViewModel(this, mFolder)
+        val presenter = ImagePickerPresenter(mViewModel as ImagePickerViewModel)
+        mViewModel?.setPresenter(presenter)
+
         val binding: ActivityImagePickerBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_image_picker)
         binding.viewModel = mViewModel

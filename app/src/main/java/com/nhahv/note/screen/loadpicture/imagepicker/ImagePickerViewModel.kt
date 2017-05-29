@@ -12,11 +12,13 @@ import com.nhahv.note.screen.loadpicture.model.Folder
  * <>
  */
 
-class ImagePickerViewModel(activity: ImagePickerActivity, folder: Folder?) : BaseViewModel(
+class ImagePickerViewModel(activity: ImagePickerActivity,
+        folder: Folder?) : ImagePickerContract.ViewModel(
         activity) {
 
     private val mContext: Context = activity.applicationContext
     private val mFolder: Folder? = folder
+    private var mPresenter: ImagePickerContract.Presenter? = null
 
     @get: Bindable
     var mTitle: String? = mContext.getString(R.string.title_albums)
@@ -42,6 +44,18 @@ class ImagePickerViewModel(activity: ImagePickerActivity, folder: Folder?) : Bas
     init {
         mTitle = mFolder?.name
         mAdapter = ImagePickerAdapter(this, mFolder?.images)
+    }
+
+    override fun onStart() {
+        mPresenter?.onStart()
+    }
+
+    override fun onStop() {
+        mPresenter?.onStop()
+    }
+
+    override fun setPresenter(presenter: ImagePickerContract.Presenter) {
+        mPresenter = presenter
     }
 
     fun onImagePicker(position: Int) {}

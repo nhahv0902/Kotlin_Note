@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://schemas.android.com/tools"
     >
+
     <data>
+        <import type="com.nhahv.note.util.Font"/>
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.plash.PlashScreenViewModel"
+            type="com.nhahv.note.screen.splashscreen.SplashScreenViewModel"
             />
-        <import type="com.nhahv.note.util.Font"/>
 
     </data>
-    <LinearLayout
-        android:id="@+id/activity_main"
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_activity_login"
-        android:orientation="vertical"
         >
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,5 +29,5 @@
             android:textStyle="bold"
             bind:font="@{Font.CALLIGRAPHY}"
             />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </layout>

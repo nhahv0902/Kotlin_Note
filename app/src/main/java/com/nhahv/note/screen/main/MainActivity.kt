@@ -10,21 +10,26 @@ import com.nhahv.note.screen.BaseActivity
 
 class MainActivity : BaseActivity() {
 
-  private var mViewModel: MainViewModel? = null
+    private var mViewModel: MainContract.ViewModel? = null
 
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-    mViewModel = MainViewModel(this)
-    binding.viewModel = mViewModel
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
+        mViewModel = MainViewModel(this)
+        val presenter: MainContract.Presenter = MainPresenter(mViewModel as MainViewModel)
+        mViewModel?.setPresenter(presenter)
 
-  companion object {
-    fun newIntent(context: Context): Intent {
-      val intent: Intent = Intent(context, MainActivity::class.java)
-      return intent
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
+                R.layout.activity_main)
+        binding.viewModel = mViewModel as MainViewModel
     }
-  }
+
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            val intent: Intent = Intent(context, MainActivity::class.java)
+            return intent
+        }
+    }
 }

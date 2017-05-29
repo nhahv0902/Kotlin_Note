@@ -22,7 +22,23 @@ import com.nhahv.note.util.toast
  * Created by Hoang Van Nha on 5/21/2017.
  * <>
  */
-class LoginViewModel(activity: BaseActivity) : BaseViewModel(activity) {
+class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity) {
+
+    private var mPresenter: LoginContract.Presenter? = null
+    private val mPreferences = SharePreference.getInstances(activity.applicationContext)
+
+
+    override fun onStart() {
+
+    }
+
+    override fun onStop() {
+    }
+
+    override fun setPresenter(presenter: LoginContract.Presenter) {
+        mPresenter = presenter
+    }
+
     val mPreference: SharePreference = SharePreference.getInstances(activity)
     val mContext: Context = activity.applicationContext
 
@@ -59,7 +75,7 @@ class LoginViewModel(activity: BaseActivity) : BaseViewModel(activity) {
         mGoogle.onClickLogin()
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RC_SIGN_IN) {
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             if (result.isSuccess) {
