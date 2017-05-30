@@ -10,8 +10,8 @@ import com.nhahv.note.R
 import com.nhahv.note.databinding.ActivityFolderBinding
 import com.nhahv.note.screen.BaseActivity
 import com.nhahv.note.screen.loadpicture.model.LoaderPicture
-import com.nhahv.note.util.permission.mHashPermission
-import com.nhahv.note.util.permission.readStoragePermission
+import com.nhahv.note.util.mHashPermission
+import com.nhahv.note.util.readStoragePermission
 import com.nhahv.note.util.toast
 
 class AlbumActivity : BaseActivity() {
@@ -36,13 +36,15 @@ class AlbumActivity : BaseActivity() {
                 R.layout.activity_folder)
         binding.viewModel = mViewModel
 
-
         if (readStoragePermission(applicationContext,
                 R.string.msg_permission_request_read_storage_external, this)) {
             onLoadImageFromSDcard()
         }
+    }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mViewModel?.onActivityResult(requestCode, resultCode, data)
     }
 
     fun onLoadImageFromSDcard() {
@@ -59,6 +61,14 @@ class AlbumActivity : BaseActivity() {
                     onLoadImageFromSDcard()
                 } else {
                     toast(this.applicationContext, R.string.msg_denied_read_storage_external)
+                }
+                return
+            }
+            mHashPermission[Manifest.permission.CAMERA] -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mViewModel?.openCamera()
+                } else {
+                    toast(this.applicationContext, R.string.msg_denied_camera)
                 }
                 return
             }

@@ -6,8 +6,6 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseUser
 import com.nhahv.note.R
-import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.screen.login.NotebookGoogle.Companion.RC_SIGN_IN
 import com.nhahv.note.screen.main.MainActivity
 import com.nhahv.note.screen.security.SecurityActivity

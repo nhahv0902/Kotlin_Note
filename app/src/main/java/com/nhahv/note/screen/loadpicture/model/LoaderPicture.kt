@@ -41,7 +41,7 @@ class LoaderPicture(context: Context) {
             if (!hashFolder.containsKey(folderName)) {
                 hashFolder.put(folderName, Folder(folderName, ArrayList()))
             }
-            hashFolder[folderName]?.images?.add(ImagePicker(imagePath, false))
+            hashFolder[folderName]?.images?.add(imagePath)
             cursor.moveToNext()
         }
         cursor.close()

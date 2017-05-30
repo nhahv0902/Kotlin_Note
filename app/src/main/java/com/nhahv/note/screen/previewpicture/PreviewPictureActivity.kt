@@ -7,7 +7,6 @@ import android.os.Bundle
 import com.nhahv.note.R
 import com.nhahv.note.databinding.ActivityPreviewPictureBinding
 import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.loadpicture.model.ImagePicker
 import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
 import com.nhahv.note.util.BundleConstant.BUNDLE_POSITION
 
@@ -17,15 +16,15 @@ import com.nhahv.note.util.BundleConstant.BUNDLE_POSITION
 class PreviewPictureActivity : BaseActivity() {
 
     private var mViewModel: PreviewPictureContract.ViewModel? = null
-    private var mImages: ArrayList<ImagePicker>? = null
+    private var mImages: ArrayList<String>? = null
     private var mPosition: Int = 0
 
 
     companion object {
-        fun newIntent(context: Context, images: ArrayList<ImagePicker>, position: Int): Intent {
+        fun newIntent(context: Context, images: ArrayList<String>, position: Int): Intent {
             val intent = Intent(context, PreviewPictureActivity::class.java)
             val bundle = Bundle()
-            bundle.putParcelableArrayList(BUNDLE_IMAGES, images)
+            bundle.putStringArrayList(BUNDLE_IMAGES, images)
             bundle.putInt(BUNDLE_POSITION, position)
             intent.putExtras(bundle)
             return intent
@@ -35,7 +34,7 @@ class PreviewPictureActivity : BaseActivity() {
     private fun getDataFromIntent() {
         val bundle = intent.extras
         bundle?.let {
-            mImages = bundle.getParcelableArrayList(BUNDLE_IMAGES)
+            mImages = bundle.getStringArrayList(BUNDLE_IMAGES)
             mPosition = bundle.getInt(BUNDLE_POSITION)
         }
     }

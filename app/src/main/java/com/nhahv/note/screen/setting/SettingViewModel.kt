@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment
 import com.android.databinding.library.baseAdapters.BR
 import com.google.firebase.auth.FirebaseAuth
 import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.screen.login.LoginActivity
 import com.nhahv.note.screen.reminder.ReminderActivity
 import com.nhahv.note.screen.security.SecurityActivity

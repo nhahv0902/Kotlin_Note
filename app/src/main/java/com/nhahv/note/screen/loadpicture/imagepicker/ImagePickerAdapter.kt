@@ -5,21 +5,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nhahv.note.databinding.ItemImagePickerBinding
 
-import com.nhahv.note.screen.loadpicture.model.ImagePicker
-
 /**
  * Created by Hoang Van Nha on 5/28/2017.
  * <>
  */
 
 class ImagePickerAdapter(viewModel: ImagePickerViewModel,
-        imagePickers: ArrayList<ImagePicker>?) : RecyclerView.Adapter<ImagePickerAdapter.ImagePickerHolder>() {
+        imagePickers: ArrayList<String>?) : RecyclerView.Adapter<ImagePickerAdapter.ImagePickerHolder>() {
 
     var mImagePickers = imagePickers
     var mInflater: LayoutInflater? = null
     val mViewModel = viewModel
 
-    fun update(imagePickers: ArrayList<ImagePicker>) {
+    fun update(imagePickers: ArrayList<String>) {
         mImagePickers?.clear()
         mImagePickers?.addAll(imagePickers)
         notifyDataSetChanged()
@@ -45,8 +43,8 @@ class ImagePickerAdapter(viewModel: ImagePickerViewModel,
             binding.root) {
         val mBinding = binding
 
-        fun bind(imagePicker: ImagePicker, position: Int) {
-            mBinding.imagePick = imagePicker
+        fun bind(image: String, position: Int) {
+            mBinding.image = image
             mBinding.position = position
             mBinding.executePendingBindings()
         }

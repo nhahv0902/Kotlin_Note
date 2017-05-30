@@ -4,7 +4,6 @@ import android.databinding.Bindable
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.BaseViewModel
 
 /**
  * Created by Hoang Van Nha on 5/21/2017.

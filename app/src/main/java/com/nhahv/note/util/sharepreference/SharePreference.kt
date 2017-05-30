@@ -3,8 +3,6 @@ package com.nhahv.note.util.sharepreference
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import java.lang.*
-import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
@@ -18,56 +16,56 @@ import kotlin.String
 
 class SharePreference private constructor(context: Context) : ISharePreference {
     private val mPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(
-	context)
+            context)
 
     companion object {
-	private var mInstances: SharePreference? = null
+        private var mInstances: SharePreference? = null
 
-	fun getInstances(context: Context): SharePreference {
-	    if (mInstances == null) {
-		mInstances = SharePreference(context)
-	    }
-	    return mInstances as SharePreference
-	}
+        fun getInstances(context: Context): SharePreference {
+            if (mInstances == null) {
+                mInstances = SharePreference(context)
+            }
+            return mInstances as SharePreference
+        }
     }
 
     override fun <T> get(key: String, tClass: Class<T>): T {
-	if (tClass == String::class.java) {
-	    return mPreferences.getString(key, null) as T
-	} else if (tClass == Boolean::class.java) {
-	    return mPreferences.getBoolean(key, false) as T
-	} else if (tClass == Float::class.java) {
-	    return mPreferences.getFloat(key, 0f) as T
-	} else if (tClass == Int::class.java) {
-	    return mPreferences.getInt(key, 0) as T
-	} else if (tClass == Long::class.java) {
-	    return mPreferences.getLong(key, 0) as T
-	}
-	return null as T
+        if (tClass == String::class.java) {
+            return mPreferences.getString(key, null) as T
+        } else if (tClass == Boolean::class.java) {
+            return mPreferences.getBoolean(key, false) as T
+        } else if (tClass == Float::class.java) {
+            return mPreferences.getFloat(key, 0f) as T
+        } else if (tClass == Int::class.java) {
+            return mPreferences.getInt(key, 0) as T
+        } else if (tClass == Long::class.java) {
+            return mPreferences.getLong(key, 0) as T
+        }
+        return null as T
     }
 
     override fun <T> put(key: String, value: T) {
-	val editor = mPreferences.edit()
-	if (value is String) {
-	    editor.putString(key, value)
-	} else if (value is Boolean) {
-	    editor.putBoolean(key, value)
-	} else if (value is Float) {
-	    editor.putFloat(key, value)
-	} else if (value is Int) {
-	    editor.putInt(key, value)
-	} else if (value is Long) {
-	    editor.putLong(key, value)
-	}
-	editor.apply()
+        val editor = mPreferences.edit()
+        if (value is String) {
+            editor.putString(key, value)
+        } else if (value is Boolean) {
+            editor.putBoolean(key, value)
+        } else if (value is Float) {
+            editor.putFloat(key, value)
+        } else if (value is Int) {
+            editor.putInt(key, value)
+        } else if (value is Long) {
+            editor.putLong(key, value)
+        }
+        editor.apply()
     }
 
     override fun clear() {
-	mPreferences.edit().clear().apply()
+        mPreferences.edit().clear().apply()
     }
 
 
     override fun remove(key: String) {
-	mPreferences.edit().remove(key).apply()
+        mPreferences.edit().remove(key).apply()
     }
 }

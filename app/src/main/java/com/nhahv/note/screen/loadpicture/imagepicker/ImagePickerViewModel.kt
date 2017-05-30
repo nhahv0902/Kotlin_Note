@@ -1,11 +1,17 @@
 package com.nhahv.note.screen.loadpicture.imagepicker
 
+import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.content.Intent
 import android.databinding.Bindable
+import android.databinding.ObservableArrayList
+import android.os.Bundle
+import android.text.TextUtils
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.screen.loadpicture.model.Folder
 import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
+import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
 
 /**
  * Created by Hoang Van Nha on 5/28/2017.
@@ -35,11 +41,13 @@ class ImagePickerViewModel(activity: ImagePickerActivity,
         }
 
     @get: Bindable
-    var mNumberImage: Int? = null
+    var mNumberImage: Int? = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.mNumberImage)
         }
+
+    var mImagePicks: ObservableArrayList<String> = ObservableArrayList()
 
     init {
         mTitle = mFolder?.name
@@ -63,5 +71,23 @@ class ImagePickerViewModel(activity: ImagePickerActivity,
                 mFolder?.images?.let { PreviewPictureActivity.newIntent(mContext, it, position) })
     }
 
-    fun onDonePickImage() {}
+    fun onDonePickImage() {
+        val intent = Intent()
+        val bundle = Bundle()
+        bundle.putStringArrayList(BUNDLE_IMAGES, mImagePicks)
+        intent.putExtras(bundle)
+        mActivity.setResult(RESULT_OK, intent)
+        mActivity.finish()
+    }
+
+    fun onCheckedPickImage(checked: Boolean, imagePick: String, position: Int) {
+        mNumberImage = mNumberImage?.plus((if (checked) 1 else -1))
+        if (checked) {
+            mImagePicks.add(imagePick)
+        } else {
+            mImagePicks
+                    .filter { TextUtils.equals(it, imagePick) }
+                    .forEach { mImagePicks.remove(it) }
+        }
+    }
 }

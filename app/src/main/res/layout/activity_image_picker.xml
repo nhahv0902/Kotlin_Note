@@ -34,7 +34,7 @@
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/dp_16"
                 android:paddingRight="@dimen/dp_16"
-                android:visibility="@{viewModel.MNumberImage  == 0 ? View.GONE : View.VISIBLE}"
+                android:visibility="@{viewModel.mNumberImage  == 0 ? View.GONE : View.VISIBLE}"
                 >
 
                 <android.support.v7.widget.AppCompatTextView
@@ -43,7 +43,7 @@
                     android:layout_gravity="end"
                     android:gravity="center_vertical"
                     android:padding="@dimen/dp_4"
-                    android:text="@{String.valueOf(viewModel.MNumberImage)}"
+                    android:text="@{String.valueOf(viewModel.mNumberImage)}"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/sp_17"
                     />

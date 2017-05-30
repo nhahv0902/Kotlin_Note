@@ -13,8 +13,8 @@
             type="com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerViewModel"
             />
         <variable
-            name="imagePick"
-            type="com.nhahv.note.screen.loadpicture.model.ImagePicker"
+            name="image"
+            type="String"
             />
     </data>
 
@@ -31,7 +31,7 @@
             android:onClick="@{()->viewModel.onImagePicker(position)}"
             android:scaleType="fitCenter"
             bind:bindError="@{@drawable/icon_photo_48dp}"
-            bind:imageUrl="@{imagePick.mImagePath}"
+            bind:imageUrl="@{image}"
             />
 
         <android.support.v7.widget.AppCompatCheckBox
@@ -41,7 +41,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/dp_8"
             android:button="@drawable/state_image_picker"
-            android:checked="true"
+            android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedPickImage(checked, image, position)}"
             />
     </com.nhahv.note.widget.SquareRelativeLayout>
 </layout>

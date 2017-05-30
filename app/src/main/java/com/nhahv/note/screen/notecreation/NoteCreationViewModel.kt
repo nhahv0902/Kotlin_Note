@@ -1,11 +1,17 @@
 package com.nhahv.note.screen.notecreation
 
+import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.content.Intent
 import android.databinding.Bindable
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
 import com.android.databinding.library.baseAdapters.BR
+import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.screen.loadpicture.folder.AlbumActivity
+import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
+import com.nhahv.note.util.Request.REQUEST_PICK_IMAGE
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import java.util.*
@@ -21,8 +27,17 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     private var mPresenter: NoteCreationContract.Presenter? = null
 
     val mContext: Context = activity.applicationContext
-    var mCalendar = Calendar.getInstance()
+    var mCalendar: Calendar = Calendar.getInstance()
+    var mImages: ObservableArrayList<String> = ObservableArrayList()
+    var mAdapter: ObservableField<ViewPagerAdapter> = ObservableField()
 
+
+    @get: Bindable
+    var mHeight: Int = mContext.resources.getDimension(R.dimen.dp_56).toInt()
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mHeight)
+        }
     @get: Bindable
     var mNotebook: Notebook = Notebook()
         set(value) {
@@ -57,6 +72,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         mNotebook.mTime = convertTimeToText(mCalendar.get(Calendar.HOUR_OF_DAY),
                 mCalendar.get(Calendar.MINUTE))
 
+        mAdapter.set(ViewPagerAdapter(mImages))
         convertDateTime()
     }
 
@@ -68,17 +84,34 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != RESULT_OK || data == null || data.extras == null) return
+        when (requestCode) {
+            REQUEST_PICK_IMAGE -> {
+                mImages.addAll(data.extras.getStringArrayList(BUNDLE_IMAGES))
+                mAdapter.get().notifyDataSetChanged()
+                mHeight = mContext.resources.getDimension(
+                        if (mImages.size > 0) R.dimen.dp_270 else R.dimen.dp_56).toInt()
+            }
+
+        }
+    }
+
     override fun setPresenter(presenter: NoteCreationContract.Presenter) {
         mPresenter = presenter
     }
 
     override fun onPickPicture() {
-        mActivity.startActivity(AlbumActivity.newIntent(mContext))
+        mActivity.startActivityForResult(AlbumActivity.newIntent(mContext), REQUEST_PICK_IMAGE)
     }
 
     fun onDoneCreateNotebook() {
+        mNotebook.mPlace = "Số nhà 56, ngõ 105, Doãn Kế Thiện, Dịch Vọng, Cầu Giấy, Hà Nội"
+        mPresenter?.addNotebook(mNotebook)
+    }
 
-
+    override fun onPreviewImage() {
+//        mActivity.startActivity(PreviewPictureActivity.newIntent(mContext, mImages, ))
     }
 
     fun onPickDate() {
@@ -105,12 +138,13 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         mCalendar.set(Calendar.YEAR, year)
         mCalendar.set(Calendar.MONTH, monthOfYear)
         mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-// String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        convertDateTime()
     }
 
     override fun onTimeSet(p0: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
         mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         mCalendar.set(Calendar.MILLISECOND, minute)
+        mNotebook.mTime = convertTimeToText(hourOfDay, minute)
     }
 
     private fun convertTimeToText(hourOfDay: Int, minute: Int): String {
@@ -126,6 +160,8 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 Locale.getDefault())
         mMonthYear = "${mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG,
                 Locale.getDefault())} ${mCalendar.get(Calendar.YEAR)}"
+
+        mNotebook.mDate = mCalendar.timeInMillis
     }
 
 }

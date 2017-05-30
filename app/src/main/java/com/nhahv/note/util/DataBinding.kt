@@ -20,6 +20,7 @@ import com.nhahv.note.R
 import com.nhahv.note.screen.BaseActivity
 import com.nhahv.note.screen.main.MainViewModel
 import com.nhahv.note.screen.security.SecurityViewModel
+import org.apache.commons.lang3.StringUtils
 
 
 /**
@@ -97,10 +98,10 @@ fun endCursor(view: AppCompatEditText, bTrue: Boolean) {
 /*bind EditText end cusor
 * in Email dialog fragment
 * */
-@BindingAdapter("toolbar", "title")
-fun toolbar(view: Toolbar, activity: BaseActivity, title: String) {
+@BindingAdapter(value = *arrayOf("toolbar", "title"), requireAll = false)
+fun toolbar(view: Toolbar, activity: BaseActivity, title: String?) {
     activity.setSupportActionBar(view)
-    activity.title = title
+    activity.title = StringUtils.capitalize(title)
     activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 }

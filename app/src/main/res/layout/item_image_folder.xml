@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/dp_82"
                 android:scaleType="centerCrop"
                 bind:bindError="@{@drawable/icon_photo_48dp}"
-                bind:imageUrl="@{folder.images.get(0).MImagePath}"
+                bind:imageUrl="@{folder.images.get(0)}"
                 />
 
             <android.support.v7.widget.AppCompatTextView

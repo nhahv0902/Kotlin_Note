@@ -67,5 +67,8 @@
     <string name="title_albums">Albums</string>
     <string name="msg_denied_read_storage_external">You denied permission read storage external</string>
     <string name="msg_permission_request_read_storage_external">Please, grant permission read external sdcard to show picure.</string>
+    <string name="msg_device_not_support_camera">Your device do not support camera</string>
+    <string name="msg_denied_camera">You denied permission camera</string>
+    <string name="msg_permission_request_camera">Please, grant permission camera to capture image.</string>
 
 </resources>

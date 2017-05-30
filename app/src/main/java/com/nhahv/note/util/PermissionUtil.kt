@@ -1,4 +1,4 @@
-package com.nhahv.note.util.permission
+package com.nhahv.note.util
 
 import android.Manifest
 import android.content.Context
@@ -17,9 +17,11 @@ import com.nhahv.note.R
 
 
 val REQUEST_READ_EXTERNAL_STORAGE = 1
+val REQUEST_CAMERA = 2
 
 val mHashPermission = mapOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE to REQUEST_READ_EXTERNAL_STORAGE)
+        Manifest.permission.READ_EXTERNAL_STORAGE to REQUEST_READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA to REQUEST_CAMERA)
 
 
 fun readStoragePermission(context: Context, message: Int, activity: AppCompatActivity): Boolean {
@@ -35,6 +37,21 @@ fun readStoragePermission(context: Context, message: Int, activity: AppCompatAct
     }
     return false
 }
+
+fun cameraPermission(context: Context, message: Int, activity: AppCompatActivity): Boolean {
+    if (hashPermission(context, Manifest.permission.CAMERA)) {
+        return true
+    } else {
+        if (showRequestPermission(activity, Manifest.permission.CAMERA)) {
+            showExplainPermission(activity, message, Manifest.permission.CAMERA)
+        } else {
+            requestPermission(activity, Manifest.permission.CAMERA,
+                    mHashPermission[Manifest.permission.CAMERA]!!)
+        }
+    }
+    return false
+}
+
 
 fun showExplainPermission(activity: AppCompatActivity, message: Int, permission: String) {
     AlertDialog.Builder(activity)

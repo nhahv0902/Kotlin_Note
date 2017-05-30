@@ -9,18 +9,18 @@ import com.nhahv.note.widget.NoteProgress
  */
 
 open class BaseActivity : AppCompatActivity() {
-  private var mProgressDialog: NoteProgress? = null
+    private var mProgressDialog: NoteProgress? = null
 
-  fun showProgress() {
-    if (mProgressDialog == null) {
-      mProgressDialog = NoteProgress(this)
+    fun showProgress() {
+        if (mProgressDialog == null) {
+            mProgressDialog = NoteProgress(this)
+        }
+        if (!mProgressDialog!!.isShowing) {
+            mProgressDialog!!.show()
+        }
     }
-    if (!mProgressDialog!!.isShowing) {
-      mProgressDialog!!.show()
-    }
-  }
 
-  fun dismissProgress() {
-    mProgressDialog!!.dismiss()
-  }
+    fun dismissProgress() {
+        mProgressDialog!!.dismiss()
+    }
 }

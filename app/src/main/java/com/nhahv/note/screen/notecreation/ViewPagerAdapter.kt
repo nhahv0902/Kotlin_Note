@@ -1,4 +1,4 @@
-package com.nhahv.note.screen.previewpicture
+package com.nhahv.note.screen.notecreation
 
 import android.support.v4.view.PagerAdapter
 import android.view.View
@@ -27,9 +27,9 @@ class ViewPagerAdapter(images: ArrayList<String>?) : PagerAdapter() {
                 .asBitmap()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .fitCenter()
+                .centerCrop()
                 .into(photoView)
-        container?.addView(photoView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        container?.addView(photoView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         return photoView
     }
 

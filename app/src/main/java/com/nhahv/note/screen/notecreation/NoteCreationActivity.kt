@@ -28,10 +28,14 @@ class NoteCreationActivity : BaseActivity() {
         val presenter = NoteCreationPresenter(mViewModel as NoteCreationViewModel)
         mViewModel?.setPresenter(presenter)
 
-
         val binding: ActivityNoteCreationBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_note_creation)
         binding.viewModel = mViewModel as NoteCreationViewModel
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mViewModel?.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

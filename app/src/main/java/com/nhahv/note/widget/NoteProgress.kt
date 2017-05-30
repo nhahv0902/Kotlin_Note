@@ -12,15 +12,15 @@ import android.widget.ProgressBar
  */
 
 class NoteProgress : ProgressDialog {
-  constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context)
 
-  constructor(context: Context, theme: Int) : super(context, theme)
+    constructor(context: Context, theme: Int) : super(context, theme)
 
-  override fun show() {
-    super.show()
-    if (window != null) {
-      window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    override fun show() {
+        super.show()
+        if (window != null) {
+            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+        setContentView(ProgressBar(context))
     }
-    setContentView(ProgressBar(context))
-  }
 }

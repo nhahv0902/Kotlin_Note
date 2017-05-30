@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by Hoang Van Nha on 5/28/2017.
  * <>
  */
-data class Folder(var name: String, var images: ArrayList<ImagePicker>) : Parcelable {
+data class Folder(var name: String, var images: ArrayList<String>) : Parcelable {
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Folder> = object : Parcelable.Creator<Folder> {
             override fun createFromParcel(source: Parcel): Folder = Folder(source)
@@ -17,15 +17,13 @@ data class Folder(var name: String, var images: ArrayList<ImagePicker>) : Parcel
 
     constructor(source: Parcel) : this(
             source.readString(),
-            ArrayList<ImagePicker>().apply {
-                source.readList(this, ImagePicker::class.java.classLoader)
-            }
+            source.createStringArrayList()
     )
 
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(name)
-        dest.writeList(images)
+        dest.writeStringList(images)
     }
 }

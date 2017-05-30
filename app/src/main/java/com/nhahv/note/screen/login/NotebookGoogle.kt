@@ -16,41 +16,41 @@ import com.nhahv.note.R
  */
 
 class NotebookGoogle(activity: AppCompatActivity,
-    onConnectionFailedListener: GoogleApiClient.OnConnectionFailedListener) {
+        onConnectionFailedListener: GoogleApiClient.OnConnectionFailedListener) {
     companion object {
-	val RC_SIGN_IN = 990
+        val RC_SIGN_IN = 990
     }
 
     val mActivity = activity
     var mClient: GoogleApiClient? = null
 
     init {
-	val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
-	    activity.getString(R.string.server_client_id)).requestEmail().build()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(
+                activity.getString(R.string.server_client_id)).requestEmail().build()
 
-	mClient = GoogleApiClient.Builder(activity).enableAutoManage(activity,
-	    onConnectionFailedListener)
-	    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-	    .build()
+        mClient = GoogleApiClient.Builder(activity).enableAutoManage(activity,
+                onConnectionFailedListener)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build()
     }
 
     fun onClickLogin() {
-	val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mClient)
-	mActivity.startActivityForResult(signInIntent, RC_SIGN_IN)
+        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mClient)
+        mActivity.startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     fun handlerGoogle(acct: GoogleSignInAccount, callback: LoginViewModel.ICallback) {
-	val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-	FirebaseAuth.getInstance()
-	    .signInWithCredential(credential)
-	    .addOnCompleteListener(mActivity) { task ->
-		run {
-		    if (task.isSuccessful) {
-			callback.onLoginSuccess(FirebaseAuth.getInstance().currentUser!!)
-		    } else {
-			callback.onLoginError()
-		    }
-		}
-	    }
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        FirebaseAuth.getInstance()
+                .signInWithCredential(credential)
+                .addOnCompleteListener(mActivity) { task ->
+                    run {
+                        if (task.isSuccessful) {
+                            callback.onLoginSuccess(FirebaseAuth.getInstance().currentUser!!)
+                        } else {
+                            callback.onLoginError()
+                        }
+                    }
+                }
     }
 }

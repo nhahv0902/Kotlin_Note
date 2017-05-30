@@ -9,10 +9,10 @@ import com.squareup.leakcanary.LeakCanary
  */
 class NotebookApplication : Application() {
     override fun onCreate() {
-	super.onCreate()
-	if (LeakCanary.isInAnalyzerProcess(this)) {
-	    return
-	}
-	LeakCanary.install(this)
+        super.onCreate()
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        LeakCanary.install(this)
     }
 }

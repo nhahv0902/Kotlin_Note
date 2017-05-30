@@ -10,8 +10,9 @@ import com.nhahv.note.BR
  */
 
 class Notebook : BaseObservable() {
+
     @get:Bindable
-    var mId: String? = null
+    var mId: String? = ""
         set(id) {
             field = id
             notifyPropertyChanged(BR.mId)

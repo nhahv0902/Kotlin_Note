@@ -30,4 +30,9 @@ object BundleConstant {
 object Request {
     @JvmStatic val REQUEST_SECURITY: Int = 1
     @JvmStatic val REQUEST_REMINDER: Int = 2
+    @JvmStatic val REQUEST_PICK_IMAGE: Int = 3
+}
+
+object FirebaseKey {
+    @JvmStatic val NOTEBOOK: String = "NoteBook"
 }

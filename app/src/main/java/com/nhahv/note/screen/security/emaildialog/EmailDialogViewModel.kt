@@ -7,7 +7,6 @@ import android.text.TextUtils
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.util.sharepreference.PREF_IS_SECURITY
 import com.nhahv.note.util.sharepreference.PREF_PASSWORD_SECURITY
 import com.nhahv.note.util.sharepreference.SharePreference

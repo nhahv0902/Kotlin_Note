@@ -3,8 +3,6 @@ package com.nhahv.note.screen.reminder
 import android.annotation.SuppressLint
 import android.databinding.Bindable
 import com.android.databinding.library.baseAdapters.BR
-import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.BaseViewModel
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import java.util.*
 
