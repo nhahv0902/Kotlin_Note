@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
     >
     <data>
 
@@ -8,10 +9,17 @@
             type="com.nhahv.note.screen.notebook.NotebookViewModel"
             />
     </data>
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:adapter="@{viewModel.mAdapter}"
-        app:layoutManager="LinearLayoutManager"
-        />
+        bind:refresh="@{viewModel.mIsRefresh}"
+        bind:swipeRefreshLayout="@{viewModel}"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{viewModel.mAdapter}"
+            app:layoutManager="LinearLayoutManager"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>

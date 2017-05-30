@@ -1,6 +1,7 @@
 package com.nhahv.note.screen.notecreation
 
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.data.source.creation.NotebookRepository
 
 /**
@@ -20,7 +21,8 @@ class NoteCreationPresenter(
     override fun onStop() {
     }
 
-    override fun addNotebook(notebook: Notebook) {
-        mRepository.addNotebook(notebook)
+    override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
+        mRepository.addNotebook(notebook, callback)
+
     }
 }

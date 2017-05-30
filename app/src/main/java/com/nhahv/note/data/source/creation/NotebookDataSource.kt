@@ -7,13 +7,21 @@ import com.nhahv.note.data.model.Notebook
  * <>
  */
 interface NotebookDataSource {
-    fun addNotebook(notebook: Notebook)
+    fun addNotebook(notebook: Notebook, callback: Callback)
 
+    fun getNotebooks(callback: LoadNotebookCallback)
 
     interface Callback {
 
         fun onSuccess()
 
         fun onError()
+    }
+
+    interface LoadNotebookCallback {
+
+        fun onNotebooksLoaded(notebooks: ArrayList<Notebook>)
+
+        fun onDataNotAvailable()
     }
 }

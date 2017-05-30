@@ -56,6 +56,7 @@ class SplashScreenViewModel(activity: SplashScreenActivity) : SplashScreenContra
             }
             mActivity.finish()
         }, TimeUtil.TIME_DELAY)
+
     }
 
     override fun onStart() {

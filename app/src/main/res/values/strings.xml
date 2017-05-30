@@ -70,5 +70,6 @@
     <string name="msg_device_not_support_camera">Your device do not support camera</string>
     <string name="msg_denied_camera">You denied permission camera</string>
     <string name="msg_permission_request_camera">Please, grant permission camera to capture image.</string>
+    <string name="msg_load_data_error">Load data error</string>
 
 </resources>

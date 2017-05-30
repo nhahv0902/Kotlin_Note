@@ -9,9 +9,11 @@ import android.databinding.ObservableField
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.screen.loadpicture.folder.AlbumActivity
 import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
 import com.nhahv.note.util.Request.REQUEST_PICK_IMAGE
+import com.nhahv.note.util.toast
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import java.util.*
@@ -106,8 +108,21 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     }
 
     fun onDoneCreateNotebook() {
+        mActivity.showProgress()
+
+        mNotebook.mPictures = mImages
         mNotebook.mPlace = "Số nhà 56, ngõ 105, Doãn Kế Thiện, Dịch Vọng, Cầu Giấy, Hà Nội"
-        mPresenter?.addNotebook(mNotebook)
+        mPresenter?.addNotebook(mNotebook, object : NotebookDataSource.Callback {
+            override fun onSuccess() {
+                mContext.toast(mContext, "Add success")
+                mActivity.dismissProgress()
+            }
+
+            override fun onError() {
+                mContext.toast(mContext, "Add error")
+                mActivity.dismissProgress()
+            }
+        })
     }
 
     override fun onPreviewImage() {
@@ -162,6 +177,15 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 Locale.getDefault())} ${mCalendar.get(Calendar.YEAR)}"
 
         mNotebook.mDate = mCalendar.timeInMillis
+    }
+
+    private fun convertPicture(images: ArrayList<String>): String {
+        val picture: StringBuilder = StringBuilder()
+        /*images.forEach(picture.append(it))*/
+        for (item in images) {
+            picture.append(item).append(";")
+        }
+        return picture.toString()
     }
 
 }

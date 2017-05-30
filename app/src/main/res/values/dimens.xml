@@ -30,4 +30,5 @@
     <dimen name="dp_82">82dp</dimen>
     <dimen name="sp_17">17sp</dimen>
     <dimen name="dp_18">18dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
 </resources>

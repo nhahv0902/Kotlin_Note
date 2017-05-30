@@ -25,7 +25,6 @@ class MainActivity : BaseActivity() {
         binding.viewModel = mViewModel as MainViewModel
     }
 
-
     companion object {
         fun newIntent(context: Context): Intent {
             val intent: Intent = Intent(context, MainActivity::class.java)

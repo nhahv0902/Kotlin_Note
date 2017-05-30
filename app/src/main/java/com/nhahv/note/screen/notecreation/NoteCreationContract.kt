@@ -2,6 +2,7 @@ package com.nhahv.note.screen.notecreation
 
 import android.content.Intent
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.screen.BasePresenter
 import com.nhahv.note.screen.BaseViewModel
 
@@ -17,6 +18,6 @@ interface NoteCreationContract {
     }
 
     interface Presenter : BasePresenter {
-        fun addNotebook(notebook: Notebook)
+        fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback)
     }
 }

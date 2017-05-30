@@ -162,8 +162,9 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
                     android:background="@color/color_grey_200"
+                    android:gravity="start|top"
                     android:hint="@string/hint_text_notebook"
-                    android:minHeight="120dp"
+                    android:minHeight="@dimen/dp_120"
                     android:paddingBottom="@dimen/dp_8"
                     android:paddingLeft="@dimen/dp_4"
                     android:paddingRight="@dimen/dp_4"
@@ -193,6 +194,8 @@
                         android:gravity="center_vertical"
                         android:padding="@dimen/dp_4"
                         android:text="@={viewModel.MNotebook.MPlace}"
+                        android:textColor="@color/color_grey_757575"
+                        android:textSize="@dimen/sp_16"
                         />
                 </LinearLayout>
             </LinearLayout>

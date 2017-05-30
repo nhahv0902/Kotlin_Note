@@ -8,6 +8,7 @@ import android.net.Uri
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
@@ -19,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.nhahv.note.R
 import com.nhahv.note.screen.BaseActivity
 import com.nhahv.note.screen.main.MainViewModel
+import com.nhahv.note.screen.notebook.NotebookViewModel
 import com.nhahv.note.screen.security.SecurityViewModel
 import org.apache.commons.lang3.StringUtils
 
@@ -28,25 +30,33 @@ import org.apache.commons.lang3.StringUtils
  * <>>
  */
 
-@BindingAdapter("bottomNavigation")
-fun bottomNavigation(view: BottomNavigationView, viewModel: MainViewModel) {
+@BindingAdapter("bottomNavigation", "viewPager")
+fun bottomNavigation(view: BottomNavigationView, viewModel: MainViewModel, viewPager: ViewPager) {
     view.setOnNavigationItemSelectedListener { menuItem ->
         when (menuItem.itemId) {
             R.id.navigation_notebook -> {
                 viewModel.onStartNotebook()
+                viewPager.currentItem = 0
             }
             R.id.navigation_note_create -> {
                 viewModel.onStartNoteCreation()
             }
             R.id.navigation_setting -> {
-                viewModel.onStartSetting()
-            }
-            else -> {
-                viewModel.onStartNotebook()
+                viewPager.currentItem = 1
             }
         }
         true
     }
+    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(p0: Int) {}
+
+        override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
+
+        override fun onPageSelected(position: Int) {
+            view.selectedItemId = if (position == 0) R.id.navigation_notebook
+            else R.id.navigation_setting
+        }
+    })
 }
 
 /*
@@ -140,6 +150,16 @@ fun currentItem(view: ViewPager, adapter: FragmentPagerAdapter?, position: Int) 
     adapter?.let {
         view.adapter = adapter
         view.currentItem = position
+    }
+}
+
+@BindingAdapter("swipeRefreshLayout", "refresh")
+fun swipeRefreshLayout(view: SwipeRefreshLayout, viewModel: NotebookViewModel, isRefresh: Boolean) {
+    view.setColorSchemeResources(R.color.colorPrimary)
+    view.isRefreshing = isRefresh
+    view.setOnRefreshListener {
+        view.isRefreshing = true
+        viewModel.onLoadNotebookData()
     }
 }
 

@@ -1,7 +1,6 @@
 package com.nhahv.note.screen.main
 
 import android.content.Context
-import com.nhahv.note.R
 import com.nhahv.note.screen.notebook.NotebookFragment
 import com.nhahv.note.screen.notecreation.NoteCreationActivity
 import com.nhahv.note.screen.setting.SettingFragment
@@ -15,17 +14,14 @@ class MainViewModel(activity: MainActivity) : MainContract.ViewModel(activity) {
 
     private val mContext: Context = activity.applicationContext
     private var mPresenter: MainContract.Presenter? = null
+    private val mNotebookFragment = NotebookFragment.newInstance()
+    private val mSettingFragment = SettingFragment.newInstance()
+    private val mFragment = arrayListOf(mNotebookFragment, mSettingFragment)
+    var mAdapter = MainViewPagerAdapter(activity.supportFragmentManager, mFragment)
 
-    init {
-        onStartNotebook()
-    }
+    override fun onStart() {}
 
-    override fun onStart() {
-
-    }
-
-    override fun onStop() {
-    }
+    override fun onStop() {}
 
     override fun setPresenter(presenter: MainContract.Presenter) {
         mPresenter = presenter
@@ -36,14 +32,14 @@ class MainViewModel(activity: MainActivity) : MainContract.ViewModel(activity) {
     }
 
     fun onStartNotebook() {
-        mActivity.supportFragmentManager.beginTransaction().replace(R.id.frame_container,
-                NotebookFragment.newInstance()).commit()
+        /* mActivity.supportFragmentManager.beginTransaction().replace(R.id.frame_container,
+                 NotebookFragment.newInstance()).commit()*/
 
     }
 
     fun onStartSetting() {
-        mActivity.supportFragmentManager.beginTransaction().replace(R.id.frame_container,
-                SettingFragment.newInstance()).commit()
+        /*  mActivity.supportFragmentManager.beginTransaction().replace(R.id.frame_container,
+                  SettingFragment.newInstance()).commit()*/
     }
 }
 

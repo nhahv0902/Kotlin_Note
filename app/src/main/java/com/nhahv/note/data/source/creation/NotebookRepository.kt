@@ -9,11 +9,13 @@ import com.nhahv.note.data.model.Notebook
 
 class NotebookRepository : NotebookDataSource {
 
-    val mDataSource: NotebookRemoteDataSource = NotebookRemoteDataSource()
+    private val mDataSource: NotebookRemoteDataSource = NotebookRemoteDataSource()
 
-    override fun addNotebook(notebook: Notebook) {
-        mDataSource.let {
-            mDataSource.addNotebook(notebook)
-        }
+    override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
+        mDataSource.addNotebook(notebook, callback)
+    }
+
+    override fun getNotebooks(callback: NotebookDataSource.LoadNotebookCallback) {
+        mDataSource.getNotebooks(callback)
     }
 }

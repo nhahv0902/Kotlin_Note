@@ -1,8 +1,11 @@
 package com.nhahv.note.data.source.creation
 
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.util.DataUtil.NOTE_TAG
 import com.nhahv.note.util.FirebaseKey.NOTEBOOK
 
 /**
@@ -11,18 +14,51 @@ import com.nhahv.note.util.FirebaseKey.NOTEBOOK
  */
 class NotebookRemoteDataSource : NotebookDataSource {
 
-    val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference.child(NOTEBOOK)
+    private val mUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+    private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference.child(
+            NOTEBOOK)
 
-    override fun addNotebook(notebook: Notebook) {
-        notebook.let {
-            val key: String = mDatabase.push().key
-            notebook.mId = key
-            mDatabase.child(key).setValue(notebook) { error, databaseReference ->
-                run {
-                    println(error?.toString())
-                    println(databaseReference?.toString())
+    override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
+        if (mUser == null) {
+            callback.onError()
+            return
+        }
+        val key: String = mDatabase.push().key
+        notebook.mId = key
+        mDatabase.child(mUser.uid).child(key).setValue(notebook) { error, databaseReference ->
+            run {
+                if (databaseReference != null) {
+                    callback.onSuccess()
+                } else if (error != null) {
+                    callback.onError()
                 }
             }
         }
+    }
+
+    override fun getNotebooks(callback: NotebookDataSource.LoadNotebookCallback) {
+        if (mUser == null) {
+            callback.onDataNotAvailable()
+            return
+        }
+        mDatabase.child(mUser.uid).addListenerForSingleValueEvent(
+                object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError?) {
+                        callback.onDataNotAvailable()
+                    }
+
+                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                        if (dataSnapshot != null) {
+                            val notebooks: ArrayList<Notebook> = ArrayList()
+                            var notebook: Notebook? = null
+                            for (data in dataSnapshot.children) {
+                                Log.d(NOTE_TAG, "data  = ${data.value}")
+                                notebook = data.getValue(Notebook::class.java)
+                                notebooks.add(notebook)
+                            }
+                            callback.onNotebooksLoaded(notebooks)
+                        }
+                    }
+                })
     }
 }

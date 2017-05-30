@@ -17,4 +17,6 @@
         <item name="cardCornerRadius">@dimen/dp_2</item>
         <item name="cardPreventCornerOverlap">true</item>
     </style>
+
+    <style name="SplashScreenTheme" parent="AppTheme"/>
 </resources>
