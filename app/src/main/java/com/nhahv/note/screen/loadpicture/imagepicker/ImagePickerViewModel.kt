@@ -4,8 +4,8 @@ import android.content.Context
 import android.databinding.Bindable
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
-import com.nhahv.note.screen.BaseViewModel
 import com.nhahv.note.screen.loadpicture.model.Folder
+import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 
 /**
  * Created by Hoang Van Nha on 5/28/2017.
@@ -58,7 +58,10 @@ class ImagePickerViewModel(activity: ImagePickerActivity,
         mPresenter = presenter
     }
 
-    fun onImagePicker(position: Int) {}
+    fun onImagePicker(position: Int) {
+        mActivity.startActivity(
+                mFolder?.images?.let { PreviewPictureActivity.newIntent(mContext, it, position) })
+    }
 
     fun onDonePickImage() {}
 }

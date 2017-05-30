@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools"
     >
 
@@ -19,14 +20,18 @@
         android:background="@drawable/bg_activity_login"
         >
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dp_200"
             android:text="@string/text_splash_screen"
             android:textColor="@color/color_white"
             android:textSize="@dimen/sp_60"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             bind:font="@{Font.CALLIGRAPHY}"
             />
     </android.support.constraint.ConstraintLayout>

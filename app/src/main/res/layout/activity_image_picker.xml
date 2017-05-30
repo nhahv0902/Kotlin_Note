@@ -9,8 +9,6 @@
             name="viewModel"
             type="com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerViewModel"
             />
-
-
     </data>
     <LinearLayout
         android:layout_width="match_parent"

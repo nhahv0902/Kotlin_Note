@@ -6,6 +6,8 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
@@ -56,10 +58,10 @@ fun fontFamily(view: TextView, font: String) {
 }
 
 
-@BindingAdapter("imageUrl", "bindError")
-fun imageUrl(view: ImageView, url: String, error: Drawable) {
+@BindingAdapter(value = *arrayOf("imageUrl", "imageUri", "bindError"), requireAll = false)
+fun imageUrl(view: ImageView, url: String?, uri: Uri?, error: Drawable) {
     Glide.with(view.context)
-            .load(url)
+            .load(url ?: uri)
             .asBitmap()
             .error(error)
             .placeholder(error)
@@ -70,22 +72,6 @@ fun imageUrl(view: ImageView, url: String, error: Drawable) {
             .centerCrop()
             .into(view)
 }
-
-@BindingAdapter("imageUri", "bindError")
-fun imageUrl(view: ImageView, uri: Uri, error: Drawable) {
-    Glide.with(view.context)
-            .load(uri)
-            .asBitmap()
-            .error(error)
-            .placeholder(error)
-            .centerCrop()
-            .dontTransform()
-            .dontAnimate()
-            .thumbnail(0.5F)
-            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-            .into(view)
-}
-
 
 /*
 * Bind Image Password Security
@@ -144,4 +130,15 @@ fun textSecurity(view: AppCompatTextView, typeTitle: Int) {
     }
 }
 
+/*
+* bind current item of ViewPagerAdapter
+* in PreviewPictureActivity
+* */
+@BindingAdapter("adapter", "currentItem")
+fun currentItem(view: ViewPager, adapter: FragmentPagerAdapter?, position: Int) {
+    adapter?.let {
+        view.adapter = adapter
+        view.currentItem = position
+    }
+}
 

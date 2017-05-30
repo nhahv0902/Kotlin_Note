@@ -99,7 +99,11 @@ class ReminderViewModel(activity: ReminderActivity) : ReminderContract.ViewModel
 
     private fun convertTimeToText(hourOfDay: Int, minute: Int): String {
         val AM_PM = if (hourOfDay >= 12) "PM" else "AM"
-        val hour = if (hourOfDay >= 20) "${hourOfDay - 12}" else if (hourOfDay in 12..19) "0${hourOfDay - 12}" else "0$hourOfDay"
+        val hour = if (hourOfDay >= 20) "${hourOfDay - 12}"
+        else if (hourOfDay in 12..19) "0${hourOfDay - 12}"
+        else if (hourOfDay == 10 || hourOfDay == 12) "$hourOfDay"
+        else "0$hourOfDay"
+
         val minuteString = if (minute < 10) "0$minute" else "$minute"
         mCalendar.set(Calendar.HOUR_OF_DAY, mHourOfDay)
         mCalendar.set(Calendar.MILLISECOND, mMinute)

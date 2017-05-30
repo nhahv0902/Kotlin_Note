@@ -22,6 +22,9 @@ object BundleConstant {
     @JvmStatic val BUNDLE_SECURITY_TYPE: String = "BUNDLE_SECURITY_TYPE"
     @JvmStatic val BUNDLE_PASSWORD: String = "BUNDLE_PASSWORD"
     @JvmStatic val BUNDLE_FOLDERS: String = "BUNDLE_FOLDERS"
+    @JvmStatic val BUNDLE_IMAGES: String = "BUNDLE_IMAGES"
+    @JvmStatic val BUNDLE_POSITION: String = "BUNDLE_POSITION"
+    @JvmStatic val BUNDLE_PATH: String = "BUNDLE_PATH"
 }
 
 object Request {

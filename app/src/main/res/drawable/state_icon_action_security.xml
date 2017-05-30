@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/icon_press_action_security" android:state_pressed="true"/>
-    <item android:drawable="@drawable/icon_press_action_security" android:state_focused="true"/>
-    <item android:drawable="@drawable/icon_default_action_security"/>
+    <item android:drawable="@drawable/icon_action_security_presses" android:state_pressed="true"/>
+    <item android:drawable="@drawable/icon_action_security_presses" android:state_focused="true"/>
+    <item android:drawable="@drawable/icon_action_security_default"/>
 </selector>
