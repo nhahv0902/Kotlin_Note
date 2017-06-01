@@ -31,4 +31,5 @@
     <dimen name="sp_17">17sp</dimen>
     <dimen name="dp_18">18dp</dimen>
     <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
 </resources>

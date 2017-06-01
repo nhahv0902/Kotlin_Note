@@ -3,6 +3,7 @@ package com.nhahv.note.screen.notecreation
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.data.source.creation.NotebookRepository
+import com.nhahv.note.data.source.picture.PictureStorageRepository
 
 /**
  * Created by Hoang Van Nha on 5/29/2017.
@@ -12,7 +13,9 @@ class NoteCreationPresenter(
         viewModel: NoteCreationContract.ViewModel) : NoteCreationContract.Presenter {
 
     val mViewModel: NoteCreationContract.ViewModel = viewModel
-    val mRepository = NotebookRepository()
+    val mNotebookRepository = NotebookRepository()
+    private val mUploadPictureRepository = PictureStorageRepository()
+
 
     override fun onStart() {
 
@@ -22,7 +25,10 @@ class NoteCreationPresenter(
     }
 
     override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
-        mRepository.addNotebook(notebook, callback)
+        mNotebookRepository.addNotebook(notebook, callback)
+    }
+
+    override fun upPicture(pathPicture: String) {
 
     }
 }

@@ -15,9 +15,12 @@ interface NoteCreationContract {
         abstract fun onPickPicture()
         abstract fun onPreviewImage()
         abstract fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+        abstract fun onUpPictureError()
+        abstract fun onUpPictureSuccess()
     }
 
     interface Presenter : BasePresenter {
         fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback)
+        fun upPicture(pathPicture: String)
     }
 }

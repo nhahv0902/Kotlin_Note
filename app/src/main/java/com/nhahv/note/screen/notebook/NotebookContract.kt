@@ -14,6 +14,7 @@ interface NotebookContract {
         abstract fun onGetNotebooksSuccess(notebooks: ArrayList<Notebook>)
         abstract fun onGetNotebooksError()
         abstract fun onLoadNotebookData()
+        abstract fun onClickImage(position: Int)
     }
 
     interface Presenter : BasePresenter {

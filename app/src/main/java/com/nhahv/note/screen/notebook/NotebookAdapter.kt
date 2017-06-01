@@ -21,7 +21,7 @@ class NotebookAdapter(viewModel: NotebookViewModel,
 
     override fun onBindViewHolder(holder: NotebookHolder?, position: Int) {
         val notebook = mNotebooks?.get(position)
-        notebook?.let { holder?.bind(notebook, position) }
+        notebook?.let { holder?.bind(mNotebookViewModel, notebook, position) }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup?, position: Int): NotebookHolder {
@@ -39,9 +39,11 @@ class NotebookAdapter(viewModel: NotebookViewModel,
 
     class NotebookHolder(binding: ItemNotebookBinding) : RecyclerView.ViewHolder(binding.root) {
         val mBinding = binding
-        fun bind(notebook: Notebook, position: Int) {
+        fun bind(viewModel: NotebookViewModel, notebook: Notebook, position: Int) {
+            val adapter = GridImageAdapter(viewModel, notebook.mPictures)
             mBinding.notebook = notebook
             mBinding.position = position
+            mBinding.adapter = adapter
             mBinding.executePendingBindings()
         }
     }

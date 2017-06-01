@@ -23,6 +23,7 @@ import com.nhahv.note.screen.main.MainViewModel
 import com.nhahv.note.screen.notebook.NotebookViewModel
 import com.nhahv.note.screen.security.SecurityViewModel
 import org.apache.commons.lang3.StringUtils
+import java.util.*
 
 
 /**
@@ -163,3 +164,36 @@ fun swipeRefreshLayout(view: SwipeRefreshLayout, viewModel: NotebookViewModel, i
     }
 }
 
+/*
+* bind date notebook in item_notebook
+*
+* */
+
+@BindingAdapter(value = *arrayOf("textDayOfMonth"), requireAll = false)
+fun textDateOfNotebook(view: AppCompatTextView, date: Long) {
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = date
+    view.text = "${calendar.get(Calendar.DAY_OF_MONTH)}"
+
+}
+
+@BindingAdapter(value = *arrayOf("textMonth"), requireAll = false)
+fun textMonth(view: AppCompatTextView, date: Long) {
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = date
+    view.text = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+}
+
+@BindingAdapter(value = *arrayOf("textYear"), requireAll = false)
+fun textYear(view: AppCompatTextView, date: Long) {
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = date
+    view.text = "${calendar.get(Calendar.YEAR)}"
+}
+
+@BindingAdapter("dayOfWeek")
+fun dayOfWeek(view: AppCompatTextView, date: Long) {
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.timeInMillis = date
+    view.text = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
+}

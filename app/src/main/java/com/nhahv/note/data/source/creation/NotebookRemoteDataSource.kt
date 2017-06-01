@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.nhahv.note.data.model.Notebook
+import com.nhahv.note.data.source.picture.PictureStorageRepository
+import com.nhahv.note.data.source.picture.UpLoadPictureCallback
 import com.nhahv.note.util.DataUtil.NOTE_TAG
 import com.nhahv.note.util.FirebaseKey.NOTEBOOK
 
@@ -17,6 +19,7 @@ class NotebookRemoteDataSource : NotebookDataSource {
     private val mUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference.child(
             NOTEBOOK)
+    private val mPictureRepository = PictureStorageRepository()
 
     override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
         if (mUser == null) {
@@ -28,7 +31,16 @@ class NotebookRemoteDataSource : NotebookDataSource {
         mDatabase.child(mUser.uid).child(key).setValue(notebook) { error, databaseReference ->
             run {
                 if (databaseReference != null) {
-                    callback.onSuccess()
+                    mPictureRepository.upLoadMultiple(notebook.mPictures, notebook,
+                            object : UpLoadPictureCallback {
+                                override fun onUpLoadPictureSuccess() {
+                                    callback.onSuccess()
+                                }
+
+                                override fun onUpLoadPictureError() {
+                                    callback.onError()
+                                }
+                            })
                 } else if (error != null) {
                     callback.onError()
                 }

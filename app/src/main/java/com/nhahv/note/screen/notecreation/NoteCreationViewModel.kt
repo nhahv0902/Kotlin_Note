@@ -123,6 +123,9 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 mActivity.dismissProgress()
             }
         })
+
+
+//        mPresenter?.upPicture(mImages[0])
     }
 
     override fun onPreviewImage() {
@@ -179,14 +182,14 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         mNotebook.mDate = mCalendar.timeInMillis
     }
 
-    private fun convertPicture(images: ArrayList<String>): String {
-        val picture: StringBuilder = StringBuilder()
-        /*images.forEach(picture.append(it))*/
-        for (item in images) {
-            picture.append(item).append(";")
-        }
-        return picture.toString()
+    override fun onUpPictureError() {
+        mContext.toast(mContext, "upload picture error")
+        mActivity.dismissProgress()
     }
 
+    override fun onUpPictureSuccess() {
+        mContext.toast(mContext, "upload picture success")
+        mActivity.dismissProgress()
+    }
 }
 

@@ -6,6 +6,7 @@ import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.screen.BaseActivity
+import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 import com.nhahv.note.util.toast
 
 /**
@@ -24,12 +25,14 @@ class NotebookViewModel(activity: BaseActivity) : NotebookContract.ViewModel(act
             field = adapter
             notifyPropertyChanged(BR.mAdapter)
         }
+
     @get: Bindable
     var mIsRefresh: Boolean = false
         set(adapter) {
             field = adapter
             notifyPropertyChanged(BR.mIsRefresh)
         }
+
     var mNotebooks: ArrayList<Notebook> = ArrayList()
 
     init {
@@ -58,6 +61,11 @@ class NotebookViewModel(activity: BaseActivity) : NotebookContract.ViewModel(act
 
     override fun onLoadNotebookData() {
         mPresenter?.loadNotebookData()
+    }
+
+    override fun onClickImage(position: Int) {
+       /* mActivity.startActivity(
+                mNotebooks.{ PreviewPictureActivity.newIntent(mContext, it, position) })*/
     }
 }
 

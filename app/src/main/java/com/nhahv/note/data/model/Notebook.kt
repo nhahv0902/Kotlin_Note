@@ -40,7 +40,7 @@ class Notebook : BaseObservable() {
         }
 
     @get: Bindable
-    var mPictures: ArrayList<String>? = null
+    var mPictures: ArrayList<String> = ArrayList()
         set(title) {
             field = title
             notifyPropertyChanged(BR.mPictures)
