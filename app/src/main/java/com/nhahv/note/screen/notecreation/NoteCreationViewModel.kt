@@ -12,6 +12,8 @@ import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.screen.loadpicture.folder.AlbumActivity
+import com.nhahv.note.screen.notecreation.preview.NotePreviewActivity
+import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
 import com.nhahv.note.util.Request.REQUEST_PICK_IMAGE
 import com.nhahv.note.util.toast
@@ -127,7 +129,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     }
 
     override fun onPreviewImage() {
-//        mActivity.startActivity(PreviewPictureActivity.newIntent(mContext, mImages, ))
+        mActivity.startActivity(NotePreviewActivity.newIntent(mContext, mImages))
     }
 
     fun onPickDate() {
