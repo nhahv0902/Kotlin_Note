@@ -15,6 +15,18 @@
       },
       "oauth_client": [
         {
+          "client_id": "84423249164-btgt4ke7rdem4ngeut0bngimogkfefau.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nhahv.note",
+            "certificate_hash": "e9e0c9f847928cdf825a444bad79998c3cda07e3"
+          }
+        },
+        {
+          "client_id": "84423249164-t3rk0r53k5225hnl0tq4rooas2iut270.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "84423249164-se7p6nkur6brido5i8j6am2rctng417g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -44,7 +56,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "84423249164-f53qvtvsavkn9l3tpe12igq3i05v3n63.apps.googleusercontent.com",
+              "client_id": "84423249164-t3rk0r53k5225hnl0tq4rooas2iut270.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -2,6 +2,9 @@ package com.nhahv.note.screen.login
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.util.Base64
+import android.util.Log
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseUser
@@ -14,6 +17,8 @@ import com.nhahv.note.util.sharepreference.PREF_IS_LOGIN
 import com.nhahv.note.util.sharepreference.PREF_IS_SECURITY
 import com.nhahv.note.util.sharepreference.SharePreference
 import com.nhahv.note.util.toast
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 /**
@@ -25,6 +30,22 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
     private var mPresenter: LoginContract.Presenter? = null
     private val mPreferences = SharePreference.getInstances(activity.applicationContext)
 
+    init {
+        try {
+            val info = mActivity.packageManager.getPackageInfo(mActivity.packageName,
+                    PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+
+        } catch (e: NoSuchAlgorithmException) {
+
+        }
+
+    }
 
     override fun onStart() {
 

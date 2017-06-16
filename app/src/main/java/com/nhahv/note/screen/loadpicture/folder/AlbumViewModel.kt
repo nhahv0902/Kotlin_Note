@@ -9,6 +9,7 @@ import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerActivity
 import com.nhahv.note.screen.loadpicture.model.Folder
+import com.nhahv.note.util.REQUEST_CAMERA
 import com.nhahv.note.util.Request.REQUEST_PICK_IMAGE
 import com.nhahv.note.util.cameraPermission
 import com.nhahv.note.util.toast
@@ -65,7 +66,7 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
     }
 
     override fun openCamera() {
-        mActivity.startActivity(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+        mActivity.startActivityForResult(Intent(MediaStore.ACTION_IMAGE_CAPTURE), REQUEST_CAMERA)
     }
 
     private fun checkCameraHardware(): Boolean {
@@ -84,7 +85,8 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
                 mActivity.setResult(RESULT_OK, data)
                 mActivity.finish()
             }
-
+            REQUEST_CAMERA -> {
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
+import android.support.v4.content.ContextCompat
 import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
@@ -68,7 +69,6 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
             notifyPropertyChanged(BR.mMonthYear)
         }
 
-
     init {
         mNotebook.mDate = mCalendar.timeInMillis
         mNotebook.mTime = convertTimeToText(mCalendar.get(Calendar.HOUR_OF_DAY),
@@ -92,8 +92,6 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
             REQUEST_PICK_IMAGE -> {
                 mImages.addAll(data.extras.getStringArrayList(BUNDLE_IMAGES))
                 mAdapter.get().notifyDataSetChanged()
-                mHeight = mContext.resources.getDimension(
-                        if (mImages.size > 0) R.dimen.dp_270 else R.dimen.dp_56).toInt()
             }
 
         }
@@ -139,6 +137,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 mCalendar.get(Calendar.MONTH),
                 mCalendar.get(Calendar.DAY_OF_MONTH)
         )
+        datePicker.accentColor = ContextCompat.getColor(mContext, R.color.colorPrimary)
         datePicker.show(mActivity.fragmentManager, "")
     }
 
@@ -149,6 +148,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 mCalendar.get(Calendar.MINUTE),
                 false
         )
+        timePicker.accentColor = ContextCompat.getColor(mContext, R.color.colorPrimary)
         timePicker.show(mActivity.fragmentManager, "")
     }
 

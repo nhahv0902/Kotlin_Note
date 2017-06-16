@@ -66,7 +66,7 @@ class NotebookRemoteDataSource : NotebookDataSource {
                             for (data in dataSnapshot.children) {
                                 Log.d(NOTE_TAG, "data  = ${data.value}")
                                 notebook = data.getValue(Notebook::class.java)
-                                notebooks.add(notebook)
+                                notebook?.let { notebooks.add(it) }
                             }
                             callback.onNotebooksLoaded(notebooks)
                         }

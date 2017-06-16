@@ -13,6 +13,8 @@ import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.Toolbar
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -114,7 +116,6 @@ fun toolbar(view: Toolbar, activity: BaseActivity, title: String?) {
     activity.setSupportActionBar(view)
     activity.title = StringUtils.capitalize(title)
     activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
 }
 
 /*bind TextView security
@@ -196,4 +197,11 @@ fun dayOfWeek(view: AppCompatTextView, date: Long) {
     val calendar: Calendar = Calendar.getInstance()
     calendar.timeInMillis = date
     view.text = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
+}
+
+@BindingAdapter("layout_height")
+fun setLayoutHeight(view: View, height: Float) {
+    val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+    layoutParams.height = height.toInt()
+    view.layoutParams = layoutParams
 }

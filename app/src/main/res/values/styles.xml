@@ -1,5 +1,10 @@
 <resources>
 
+    <style name="SplashScreenTheme" parent="AppTheme"/>
+
+    <style name="AppTheme.Base" parent="AppTheme"/>
+
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -8,7 +13,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Base" parent="AppTheme"/>
 
     <style name="NoteCardView" parent="CardView">
         <item name="cardUseCompatPadding">true</item>
@@ -18,5 +22,4 @@
         <item name="cardPreventCornerOverlap">true</item>
     </style>
 
-    <style name="SplashScreenTheme" parent="AppTheme"/>
 </resources>

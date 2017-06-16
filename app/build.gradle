@@ -27,9 +27,9 @@ kapt {
   generateStubs = true
 }
 
-def android_sdk = "25.3.1"
+def android_sdk = "25.4.0"
 def anko_sdk = "0.10.0"
-def firebase_sdk = "10.2.6"
+def firebase_sdk = "11.0.1"
 
 
 dependencies {
