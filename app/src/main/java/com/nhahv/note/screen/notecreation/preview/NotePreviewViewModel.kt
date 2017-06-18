@@ -86,7 +86,8 @@ class NotePreviewViewModel(activity: NotePreviewActivity,
                         mActivity.finish()
                     }
                     .show()
-
+        } else {
+            mActivity.finish()
         }
     }
 }

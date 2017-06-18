@@ -82,6 +82,7 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
     val mFacebook = NotebookFacebook(mActivity, mCallback)
     val mGoogle = NotebookGoogle(mActivity, GoogleApiClient.OnConnectionFailedListener {
         mContext.toast(mContext, "Authentication failed.")
+        mActivity.dismissProgress()
     })
 
     fun onFacebookStartMain() {

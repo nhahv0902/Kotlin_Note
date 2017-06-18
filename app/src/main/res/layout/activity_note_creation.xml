@@ -22,8 +22,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:expanded="@{viewModel.MImages.size() > 0}"
-            bind:layout_height="@{viewModel.MImages.size() > 0 ? @dimen/dp_270 :  @dimen/dp_56}"
+            bind:layout_height="@{viewModel.MImageSize > 0 ? @dimen/dp_270 :  @dimen/dp_56}"
             >
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
@@ -36,9 +35,8 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="@{viewModel.MImages.size() > 0 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.MImageSize > 0 ? View.VISIBLE : View.GONE}"
                     >
-
                     <android.support.v4.view.ViewPager
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -96,11 +94,26 @@
             android:layout_margin="@dimen/dp_16"
             android:onClick="@{() -> viewModel.onPreviewImage()}"
             android:scaleType="fitCenter"
-            android:visibility="@{viewModel.MImages.size() > 0 ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.MImageSize > 0 ? View.VISIBLE : View.GONE}"
             app:backgroundTint="@color/colorPrimary"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom|end"
             app:srcCompat="@drawable/ic_view_image_white_24dp"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/dp_8"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_number_picture"
+            android:gravity="center"
+            android:text="@{viewModel.MImageSize + ``}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_10"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.MImageSize > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|end"
             />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

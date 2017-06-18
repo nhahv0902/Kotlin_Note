@@ -47,6 +47,7 @@ object Request {
     @JvmStatic val REQUEST_PICK_IMAGE: Int = 3
     @JvmStatic val REQUEST_NOTE_PREVIEW: Int = 4
     @JvmStatic val REQUEST_PLACE_ADDRESS: Int = 5
+    @JvmStatic val REQUEST_CREATE_NOTE: Int = 6
 }
 
 object FirebaseKey {

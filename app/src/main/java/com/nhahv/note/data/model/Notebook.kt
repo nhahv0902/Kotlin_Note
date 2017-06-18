@@ -9,14 +9,21 @@ import com.nhahv.note.BR
  * <.
  */
 
-class Notebook : BaseObservable() {
+class Notebook : BaseObservable(), Comparable<Notebook> {
 
     @get:Bindable
-    var mId: String? = ""
+    var mId: Long = System.currentTimeMillis()
         set(id) {
             field = id
             notifyPropertyChanged(BR.mId)
         }
+    @get:Bindable
+    var mKey: String? = ""
+        set(id) {
+            field = id
+            notifyPropertyChanged(BR.mKey)
+        }
+
 
     @get: Bindable
     var mTitle: String? = null
@@ -58,4 +65,8 @@ class Notebook : BaseObservable() {
             field = title
             notifyPropertyChanged(BR.mTime)
         }
+
+    override fun compareTo(other: Notebook): Int {
+        return other.mId.minus(mId).toInt()
+    }
 }

@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.databinding.Bindable
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableField
 import android.location.Address
 import android.location.Location
 import android.support.v4.content.ContextCompat
@@ -35,6 +33,8 @@ import io.nlopez.smartlocation.OnLocationUpdatedListener
 import io.nlopez.smartlocation.SmartLocation
 import io.nlopez.smartlocation.location.providers.LocationGooglePlayServicesProvider
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 /**
@@ -45,22 +45,19 @@ import java.util.*
 class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContract.ViewModel(
         activity), TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnLocationUpdatedListener {
 
-
     private var mPresenter: NoteCreationContract.Presenter? = null
-
-    val mContext: Context = activity.applicationContext
-    var mCalendar: Calendar = Calendar.getInstance()
-    var mImages: ObservableArrayList<String> = ObservableArrayList()
-    var mAdapter: ObservableField<ViewPagerAdapter> = ObservableField()
-    var mProvider: LocationGooglePlayServicesProvider? = null
-
+    private val mContext: Context = activity.applicationContext
+    private var mCalendar: Calendar = Calendar.getInstance()
+    private var mProvider: LocationGooglePlayServicesProvider? = null
+    private val mImageMap: HashMap<String, String> = HashMap()
 
     @get: Bindable
-    var mHeight: Int = mContext.resources.getDimension(R.dimen.dp_56).toInt()
+    var mAdapter: ViewPagerAdapter = ViewPagerAdapter(mImageMap)
         set(value) {
             field = value
-            notifyPropertyChanged(BR.mHeight)
+            notifyPropertyChanged(BR.mAdapter)
         }
+
     @get: Bindable
     var mNotebook: Notebook = Notebook()
         set(value) {
@@ -89,12 +86,18 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
             notifyPropertyChanged(BR.mMonthYear)
         }
 
+    @get : Bindable
+    var mImageSize: Int = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mImageSize)
+        }
+
     init {
         mNotebook.mDate = mCalendar.timeInMillis
         mNotebook.mTime = convertTimeToText(mCalendar.get(Calendar.HOUR_OF_DAY),
                 mCalendar.get(Calendar.MINUTE))
 
-        mAdapter.set(ViewPagerAdapter(mImages))
         convertDateTime()
     }
 
@@ -111,20 +114,24 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         if (resultCode != RESULT_OK || data == null || data.extras == null) return
         when (requestCode) {
             REQUEST_PICK_IMAGE -> {
-                mImages.addAll(data.extras.getStringArrayList(BUNDLE_IMAGES))
-                mAdapter.get().notifyDataSetChanged()
+                val images: ArrayList<String> = data.extras.getStringArrayList(BUNDLE_IMAGES)
+                images.filterNot { mImageMap.containsKey(it) }
+                        .forEach { mImageMap.put(it, it) }
+                mAdapter.update(mImageMap)
+                mImageSize = mAdapter.count
             }
             REQUEST_NOTE_PREVIEW -> {
-                mImages.clear()
-                mImages.addAll(data.extras.getStringArrayList(BUNDLE_IMAGES))
-                mAdapter.get().notifyDataSetChanged()
+                val images: ArrayList<String> = data.extras.getStringArrayList(BUNDLE_IMAGES)
+                mImageMap.clear()
+                images.filterNot { mImageMap.containsKey(it) }
+                        .forEach { mImageMap.put(it, it) }
+                mAdapter.update(mImageMap)
+                mImageSize = mAdapter.count
             }
             REQUEST_PLACE_ADDRESS -> {
                 // get location address search place
                 val place = PlaceAutocomplete.getPlace(mActivity, data)
                 mNotebook.mPlace = place.address.toString()
-                Log.d(NOTE_TAG, "latlng = ${place.latLng}")
-
             }
             PlaceAutocomplete.RESULT_ERROR -> {
                 val status = PlaceAutocomplete.getStatus(mActivity, data)
@@ -157,13 +164,13 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     fun onDoneCreateNotebook() {
         mActivity.showProgress()
-
-        mNotebook.mPictures = mImages as ArrayList<String>
-        mNotebook.mPlace = "Số nhà 56, ngõ 105, Doãn Kế Thiện, Dịch Vọng, Cầu Giấy, Hà Nội"
+        mNotebook.mPictures.addAll(mImageMap.values)
         mPresenter?.addNotebook(mNotebook, object : NotebookDataSource.Callback {
             override fun onSuccess() {
                 mContext.toast(mContext, "Add success")
                 mActivity.dismissProgress()
+                mActivity.setResult(RESULT_OK)
+                mActivity.finish()
             }
 
             override fun onError() {
@@ -172,12 +179,12 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
             }
         })
 
-
 //        mPresenter?.upPicture(mImages[0])
     }
 
     override fun onPreviewImage() {
-        mActivity.startActivityForResult(NotePreviewActivity.newIntent(mContext, mImages),
+        mActivity.startActivityForResult(
+                NotePreviewActivity.newIntent(mContext, ArrayList(mImageMap.values)),
                 REQUEST_NOTE_PREVIEW)
     }
 
@@ -227,7 +234,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         mDayOfMonth = "${mCalendar.get(Calendar.DAY_OF_MONTH)}"
         mDayOfWeek = mCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG,
                 Locale.getDefault())
-        mMonthYear = "${mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG,
+        mMonthYear = "${mCalendar.getDisplayName(Calendar.MONTH, Calendar.SHORT,
                 Locale.getDefault())} ${mCalendar.get(Calendar.YEAR)}"
 
         mNotebook.mDate = mCalendar.timeInMillis

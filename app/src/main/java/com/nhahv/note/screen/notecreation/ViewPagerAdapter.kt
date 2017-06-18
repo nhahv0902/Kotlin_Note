@@ -12,9 +12,13 @@ import uk.co.senab.photoview.PhotoView
  * Created by Hoang Van Nha on 5/30/2017.
  * <>
  */
-class ViewPagerAdapter(images: ArrayList<String>?) : PagerAdapter() {
+class ViewPagerAdapter(images: HashMap<String, String>) : PagerAdapter() {
 
-    private val mImages = images
+    private var mImages: ArrayList<String> = ArrayList()
+
+    init {
+        mImages.addAll(images.values)
+    }
 
     override fun isViewFromObject(p0: View?, p1: Any?): Boolean {
         return p0 == p1
@@ -23,7 +27,7 @@ class ViewPagerAdapter(images: ArrayList<String>?) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup?, position: Int): Any {
         val photoView: PhotoView = PhotoView(container?.context)
         Glide.with(container?.context)
-                .load(mImages?.get(position))
+                .load(mImages[position])
                 .asBitmap()
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
@@ -37,5 +41,10 @@ class ViewPagerAdapter(images: ArrayList<String>?) : PagerAdapter() {
         container?.removeView(`object` as View)
     }
 
-    override fun getCount() = mImages?.size ?: 0
+    override fun getCount() = mImages.size
+    fun update(imagesMap: HashMap<String, String>) {
+        mImages.clear()
+        mImages.addAll(imagesMap.values)
+        notifyDataSetChanged()
+    }
 }

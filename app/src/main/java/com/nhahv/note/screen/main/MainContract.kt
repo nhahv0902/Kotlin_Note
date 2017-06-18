@@ -1,5 +1,6 @@
 package com.nhahv.note.screen.main
 
+import android.content.Intent
 import com.nhahv.note.screen.BasePresenter
 import com.nhahv.note.screen.BaseViewModel
 
@@ -9,7 +10,9 @@ import com.nhahv.note.screen.BaseViewModel
  */
 interface MainContract {
 
-    abstract class ViewModel(activity: MainActivity) : BaseViewModel<Presenter>(activity)
+    abstract class ViewModel(activity: MainActivity) : BaseViewModel<Presenter>(activity) {
+        abstract fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    }
 
     interface Presenter : BasePresenter
 }

@@ -9,6 +9,8 @@ import com.nhahv.note.data.source.picture.PictureStorageRepository
 import com.nhahv.note.data.source.picture.UpLoadPictureCallback
 import com.nhahv.note.util.DataUtil.NOTE_TAG
 import com.nhahv.note.util.FirebaseKey.NOTEBOOK
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Nhahv0902 on 5/31/2017.
@@ -27,20 +29,21 @@ class NotebookRemoteDataSource : NotebookDataSource {
             return
         }
         val key: String = mDatabase.push().key
-        notebook.mId = key
+        notebook.mKey = key
         mDatabase.child(mUser.uid).child(key).setValue(notebook) { error, databaseReference ->
             run {
                 if (databaseReference != null) {
-                    mPictureRepository.upLoadMultiple(notebook.mPictures, notebook,
-                            object : UpLoadPictureCallback {
-                                override fun onUpLoadPictureSuccess() {
-                                    callback.onSuccess()
-                                }
+                    callback.onSuccess()
+                    /*  mPictureRepository.upLoadMultiple(notebook.mPictures, notebook,
+                              object : UpLoadPictureCallback {
+                                  override fun onUpLoadPictureSuccess() {
 
-                                override fun onUpLoadPictureError() {
-                                    callback.onError()
-                                }
-                            })
+                                  }
+
+                                  override fun onUpLoadPictureError() {
+                                      callback.onError()
+                                  }
+                              })*/
                 } else if (error != null) {
                     callback.onError()
                 }
@@ -68,7 +71,7 @@ class NotebookRemoteDataSource : NotebookDataSource {
                                 notebook = data.getValue(Notebook::class.java)
                                 notebook?.let { notebooks.add(it) }
                             }
-                            callback.onNotebooksLoaded(notebooks)
+                            callback.onNotebooksLoaded(ArrayList(notebooks.sorted()))
                         }
                     }
                 })

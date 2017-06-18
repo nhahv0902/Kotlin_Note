@@ -33,7 +33,7 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
             return
         }
         val uri: Uri = Uri.fromFile(File(pathPicture))
-        notebook.mId?.let {
+        notebook.mKey?.let {
             mStorage.child(mUser.uid).child(it).child(uri.lastPathSegment).putFile(
                     uri).addOnSuccessListener(
                     { taskSnapshot ->

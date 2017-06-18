@@ -25,6 +25,11 @@ class MainActivity : BaseActivity() {
         binding.viewModel = mViewModel as MainViewModel
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mViewModel?.onActivityResult(requestCode, resultCode, data)
+    }
+
     companion object {
         fun newIntent(context: Context): Intent {
             val intent: Intent = Intent(context, MainActivity::class.java)

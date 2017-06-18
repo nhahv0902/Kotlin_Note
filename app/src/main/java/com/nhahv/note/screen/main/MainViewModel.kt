@@ -1,9 +1,12 @@
 package com.nhahv.note.screen.main
 
+import android.app.Activity.RESULT_OK
 import android.content.Context
+import android.content.Intent
 import com.nhahv.note.screen.notebook.NotebookFragment
 import com.nhahv.note.screen.notecreation.NoteCreationActivity
 import com.nhahv.note.screen.setting.SettingFragment
+import com.nhahv.note.util.Request.REQUEST_CREATE_NOTE
 
 /**
  * Created by Hoang Van Nha on 5/21/2017.
@@ -28,7 +31,8 @@ class MainViewModel(activity: MainActivity) : MainContract.ViewModel(activity) {
     }
 
     fun onStartNoteCreation() {
-        mActivity.startActivity(NoteCreationActivity.newIntent(mContext))
+        mActivity.startActivityForResult(NoteCreationActivity.newIntent(mContext),
+                REQUEST_CREATE_NOTE)
     }
 
     fun onStartNotebook() {
@@ -40,6 +44,14 @@ class MainViewModel(activity: MainActivity) : MainContract.ViewModel(activity) {
     fun onStartSetting() {
         /*  mActivity.supportFragmentManager.beginTransaction().replace(R.id.frame_container,
                   SettingFragment.newInstance()).commit()*/
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CREATE_NOTE) {
+            mNotebookFragment.let {
+                mNotebookFragment.mViewModel?.onLoadNotebookData()
+            }
+        }
     }
 }
 
