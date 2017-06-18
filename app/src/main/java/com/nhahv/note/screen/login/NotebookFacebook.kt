@@ -32,11 +32,11 @@ class NotebookFacebook(context: AppCompatActivity, callback: LoginViewModel.ICal
                     }
 
                     override fun onCancel() {
-                        mCallback?.onLoginError()
+                        mCallback.onLoginError()
                     }
 
                     override fun onError(exception: FacebookException) {
-                        mCallback?.onLoginError()
+                        mCallback.onLoginError()
                     }
                 })
     }

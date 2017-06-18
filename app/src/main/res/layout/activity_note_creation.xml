@@ -75,6 +75,7 @@
 
         <include
             layout="@layout/layout_note_creation"
+            android:id="@+id/layout_note_creation"
             bind:viewModel="@{viewModel}"
             />
 

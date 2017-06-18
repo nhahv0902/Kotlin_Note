@@ -4,7 +4,9 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.databinding.Bindable
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import com.android.databinding.library.baseAdapters.BR
+import com.nhahv.note.R
 import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
 import com.nhahv.note.util.Request.REQUEST_NOTE_PREVIEW
@@ -51,32 +53,40 @@ class NotePreviewViewModel(activity: NotePreviewActivity,
     }
 
     override fun onClickImage(position: Int, image: String) {
-        mActivity.startActivityForResult(
+        mActivity.startActivity(
                 mImages?.let {
                     PreviewPictureActivity.newIntent(mActivity.applicationContext, it, position)
-                }, REQUEST_NOTE_PREVIEW)
+                })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_NOTE_PREVIEW) {
-            data?.let {
-                mImages?.clear()
-                mImages?.addAll(data.extras.getStringArrayList(BUNDLE_IMAGES))
-                mAdapter?.notifyDataSetChanged()
-            }
+    override fun onClickDeleteImage(position: Int) {
+        mImages?.let {
+            mImages?.removeAt(position)
+            mAdapter?.notifyDataSetChanged()
         }
     }
 
     override fun onBackPressed() {
         if (mSize != mImages?.size) {
-            mImages?.let {
-                val intent = Intent()
-                val bundle = Bundle()
-                bundle.putStringArrayList(BUNDLE_IMAGES, mImages)
-                intent.putExtras(bundle)
-                mActivity.setResult(RESULT_OK, intent)
-                mActivity.finish()
-            }
+            AlertDialog.Builder(mActivity)
+                    .setMessage(R.string.msg_delete_image)
+                    .setPositiveButton(R.string.action_agree) { dialog, _ ->
+                        mImages?.let {
+                            val intent = Intent()
+                            val bundle = Bundle()
+                            bundle.putStringArrayList(BUNDLE_IMAGES, mImages)
+                            intent.putExtras(bundle)
+                            mActivity.setResult(RESULT_OK, intent)
+                            dialog.dismiss()
+                            mActivity.finish()
+                        }
+                    }
+                    .setNegativeButton(R.string.action_disagree) { dialog, _ ->
+                        dialog.dismiss()
+                        mActivity.finish()
+                    }
+                    .show()
+
         }
     }
 }

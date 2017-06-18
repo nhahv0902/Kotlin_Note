@@ -1,6 +1,7 @@
 package com.nhahv.note.screen.notecreation
 
 import android.content.Intent
+import com.google.android.gms.maps.model.LatLng
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.data.source.creation.NotebookDataSource
 import com.nhahv.note.screen.BasePresenter
@@ -17,10 +18,17 @@ interface NoteCreationContract {
         abstract fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
         abstract fun onUpPictureError()
         abstract fun onUpPictureSuccess()
+        abstract fun onSearchPlaceAddress()
+        abstract fun onGetAddressSuccess(address: String)
+        abstract fun onGetAddressError()
+        abstract fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
+                grantResults: IntArray)
+        abstract fun startLocation()
     }
 
     interface Presenter : BasePresenter {
         fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback)
         fun upPicture(pathPicture: String)
+        fun getAddress(latLng: LatLng)
     }
 }

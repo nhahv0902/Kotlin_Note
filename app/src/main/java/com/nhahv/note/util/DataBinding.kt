@@ -13,17 +13,24 @@ import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.places.Place
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment
+import com.google.android.gms.location.places.ui.PlaceSelectionListener
 import com.nhahv.note.R
 import com.nhahv.note.screen.BaseActivity
 import com.nhahv.note.screen.main.MainViewModel
 import com.nhahv.note.screen.notebook.NotebookViewModel
+import com.nhahv.note.screen.notecreation.NoteCreationViewModel
 import com.nhahv.note.screen.security.SecurityViewModel
+import com.nhahv.note.util.DataUtil.NOTE_TAG
 import org.apache.commons.lang3.StringUtils
 import java.util.*
 
@@ -199,9 +206,18 @@ fun dayOfWeek(view: AppCompatTextView, date: Long) {
     view.text = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
 }
 
+/*
+* override Layout height in View
+* in NoteCreationActivity
+* */
 @BindingAdapter("layout_height")
 fun setLayoutHeight(view: View, height: Float) {
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
     layoutParams.height = height.toInt()
     view.layoutParams = layoutParams
 }
+
+/*
+* Place Prediction
+* in Layout Note create
+* */

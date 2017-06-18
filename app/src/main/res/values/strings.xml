@@ -65,11 +65,29 @@
     <string name="hint_text_notebook">Entry content…</string>
     <string name="action_pick_image">Pick image</string>
     <string name="title_albums">Albums</string>
+
+    <!-- Request permission-->
     <string name="msg_denied_read_storage_external">You denied permission read storage external</string>
     <string name="msg_permission_request_read_storage_external">Please, grant permission read external sdcard to show picure.</string>
+
     <string name="msg_device_not_support_camera">Your device do not support camera</string>
     <string name="msg_denied_camera">You denied permission camera</string>
     <string name="msg_permission_request_camera">Please, grant permission camera to capture image.</string>
-    <string name="msg_load_data_error">Load data error</string>
 
+    <string name="msg_denied_access_fine_location">You denied permission access fine location address</string>
+    <string name="msg_permission_request_access_fine_location">Please, grant permission access fine location to get current place address.</string>
+
+    <string name="msg_device_not_support_place_address">Device not support get location place address</string>
+
+    <string name="msg_load_data_error">Load data error</string>
+    <string name="msg_delete_image">You have deleted some pictures</string>
+    <string name="msg_load_current_address_error">Get current address fault</string>
+
+    <!--location-->
+    <string name="msg_not_receiver">No receiver received. There is nowhere to send the results.</string>
+    <string name="no_location_data_provided">No location data provided</string>
+    <string name="service_not_available">Sorry, the service is not available</string>
+    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
+    <string name="no_address_found">Sorry, no address found</string>
+    <string name="address_found">Address found</string>
 </resources>

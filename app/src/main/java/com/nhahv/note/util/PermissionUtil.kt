@@ -18,11 +18,29 @@ import com.nhahv.note.R
 
 val REQUEST_READ_EXTERNAL_STORAGE = 1
 val REQUEST_CAMERA = 2
+val REQUEST_ACCESS_FINE_LOCATION = 3
 
 val mHashPermission = mapOf(
         Manifest.permission.READ_EXTERNAL_STORAGE to REQUEST_READ_EXTERNAL_STORAGE,
-        Manifest.permission.CAMERA to REQUEST_CAMERA)
+        Manifest.permission.CAMERA to REQUEST_CAMERA,
+        Manifest.permission.ACCESS_FINE_LOCATION to REQUEST_ACCESS_FINE_LOCATION
+)
 
+
+fun requestAccessFineLocationPermission(context: Context, message: Int,
+        activity: AppCompatActivity): Boolean {
+    if (hashPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
+        return true
+    } else {
+        if (showRequestPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            showExplainPermission(activity, message, Manifest.permission.ACCESS_FINE_LOCATION)
+        } else {
+            requestPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION,
+                    mHashPermission[Manifest.permission.ACCESS_FINE_LOCATION]!!)
+        }
+    }
+    return false
+}
 
 fun readStoragePermission(context: Context, message: Int, activity: AppCompatActivity): Boolean {
     if (hashPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {

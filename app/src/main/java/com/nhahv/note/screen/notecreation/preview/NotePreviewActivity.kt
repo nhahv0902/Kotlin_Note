@@ -53,13 +53,7 @@ class NotePreviewActivity : BaseActivity() {
         super.onStop()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        mViewModel?.onActivityResult(requestCode, resultCode, data)
-    }
-
     override fun onBackPressed() {
         mViewModel?.onBackPressed()
-        super.onBackPressed()
     }
 }

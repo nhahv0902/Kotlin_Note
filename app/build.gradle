@@ -12,6 +12,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
+    multiDexEnabled true
   }
   buildTypes {
     release {
@@ -70,6 +71,14 @@ dependencies {
   compile "com.google.firebase:firebase-auth:$firebase_sdk"
   compile "com.google.firebase:firebase-messaging:$firebase_sdk"
   compile "com.google.android.gms:play-services-auth:$firebase_sdk"
+  compile "com.google.android.gms:play-services-places:$firebase_sdk"
+  compile "com.google.android.gms:play-services-location:$firebase_sdk"
+
   compile 'com.github.chrisbanes.photoview:library:1.2.4'
+  // retrofit
+  implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+  implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+  compile 'io.nlopez.smartlocation:library:3.3.1'
+  compile 'com.android.support:multidex:1.0.1'
 }
 apply plugin: 'com.google.gms.google-services'

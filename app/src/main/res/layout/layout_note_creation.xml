@@ -130,14 +130,27 @@
                     app:srcCompat="@drawable/ic_place_grey_24dp"
                     />
                 <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:enabled="false"
                     android:gravity="center_vertical"
                     android:padding="@dimen/dp_4"
                     android:text="@={viewModel.MNotebook.MPlace}"
+                    android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
                     android:textColor="@color/color_grey_757575"
                     android:textSize="@dimen/sp_16"
+                    />
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
+                    android:paddingBottom="@dimen/dp_2"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingStart="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_2"
+                    app:srcCompat="@drawable/ic_search_grey_24dp"
                     />
             </LinearLayout>
         </LinearLayout>

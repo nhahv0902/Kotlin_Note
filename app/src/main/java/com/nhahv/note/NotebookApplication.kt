@@ -1,13 +1,13 @@
 package com.nhahv.note
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import com.squareup.leakcanary.LeakCanary
 
 /**
  * Created by Hoang Van Nha on 5/28/2017.
  * <>
  */
-class NotebookApplication : Application() {
+class NotebookApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         if (LeakCanary.isInAnalyzerProcess(this)) {

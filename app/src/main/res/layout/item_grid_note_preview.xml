@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools"
     >
 
@@ -18,14 +19,29 @@
             />
     </data>
 
-    <android.support.v7.widget.AppCompatImageView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_120"
-        android:background="@android:color/transparent"
-        android:onClick="@{()->viewModel.onClickImage(position, image)}"
         android:padding="@dimen/dp_1"
-        android:scaleType="centerCrop"
-        bind:bindError="@{@drawable/icon_photo_48dp}"
-        bind:imageUrl="@{image}"
-        />
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="@{()->viewModel.onClickImage(position, image)}"
+            android:scaleType="centerCrop"
+            bind:bindError="@{@drawable/icon_photo_48dp}"
+            bind:imageUrl="@{image}"
+            />
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/dp_8"
+            android:background="@drawable/state_icon_action_security"
+            android:onClick="@{() -> viewModel.onClickDeleteImage(position)}"
+            android:padding="@dimen/dp_6"
+            app:srcCompat="@drawable/ic_trash_grey_24dp"
+            />
+    </FrameLayout>
 </layout>
