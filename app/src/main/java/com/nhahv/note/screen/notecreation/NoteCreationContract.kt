@@ -29,6 +29,5 @@ interface NoteCreationContract {
 
     interface Presenter : BasePresenter {
         fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback)
-        fun upPicture(pathPicture: String)
     }
 }

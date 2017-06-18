@@ -38,8 +38,18 @@ class AlbumActivity : BaseActivity() {
 
         if (readStoragePermission(applicationContext,
                 R.string.msg_permission_request_read_storage_external, this)) {
-            onLoadImageFromSDcard()
+            onLoadImageFromSDCard()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        mViewModel?.onSaveInstanceState(outState)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        mViewModel?.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -47,7 +57,7 @@ class AlbumActivity : BaseActivity() {
         mViewModel?.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun onLoadImageFromSDcard() {
+    fun onLoadImageFromSDCard() {
         val loader = LoaderPicture(this)
         mViewModel?.updateAdapter(loader.loadPictures())
     }
@@ -58,13 +68,13 @@ class AlbumActivity : BaseActivity() {
         when (requestCode) {
             mHashPermission[Manifest.permission.READ_EXTERNAL_STORAGE] -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    onLoadImageFromSDcard()
+                    onLoadImageFromSDCard()
                 } else {
                     toast(this.applicationContext, R.string.msg_denied_read_storage_external)
                 }
                 return
             }
-            mHashPermission[Manifest.permission.CAMERA] -> {
+            mHashPermission[Manifest.permission.CAMERA], mHashPermission[Manifest.permission.WRITE_EXTERNAL_STORAGE] -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mViewModel?.openCamera()
                 } else {

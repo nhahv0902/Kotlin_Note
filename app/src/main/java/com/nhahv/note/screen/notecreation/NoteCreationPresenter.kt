@@ -14,7 +14,7 @@ class NoteCreationPresenter(
 
     val mViewModel: NoteCreationContract.ViewModel = viewModel
     val mNotebookRepository = NotebookRepository()
-    private val mUploadPictureRepository = PictureStorageRepository()
+    private val mUploadRepository = PictureStorageRepository()
 
 
     override fun onStart() {
@@ -27,9 +27,4 @@ class NoteCreationPresenter(
     override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
         mNotebookRepository.addNotebook(notebook, callback)
     }
-
-    override fun upPicture(pathPicture: String) {
-
-    }
-
 }

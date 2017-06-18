@@ -90,4 +90,5 @@
     <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
     <string name="no_address_found">Sorry, no address found</string>
     <string name="address_found">Address found</string>
+    <string name="text_album_name">Note_Diary</string>
 </resources>

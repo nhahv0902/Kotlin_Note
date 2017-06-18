@@ -8,17 +8,8 @@ package com.nhahv.note.util
 
 object DataUtil {
     @JvmStatic val NOTE_TAG = "NOTE_TAG"
-    @JvmStatic val SUCCESS_RESULT = 0
-
-    @JvmStatic val FAILURE_RESULT = 1
-
-    @JvmStatic val PACKAGE_NAME = "com.google.android.gms.location.sample.locationaddress"
-
-    @JvmStatic val RECEIVER = PACKAGE_NAME + ".RECEIVER"
-
-    @JvmStatic val RESULT_DATA_KEY = PACKAGE_NAME + ".RESULT_DATA_KEY"
-
-    @JvmStatic val LOCATION_DATA_EXTRA = PACKAGE_NAME + ".LOCATION_DATA_EXTRA"
+    @JvmStatic val JPEG_FILE_PREFIX = "IMG_"
+    @JvmStatic val JPEG_FILE_SUFFIX = ".jpg"
 }
 
 object TimeUtil {
@@ -35,10 +26,8 @@ object BundleConstant {
     @JvmStatic val BUNDLE_FOLDERS: String = "BUNDLE_FOLDERS"
     @JvmStatic val BUNDLE_IMAGES: String = "BUNDLE_IMAGES"
     @JvmStatic val BUNDLE_POSITION: String = "BUNDLE_POSITION"
-    @JvmStatic val BUNDLE_PATH: String = "BUNDLE_PATH"
-    @JvmStatic val BUNDLE_RECEIVER: String = "BUNDLE_RECEIVER"
-    @JvmStatic val BUNDLE_LOCATION: String = "BUNDLE_LOCATION"
-    @JvmStatic val BUNDLE_DATA_KEY: String = "BUNDLE_DATA_KEY"
+    @JvmStatic val BUNDLE_FILE_URI: String = "BUNDLE_FILE_URI"
+    @JvmStatic val BUNDLE_FILE_NAME: String = "BUNDLE_FILE_NAME"
 }
 
 object Request {

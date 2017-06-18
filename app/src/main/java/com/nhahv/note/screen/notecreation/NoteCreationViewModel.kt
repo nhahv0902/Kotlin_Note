@@ -178,8 +178,6 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 mActivity.dismissProgress()
             }
         })
-
-//        mPresenter?.upPicture(mImages[0])
     }
 
     override fun onPreviewImage() {
@@ -287,24 +285,22 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     override fun onLocationUpdated(location: Location?) {
         location?.let {
-            SmartLocation.with(mContext).geocoding()
-                    .reverse(location) { _, result ->
-                        result?.let {
-                            if (result.size > 0) {
-                                val address: Address = result[0]
-                                val addressString: StringBuilder = StringBuilder()
-                                for (index in 0 until address.maxAddressLineIndex - 1) {
-                                    if (index < address.maxAddressLineIndex - 1) {
-                                        addressString.append(address.getAddressLine(index)).append(
-                                                ", ")
-                                    } else {
-                                        addressString.append(address.getAddressLine(index))
-                                    }
-                                }
-                                mNotebook.mPlace = addressString.toString()
+            SmartLocation.with(mContext).geocoding().reverse(location) { _, result ->
+                result?.let {
+                    if (result.size > 0) {
+                        val address: Address = result[0]
+                        val addressString: StringBuilder = StringBuilder()
+                        for (index in 0 until address.maxAddressLineIndex - 1) {
+                            if (index == address.maxAddressLineIndex - 2) {
+                                addressString.append(address.getAddressLine(index))
+                            } else {
+                                addressString.append(address.getAddressLine(index)).append(", ")
                             }
                         }
+                        mNotebook.mPlace = addressString.toString()
                     }
+                }
+            }
         }
     }
 }

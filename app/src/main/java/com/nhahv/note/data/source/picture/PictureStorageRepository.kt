@@ -19,4 +19,5 @@ class PictureStorageRepository : PictureStorageDataSource {
             callback: UpLoadPictureCallback) {
         mDataSource.upLoadMultiple(pathPictures, notebook, callback)
     }
+
 }

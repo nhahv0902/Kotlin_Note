@@ -1,6 +1,5 @@
 package com.nhahv.note.data.source.picture
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +24,6 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
     private val mDatabase = FirebaseDatabase.getInstance().reference.child(NOTEBOOK)
 
 
-    @SuppressLint("VisibleForTests")
     override fun upLoadPicture(pathPicture: String, isLast: Boolean, notebook: Notebook,
             callback: UpLoadPictureCallback) {
         if (mUser == null) {
@@ -34,25 +32,12 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
         }
         val uri: Uri = Uri.fromFile(File(pathPicture))
         notebook.mKey?.let {
-            mStorage.child(mUser.uid).child(it).child(uri.lastPathSegment).putFile(
-                    uri).addOnSuccessListener(
-                    { taskSnapshot ->
-                        run {
-                            mDatabase.child(
-                                    "${mUser?.uid}/${notebook.mId}/mpictures").push().setValue(
-                                    taskSnapshot.downloadUrl)
-                            Log.d(NOTE_TAG,
-                                    "data = ${taskSnapshot.downloadUrl?.path} + ${taskSnapshot.downloadUrl}")
-                            if (isLast) {
-                                callback.onUpLoadPictureSuccess()
-                            }
-                        }
-                    })
+            mStorage.child(uri.lastPathSegment).putFile(uri)
+                    .addOnSuccessListener({})
                     .addOnFailureListener({ exception ->
-                        run {
-                            Log.d(NOTE_TAG, "path = ${exception.message}")
-                            callback.onUpLoadPictureError()
-                        }
+                        Log.d(NOTE_TAG, "path = ${exception.message}")
+                        callback.onUpLoadPictureError()
+
                     })
         }
     }
