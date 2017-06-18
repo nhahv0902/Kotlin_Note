@@ -121,6 +121,8 @@
                 android:layout_marginLeft="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_16"
                 android:layout_marginTop="@dimen/dp_16"
+                android:background="@drawable/state_click"
+                android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
                 android:orientation="horizontal"
                 >
                 <android.support.v7.widget.AppCompatImageView
@@ -137,7 +139,6 @@
                     android:gravity="center_vertical"
                     android:padding="@dimen/dp_4"
                     android:text="@={viewModel.MNotebook.MPlace}"
-                    android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
                     android:textColor="@color/color_grey_757575"
                     android:textSize="@dimen/sp_16"
                     />
@@ -145,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
                     android:paddingBottom="@dimen/dp_2"
                     android:paddingLeft="@dimen/dp_8"
                     android:paddingStart="@dimen/dp_8"
