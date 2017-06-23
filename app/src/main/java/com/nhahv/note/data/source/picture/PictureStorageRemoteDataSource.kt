@@ -25,7 +25,7 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
 
 
     override fun upLoadPicture(pathPicture: String, isLast: Boolean, notebook: Notebook,
-            callback: UpLoadPictureCallback) {
+                               callback: UpLoadPictureCallback) {
         if (mUser == null) {
             callback.onUpLoadPictureError()
             return
@@ -43,7 +43,7 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
     }
 
     override fun upLoadMultiple(pathPictures: ArrayList<String>, notebook: Notebook,
-            callback: UpLoadPictureCallback) {
+                                callback: UpLoadPictureCallback) {
         if (mUser == null) {
             callback.onUpLoadPictureError()
             return

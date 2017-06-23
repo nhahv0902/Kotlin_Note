@@ -3,8 +3,11 @@ package com.nhahv.note.screen.login
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.databinding.Bindable
+import android.os.Handler
 import android.util.Base64
 import android.util.Log
+import com.android.databinding.library.baseAdapters.BR
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseUser
@@ -13,6 +16,7 @@ import com.nhahv.note.screen.login.NotebookGoogle.Companion.RC_SIGN_IN
 import com.nhahv.note.screen.main.MainActivity
 import com.nhahv.note.screen.security.SecurityActivity
 import com.nhahv.note.screen.security.SecurityViewModel
+import com.nhahv.note.util.TimeUtil
 import com.nhahv.note.util.sharepreference.PREF_IS_LOGIN
 import com.nhahv.note.util.sharepreference.PREF_IS_SECURITY
 import com.nhahv.note.util.sharepreference.SharePreference
@@ -30,7 +34,15 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
     private var mPresenter: LoginContract.Presenter? = null
     private val mPreferences = SharePreference.getInstances(activity.applicationContext)
 
+    @get: Bindable
+    var mIsVisibleLogin: Boolean = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.mIsVisibleLogin)
+        }
+
     init {
+        mActivity = activity
         try {
             val info = mActivity.packageManager.getPackageInfo(mActivity.packageName,
                     PackageManager.GET_SIGNATURES)
@@ -44,6 +56,26 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
         } catch (e: NoSuchAlgorithmException) {
 
         }
+
+        Handler().postDelayed({
+            val isLogin: Boolean = mPreference[PREF_IS_LOGIN, Boolean::class.java]
+            if (isLogin) {
+                val isSecurity: Boolean = mPreference[PREF_IS_SECURITY, Boolean::class.java]
+                if (isSecurity) {
+                    mActivity.startActivity(
+                            SecurityActivity.newIntent(mContext, SecurityViewModel.TITLE_WELL_COM))
+                    mActivity.finish()
+                } else {
+                    mActivity.startActivity(MainActivity.newIntent(mContext))
+                    mActivity.finish()
+                }
+            } else {
+                mIsVisibleLogin = true
+                (mActivity as LoginActivity).visibleLoginScreen()
+            }
+
+        }, TimeUtil.TIME_DELAY)
+
 
     }
 
@@ -109,9 +141,7 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
     }
 
     interface ICallback {
-
         fun onLoginSuccess(user: FirebaseUser)
-
         fun onLoginError()
     }
 

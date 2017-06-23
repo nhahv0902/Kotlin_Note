@@ -63,7 +63,7 @@ class AlbumActivity : BaseActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-            grantResults: IntArray) {
+                                            grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             mHashPermission[Manifest.permission.READ_EXTERNAL_STORAGE] -> {

@@ -16,7 +16,7 @@ import com.nhahv.note.R
  */
 
 class NotebookGoogle(activity: AppCompatActivity,
-        onConnectionFailedListener: GoogleApiClient.OnConnectionFailedListener) {
+                     onConnectionFailedListener: GoogleApiClient.OnConnectionFailedListener) {
     companion object {
         val RC_SIGN_IN = 990
     }

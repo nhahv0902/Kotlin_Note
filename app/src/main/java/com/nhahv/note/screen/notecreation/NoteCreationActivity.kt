@@ -50,7 +50,7 @@ class NoteCreationActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedL
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-            grantResults: IntArray) {
+                                            grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         mViewModel?.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }

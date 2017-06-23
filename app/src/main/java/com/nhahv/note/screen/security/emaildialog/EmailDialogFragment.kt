@@ -34,7 +34,7 @@ class EmailDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-            savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View? {
         mViewModel = EmailDialogViewModel(activity as BaseActivity, this, getPassword())
         val presenter = EmailDialogPresenter(mViewModel as EmailDialogViewModel)
         mViewModel?.setPresenter(presenter)

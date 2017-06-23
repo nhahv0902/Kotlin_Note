@@ -6,7 +6,6 @@ import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.data.model.Notebook
 import com.nhahv.note.screen.BaseActivity
-import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 import com.nhahv.note.util.toast
 
 /**
@@ -64,8 +63,8 @@ class NotebookViewModel(activity: BaseActivity) : NotebookContract.ViewModel(act
     }
 
     override fun onClickImage(position: Int) {
-       /* mActivity.startActivity(
-                mNotebooks.{ PreviewPictureActivity.newIntent(mContext, it, position) })*/
+        /* mActivity.startActivity(
+                 mNotebooks.{ PreviewPictureActivity.newIntent(mContext, it, position) })*/
     }
 }
 

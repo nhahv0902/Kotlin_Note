@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.databinding.Bindable
 import android.net.Uri
-import android.os.Binder
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -27,9 +26,6 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import android.support.v4.app.ActivityCompat.startActivityForResult
-import com.nhahv.note.BuildConfig
-import com.nhahv.note.screen.main.MainActivity
 
 
 /**

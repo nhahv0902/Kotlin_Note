@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools"
-    >
+    xmlns:bind="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.main.MainViewModel"
-            />
+            type="com.nhahv.note.screen.main.MainViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/view_pager"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 app:adapter="@{viewModel.mAdapter}"
-                />
+                app:layout_constraintBottom_toTopOf="@id/navigation"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_grey_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:menu="@menu/main_navigation"
                 bind:bottomNavigation="@{viewModel}"
-                bind:viewPager="@{viewPager}"
-                />
-        </LinearLayout>
+                bind:viewPager="@{viewPager}" />
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.AppCompatImageButton
             android:layout_width="wrap_content"
@@ -46,7 +48,6 @@
             android:layout_marginBottom="@dimen/dp_4"
             android:background="@drawable/state_item_center_navigation"
             android:onClick="@{()->viewModel.onStartNoteCreation()}"
-            app:srcCompat="@drawable/ic_add_teal_24dp"
-            />
+            app:srcCompat="@drawable/ic_add_teal_24dp" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

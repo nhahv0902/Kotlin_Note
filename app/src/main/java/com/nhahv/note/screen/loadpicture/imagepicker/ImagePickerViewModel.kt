@@ -19,7 +19,7 @@ import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
  */
 
 class ImagePickerViewModel(activity: ImagePickerActivity,
-        folder: Folder?) : ImagePickerContract.ViewModel(
+                           folder: Folder?) : ImagePickerContract.ViewModel(
         activity) {
 
     private val mContext: Context = activity.applicationContext

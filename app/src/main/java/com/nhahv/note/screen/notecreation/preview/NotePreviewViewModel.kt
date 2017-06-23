@@ -9,14 +9,13 @@ import com.android.databinding.library.baseAdapters.BR
 import com.nhahv.note.R
 import com.nhahv.note.screen.previewpicture.PreviewPictureActivity
 import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
-import com.nhahv.note.util.Request.REQUEST_NOTE_PREVIEW
 
 /**
  * Exposes the data to be used in the NotePreview screen.
  */
 
 class NotePreviewViewModel(activity: NotePreviewActivity,
-        images: ArrayList<String>?) : NotePreviewContract.ViewModel(
+                           images: ArrayList<String>?) : NotePreviewContract.ViewModel(
         activity) {
 
     private var mPresenter: NotePreviewContract.Presenter? = null

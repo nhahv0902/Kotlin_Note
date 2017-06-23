@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.previewpicture.PreviewPictureViewModel"
-            />
+            type="com.nhahv.note.screen.previewpicture.PreviewPictureViewModel" />
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"
-            bind:adapter="@{viewModel.mAdapter}"
-            bind:currentItem="@{viewModel.mPosition}"
-            />
-    </android.support.constraint.ConstraintLayout>
+        android:background="@android:color/black"
+        bind:adapter="@{viewModel.mAdapter}"
+        bind:currentItem="@{viewModel.mPosition}" />
 </layout>

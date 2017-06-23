@@ -10,7 +10,7 @@ import com.nhahv.note.databinding.ItemGridNotePreviewBinding
  * <>
  */
 class GridNotePreviewAdapter(viewModel: NotePreviewViewModel,
-        imagePickers: ArrayList<String>?) : RecyclerView.Adapter<GridNotePreviewAdapter.ImageViewHolder>() {
+                             imagePickers: ArrayList<String>?) : RecyclerView.Adapter<GridNotePreviewAdapter.ImageViewHolder>() {
 
     var mImagePickers = imagePickers
     var mInflater: LayoutInflater? = null

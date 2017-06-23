@@ -15,12 +15,14 @@ open class BaseActivity : AppCompatActivity() {
         if (mProgressDialog == null) {
             mProgressDialog = NoteProgress(this)
         }
-        if (!mProgressDialog!!.isShowing) {
-            mProgressDialog!!.show()
+        mProgressDialog?.let {
+            if (!it.isShowing) it.show()
         }
     }
 
     fun dismissProgress() {
-        mProgressDialog!!.dismiss()
+        mProgressDialog?.let {
+            if (it.isShowing) it.dismiss()
+        }
     }
 }

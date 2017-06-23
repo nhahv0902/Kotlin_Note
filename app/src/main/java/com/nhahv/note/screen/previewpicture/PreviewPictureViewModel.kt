@@ -8,8 +8,8 @@ import com.android.databinding.library.baseAdapters.BR
  */
 
 class PreviewPictureViewModel(activity: PreviewPictureActivity,
-        images: ArrayList<String>?,
-        position: Int) : PreviewPictureContract.ViewModel(
+                              images: ArrayList<String>?,
+                              position: Int) : PreviewPictureContract.ViewModel(
         activity) {
 
     private var mPresenter: PreviewPictureContract.Presenter? = null

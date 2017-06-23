@@ -30,7 +30,7 @@ val mHashPermission = mapOf(
 
 
 fun requestAccessFineLocationPermission(context: Context, message: Int,
-        activity: AppCompatActivity): Boolean {
+                                        activity: AppCompatActivity): Boolean {
     if (hashPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
         return true
     } else {

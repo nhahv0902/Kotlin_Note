@@ -6,9 +6,9 @@
         android:angle="45"
         android:centerColor="#e177e4"
         android:endColor="#6c6fea"
-        android:startColor="#57ead7"/>
+        android:startColor="#57ead7" />
 
     <size
-        android:height="@dimen/dp_60"
-        android:width="@dimen/dp_60"/>
+        android:width="@dimen/dp_60"
+        android:height="@dimen/dp_60" />
 </shape>

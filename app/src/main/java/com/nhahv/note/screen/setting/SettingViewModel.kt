@@ -25,7 +25,7 @@ import com.nhahv.note.util.sharepreference.SharePreference
  */
 
 class SettingViewModel(activity: BaseActivity,
-        fragment: SettingFragment) : SettingContract.ViewModel(
+                       fragment: SettingFragment) : SettingContract.ViewModel(
         activity) {
 
     private var mPresenter: SettingContract.Presenter? = null

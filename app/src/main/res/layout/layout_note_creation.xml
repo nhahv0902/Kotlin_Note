@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.notecreation.NoteCreationViewModel"
-            />
+            type="com.nhahv.note.screen.notecreation.NoteCreationViewModel" />
     </data>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_16"
-                >
+                android:padding="@dimen/dp_16">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/text_day_of_month"
@@ -37,8 +37,7 @@
                     android:layout_alignParentTop="true"
                     android:onClick="@{() -> viewModel.onPickDate()}"
                     android:text="@{viewModel.MDayOfMonth}"
-                    android:textSize="42sp"
-                    />
+                    android:textSize="42sp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/text_day_of_week"
@@ -51,8 +50,7 @@
                     android:layout_toRightOf="@id/text_day_of_month"
                     android:onClick="@{() -> viewModel.onPickDate()}"
                     android:text="@{viewModel.MDayOfWeek}"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/text_month_year"
@@ -64,8 +62,7 @@
                     android:onClick="@{() -> viewModel.onPickDate()}"
                     android:text="@{viewModel.MMonthYear}"
                     android:textAllCaps="true"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/text_time_of_day"
@@ -76,8 +73,7 @@
                     android:layout_below="@+id/text_day_of_week"
                     android:onClick="@{() -> viewModel.onPickTime()}"
                     android:text="@{viewModel.MNotebook.MTime}"
-                    android:textSize="@dimen/sp_16"
-                    />
+                    android:textSize="@dimen/sp_16" />
             </RelativeLayout>
 
             <android.support.v7.widget.AppCompatEditText
@@ -93,8 +89,7 @@
                 android:paddingRight="@dimen/dp_4"
                 android:paddingTop="@dimen/dp_8"
                 android:text="@={viewModel.MNotebook.MTitle}"
-                android:textColorHint="@color/color_grey_757575"
-                />
+                android:textColorHint="@color/color_grey_757575" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -112,8 +107,7 @@
                 android:paddingRight="@dimen/dp_4"
                 android:paddingTop="@dimen/dp_8"
                 android:text="@={viewModel.MNotebook.MContent}"
-                android:textColorHint="@color/color_grey_757575"
-                />
+                android:textColorHint="@color/color_grey_757575" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,14 +117,14 @@
                 android:layout_marginTop="@dimen/dp_16"
                 android:background="@drawable/state_click"
                 android:onClick="@{ () -> viewModel.onSearchPlaceAddress()}"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_place_grey_24dp"
-                    />
+                    app:srcCompat="@drawable/ic_place_grey_24dp" />
+
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -140,8 +134,8 @@
                     android:padding="@dimen/dp_4"
                     android:text="@={viewModel.MNotebook.MPlace}"
                     android:textColor="@color/color_grey_757575"
-                    android:textSize="@dimen/sp_16"
-                    />
+                    android:textSize="@dimen/sp_16" />
+
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,8 +144,7 @@
                     android:paddingLeft="@dimen/dp_8"
                     android:paddingStart="@dimen/dp_8"
                     android:paddingTop="@dimen/dp_2"
-                    app:srcCompat="@drawable/ic_search_grey_24dp"
-                    />
+                    app:srcCompat="@drawable/ic_search_grey_24dp" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

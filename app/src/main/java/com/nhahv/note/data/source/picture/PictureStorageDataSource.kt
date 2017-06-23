@@ -9,8 +9,8 @@ import com.nhahv.note.data.model.Notebook
 interface PictureStorageDataSource {
 
     fun upLoadPicture(pathPicture: String, isLast: Boolean, notebook: Notebook,
-            callback: UpLoadPictureCallback)
+                      callback: UpLoadPictureCallback)
 
     fun upLoadMultiple(pathPictures: ArrayList<String>, notebook: Notebook,
-            callback: UpLoadPictureCallback)
+                       callback: UpLoadPictureCallback)
 }

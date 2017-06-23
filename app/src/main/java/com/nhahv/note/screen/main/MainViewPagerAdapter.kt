@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
  * <>
  */
 class MainViewPagerAdapter(supportManager: FragmentManager,
-        fragments: ArrayList<Fragment>) : FragmentPagerAdapter(supportManager) {
+                           fragments: ArrayList<Fragment>) : FragmentPagerAdapter(supportManager) {
     private val mFragments = fragments
 
     override fun getItem(position: Int): Fragment {

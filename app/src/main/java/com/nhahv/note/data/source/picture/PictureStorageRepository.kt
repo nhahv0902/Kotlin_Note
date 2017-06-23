@@ -11,12 +11,12 @@ class PictureStorageRepository : PictureStorageDataSource {
     private val mDataSource = PictureStorageRemoteDataSource()
 
     override fun upLoadPicture(pathPicture: String, isLast: Boolean, notebook: Notebook,
-            callback: UpLoadPictureCallback) {
+                               callback: UpLoadPictureCallback) {
         mDataSource.upLoadPicture(pathPicture, isLast, notebook, callback)
     }
 
     override fun upLoadMultiple(pathPictures: ArrayList<String>, notebook: Notebook,
-            callback: UpLoadPictureCallback) {
+                                callback: UpLoadPictureCallback) {
         mDataSource.upLoadMultiple(pathPictures, notebook, callback)
     }
 

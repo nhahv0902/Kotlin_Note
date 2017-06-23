@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.notecreation.preview.NotePreviewViewModel"
-            />
+            type="com.nhahv.note.screen.notecreation.preview.NotePreviewViewModel" />
 
     </data>
 
@@ -21,6 +18,5 @@
         app:layoutManager="GridLayoutManager"
         app:paddingEnd="@dimen/dp_1"
         app:paddingStart="@dimen/dp_1"
-        app:spanCount="@integer/number_grid_note_preview"
-        />
+        app:spanCount="@integer/number_grid_note_preview" />
 </layout>

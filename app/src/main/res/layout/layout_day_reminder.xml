@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.reminder.ReminderViewModel"
-            />
+            type="com.nhahv.note.screen.reminder.ReminderViewModel" />
+
         <variable
             name="color"
-            type="int"
-            />
+            type="int" />
+
         <variable
             name="label"
-            type="String"
-            />
+            type="String" />
+
         <variable
             name="dayOfWeek"
-            type="int"
-            />
+            type="int" />
     </data>
 
     <LinearLayout
@@ -24,8 +25,7 @@
         android:layout_height="wrap_content"
         android:onClick="@{() -> viewModel.onClickWeekday(dayOfWeek)}"
         android:orientation="vertical"
-        android:padding="@dimen/dp_8"
-        >
+        android:padding="@dimen/dp_8">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -33,15 +33,13 @@
             android:onClick="@{() -> viewModel.onClickWeekday(dayOfWeek)}"
             android:text="@{label}"
             android:textColor="@{color}"
-            android:textSize="@dimen/sp_14"
-            />
+            android:textSize="@dimen/sp_14" />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_2"
             android:layout_marginTop="@dimen/dp_3"
             android:background="@{color}"
-            android:onClick="@{() -> viewModel.onClickWeekday(dayOfWeek)}"
-            />
+            android:onClick="@{() -> viewModel.onClickWeekday(dayOfWeek)}" />
     </LinearLayout>
 </layout>

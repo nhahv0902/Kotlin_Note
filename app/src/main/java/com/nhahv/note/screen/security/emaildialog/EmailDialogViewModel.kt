@@ -17,7 +17,7 @@ import com.nhahv.note.util.toast
  * <>
  */
 class EmailDialogViewModel(activity: BaseActivity,
-        dialog: EmailDialogFragment, password: String) : EmailDialogContract.ViewModel(activity) {
+                           dialog: EmailDialogFragment, password: String) : EmailDialogContract.ViewModel(activity) {
 
     private val mContext: Context = activity.applicationContext
     private val mPassword: String = password

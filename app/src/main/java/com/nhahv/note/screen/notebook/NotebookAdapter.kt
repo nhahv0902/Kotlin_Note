@@ -13,7 +13,7 @@ import com.nhahv.note.screen.notebook.NotebookAdapter.NotebookHolder
  */
 
 class NotebookAdapter(viewModel: NotebookViewModel,
-        notebooks: List<Notebook>?) : RecyclerView.Adapter<NotebookHolder>() {
+                      notebooks: List<Notebook>?) : RecyclerView.Adapter<NotebookHolder>() {
 
     var mInflater: LayoutInflater? = null
     val mNotebooks = notebooks

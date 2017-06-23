@@ -141,7 +141,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-            grantResults: IntArray) {
+                                            grantResults: IntArray) {
         when (requestCode) {
             mHashPermission[Manifest.permission.ACCESS_FINE_LOCATION] -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
