@@ -24,7 +24,6 @@ class Notebook : BaseObservable(), Comparable<Notebook> {
             notifyPropertyChanged(BR.mKey)
         }
 
-
     @get: Bindable
     var mTitle: String? = null
         set(title) {
