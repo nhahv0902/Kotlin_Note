@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_main)
+            R.layout.activity_main)
         binding.viewModel = mViewModel as MainViewModel
     }
 

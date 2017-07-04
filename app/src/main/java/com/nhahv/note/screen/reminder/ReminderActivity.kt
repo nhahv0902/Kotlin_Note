@@ -27,7 +27,7 @@ class ReminderActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivityReminderBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_reminder)
+            R.layout.activity_reminder)
         binding.viewModel = mViewModel as ReminderViewModel
     }
 

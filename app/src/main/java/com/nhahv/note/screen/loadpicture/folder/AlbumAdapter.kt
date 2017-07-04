@@ -13,7 +13,7 @@ import com.nhahv.note.screen.loadpicture.model.Folder
  */
 
 class AlbumAdapter(viewModel: AlbumViewModel,
-                   folders: ArrayList<Folder>?) : RecyclerView.Adapter<AlbumHolder>() {
+    folders: ArrayList<Folder>?) : RecyclerView.Adapter<AlbumHolder>() {
 
     var mFolders = folders
     var mInflater: LayoutInflater? = null

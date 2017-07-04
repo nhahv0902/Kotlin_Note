@@ -13,7 +13,7 @@ class RoundedImageView : AppCompatImageView {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs,
-            defStyle)
+        defStyle)
 
 
     override fun onDraw(canvas: Canvas) {
@@ -40,7 +40,7 @@ class RoundedImageView : AppCompatImageView {
                 val smallest = Math.min(bmp.width, bmp.height).toFloat()
                 val factor = smallest / radius
                 sbmp = Bitmap.createScaledBitmap(bmp, (bmp.width / factor).toInt(),
-                        (bmp.height / factor).toInt(), false)
+                    (bmp.height / factor).toInt(), false)
             } else {
                 sbmp = bmp
             }

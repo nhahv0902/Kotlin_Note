@@ -25,7 +25,7 @@ import com.nhahv.note.util.toast
  */
 
 class SecurityViewModel(activity: SecurityActivity, type: Int) : SecurityContract.ViewModel(
-        activity) {
+    activity) {
 
     companion object {
         val TITLE_WELL_COM: Int = 1
@@ -94,11 +94,13 @@ class SecurityViewModel(activity: SecurityActivity, type: Int) : SecurityContrac
         }
 
     override fun onStart() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO(
+            "not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onStop() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO(
+            "not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setPresenter(presenter: SecurityContract.Presenter) {

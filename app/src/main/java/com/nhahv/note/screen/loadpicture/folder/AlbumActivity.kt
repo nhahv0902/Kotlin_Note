@@ -33,11 +33,11 @@ class AlbumActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivityFolderBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_folder)
+            R.layout.activity_folder)
         binding.viewModel = mViewModel
 
         if (readStoragePermission(applicationContext,
-                R.string.msg_permission_request_read_storage_external, this)) {
+            R.string.msg_permission_request_read_storage_external, this)) {
             onLoadImageFromSDCard()
         }
     }
@@ -63,7 +63,7 @@ class AlbumActivity : BaseActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                            grantResults: IntArray) {
+        grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             mHashPermission[Manifest.permission.READ_EXTERNAL_STORAGE] -> {

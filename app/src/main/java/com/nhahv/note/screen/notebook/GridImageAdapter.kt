@@ -11,7 +11,7 @@ import com.nhahv.note.databinding.ItemGridImageBinding
  */
 
 class GridImageAdapter(viewModel: NotebookViewModel,
-                       imagePickers: ArrayList<String>?) : RecyclerView.Adapter<GridImageAdapter.ImageViewHolder>() {
+    imagePickers: ArrayList<String>?) : RecyclerView.Adapter<GridImageAdapter.ImageViewHolder>() {
 
     var mImagePickers = imagePickers
     var mInflater: LayoutInflater? = null
@@ -40,7 +40,7 @@ class GridImageAdapter(viewModel: NotebookViewModel,
     }
 
     class ImageViewHolder(binding: ItemGridImageBinding) : RecyclerView.ViewHolder(
-            binding.root) {
+        binding.root) {
         val mBinding = binding
 
         fun bind(image: String, position: Int) {

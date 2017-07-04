@@ -6,7 +6,7 @@ package com.nhahv.note.screen.previewpicture
  * the UI as required.
  */
 class PreviewPicturePresenter(
-        viewModel: PreviewPictureContract.ViewModel) : PreviewPictureContract.Presenter {
+    viewModel: PreviewPictureContract.ViewModel) : PreviewPictureContract.Presenter {
 
     private var mViewModel = viewModel
 

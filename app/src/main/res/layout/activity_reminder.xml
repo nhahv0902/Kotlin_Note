@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools"
+    >
 
     <data>
 
-        <import type="com.nhahv.note.screen.reminder.DayOfWeek" />
+        <import type="com.nhahv.note.screen.reminder.DayOfWeek"/>
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.reminder.ReminderViewModel" />
+            type="com.nhahv.note.screen.reminder.ReminderViewModel"
+            />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -25,7 +28,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/action_reminders"
             bind:title="@{@string/action_reminders}"
-            bind:toolbar="@{viewModel.mActivity}" />
+            bind:toolbar="@{viewModel.mActivity}"
+            />
 
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
@@ -36,7 +40,8 @@
             android:text="@string/action_turn_on_reminder"
             android:textColor="@color/color_grey_757575"
             android:textSize="@dimen/sp_18"
-            app:buttonTint="@color/state_check_box" />
+            app:buttonTint="@color/state_check_box"
+            />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -45,7 +50,8 @@
             android:padding="@dimen/dp_16"
             android:text="@string/text_reminder_content"
             android:textColor="@color/color_grey_757575"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_18"
+            />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -55,62 +61,71 @@
             android:onClick="@{() -> viewModel.onPickDate()}"
             android:padding="@dimen/dp_16"
             android:text="@{viewModel.MTextTime}"
-            android:textSize="@dimen/sp_46" />
+            android:textSize="@dimen/sp_46"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_1]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_1}"
                 bind:label="@{@string/action_day_of_week_1}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_2]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_2}"
                 bind:label="@{@string/action_day_of_week_2}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_3]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_3}"
                 bind:label="@{@string/action_day_of_week_3}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_4]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_4}"
                 bind:label="@{@string/action_day_of_week_4}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_5]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_5}"
                 bind:label="@{@string/action_day_of_week_5}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_6]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_6}"
                 bind:label="@{@string/action_day_of_week_6}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
             <include
                 layout="@layout/layout_day_reminder"
                 bind:color="@{viewModel.MDayOfWeeks[DayOfWeek.DAY_WEEK_7]? @color/colorPrimary : @color/color_grey_757575}"
                 bind:dayOfWeek="@{DayOfWeek.DAY_WEEK_7}"
                 bind:label="@{@string/action_day_of_week_7}"
-                bind:viewModel="@{viewModel}" />
+                bind:viewModel="@{viewModel}"
+                />
 
         </LinearLayout>
     </LinearLayout>

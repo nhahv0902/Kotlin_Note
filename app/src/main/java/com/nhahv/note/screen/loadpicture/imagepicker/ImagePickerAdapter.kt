@@ -11,7 +11,7 @@ import com.nhahv.note.databinding.ItemImagePickerBinding
  */
 
 class ImagePickerAdapter(viewModel: ImagePickerViewModel,
-                         imagePickers: ArrayList<String>?) : RecyclerView.Adapter<ImagePickerAdapter.ImagePickerHolder>() {
+    imagePickers: ArrayList<String>?) : RecyclerView.Adapter<ImagePickerAdapter.ImagePickerHolder>() {
 
     var mImagePickers = imagePickers
     var mInflater: LayoutInflater? = null
@@ -40,7 +40,7 @@ class ImagePickerAdapter(viewModel: ImagePickerViewModel,
     }
 
     class ImagePickerHolder(binding: ItemImagePickerBinding) : RecyclerView.ViewHolder(
-            binding.root) {
+        binding.root) {
         val mBinding = binding
 
         fun bind(image: String, position: Int) {

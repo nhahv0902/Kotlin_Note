@@ -2,88 +2,87 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
-    defaultConfig {
-        applicationId "com.nhahv.note"
-        minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
+  compileSdkVersion 25
+  buildToolsVersion "25.0.3"
+  defaultConfig {
+    applicationId "com.nhahv.note"
+    minSdkVersion 16
+    targetSdkVersion 25
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    vectorDrawables.useSupportLibrary = true
+    multiDexEnabled true
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    dataBinding {
-        enabled = true
-    }
+  }
+  dataBinding {
+    enabled = true
+  }
 }
 kapt {
-    generateStubs = true
+  generateStubs = true
 }
 
 def android_sdk = "25.4.0"
 def anko_sdk = "0.10.0"
-def firebase_sdk = "11.0.1"
+def firebase_sdk = "11.0.2"
 def room_sdk = "1.0.0-alpha3"
 
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:$android_sdk"
-    compile "com.android.support:design:$android_sdk"
-    compile "com.android.support:support-vector-drawable:$android_sdk"
-    compile "com.android.support:support-v4:$android_sdk"
-    compile "com.android.support:cardview-v7:$android_sdk"
-    compile "com.android.support:recyclerview-v7:$android_sdk"
-    compile "com.android.support:support-v4:$android_sdk"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile "com.android.support:appcompat-v7:$android_sdk"
+  compile "com.android.support:design:$android_sdk"
+  compile "com.android.support:support-vector-drawable:$android_sdk"
+  compile "com.android.support:support-v4:$android_sdk"
+  compile "com.android.support:cardview-v7:$android_sdk"
+  compile "com.android.support:recyclerview-v7:$android_sdk"
+  compile "com.android.support:support-v4:$android_sdk"
+  compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    // Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:2.3.1'
+  // Kotlin
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  kapt 'com.android.databinding:compiler:2.3.3'
 
-    // Anko Commons
-    compile "org.jetbrains.anko:anko-commons:$anko_sdk"
+  // Anko Commons
+  compile "org.jetbrains.anko:anko-commons:$anko_sdk"
 
-    // Anko Layouts
-    compile "org.jetbrains.anko:anko-sdk25:$anko_sdk"
+  // Anko Layouts
+  compile "org.jetbrains.anko:anko-sdk25:$anko_sdk"
 
-    // sdk15, sdk19, sdk21, sdk23 are also available
-    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_sdk"
+  // sdk15, sdk19, sdk21, sdk23 are also available
+  compile "org.jetbrains.anko:anko-appcompat-v7:$anko_sdk"
 
-    // more
-    compile 'com.github.bumptech.glide:glide:3.8.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.23.0'
-    compile 'com.wdullaer:materialdatetimepicker:3.2.2'
-    compile 'org.apache.commons:commons-lang3:3.5'
+  // more
+  compile 'com.github.bumptech.glide:glide:3.8.0'
+  debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+  compile 'com.facebook.android:facebook-android-sdk:4.23.0'
+  compile 'com.wdullaer:materialdatetimepicker:3.2.2'
+  compile 'org.apache.commons:commons-lang3:3.5'
 
-    //firebase
-    compile "com.google.firebase:firebase-core:$firebase_sdk"
-    compile "com.google.firebase:firebase-database:$firebase_sdk"
-    compile "com.google.firebase:firebase-storage:$firebase_sdk"
-    compile "com.google.firebase:firebase-auth:$firebase_sdk"
-    compile "com.google.firebase:firebase-messaging:$firebase_sdk"
-    compile "com.google.android.gms:play-services-auth:$firebase_sdk"
-    compile "com.google.android.gms:play-services-places:$firebase_sdk"
-    compile "com.google.android.gms:play-services-location:$firebase_sdk"
-    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+  //firebase
+  compile "com.google.firebase:firebase-core:$firebase_sdk"
+  compile "com.google.firebase:firebase-database:$firebase_sdk"
+  compile "com.google.firebase:firebase-storage:$firebase_sdk"
+  compile "com.google.firebase:firebase-auth:$firebase_sdk"
+  compile "com.google.firebase:firebase-messaging:$firebase_sdk"
+  compile "com.google.android.gms:play-services-auth:$firebase_sdk"
+  compile "com.google.android.gms:play-services-places:$firebase_sdk"
+  compile "com.google.android.gms:play-services-location:$firebase_sdk"
+  compile 'com.github.chrisbanes.photoview:library:1.2.4'
 
-    // retrofit
-    compile 'io.nlopez.smartlocation:library:3.3.1'
-    compile 'com.android.support:multidex:1.0.1'
+  // retrofit
+  compile 'io.nlopez.smartlocation:library:3.3.1'
+  compile 'com.android.support:multidex:1.0.1'
 
-    // room persistent
-    compile "android.arch.persistence.room:runtime:$room_sdk"
-    annotationProcessor "android.arch.persistence.room:compiler:$room_sdk"
-    kapt "android.arch.persistence.room:compiler:$room_sdk"
-    implementation 'com.google.code.gson:gson:2.8.1'
+  // room persistent
+  compile "android.arch.persistence.room:runtime:$room_sdk"
+  kapt "android.arch.persistence.room:compiler:$room_sdk"
+  implementation 'com.google.code.gson:gson:2.8.1'
 }
 apply plugin: 'com.google.gms.google-services'

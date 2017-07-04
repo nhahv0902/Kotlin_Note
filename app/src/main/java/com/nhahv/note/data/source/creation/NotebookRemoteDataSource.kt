@@ -16,7 +16,7 @@ class NotebookRemoteDataSource : NotebookDataSource {
 
     private val mUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference.child(
-            NOTEBOOK)
+        NOTEBOOK)
     private val mPictureRepository = PictureStorageRepository()
 
     override fun addNotebook(notebook: Notebook, callback: NotebookDataSource.Callback) {
@@ -25,18 +25,18 @@ class NotebookRemoteDataSource : NotebookDataSource {
             return
         }
         val key: String = mDatabase.push().key
-        notebook.mKey = key
+        notebook.key = key
         mDatabase.child(mUser.uid).child(key).setValue(notebook) { error, databaseReference ->
             run {
                 if (databaseReference != null) {
-                    if (notebook.mPictures.size > 0) {
-                        mPictureRepository.upLoadMultiple(notebook.mPictures, notebook,
-                                object : UpLoadPictureCallback {
-                                    override fun onUpLoadPictureSuccess() {}
-                                    override fun onUpLoadPictureError() {
-                                        callback.onError()
-                                    }
-                                })
+                    if (notebook.picture.size > 0) {
+                        mPictureRepository.upLoadMultiple(notebook.picture, notebook,
+                            object : UpLoadPictureCallback {
+                                override fun onUpLoadPictureSuccess() {}
+                                override fun onUpLoadPictureError() {
+                                    callback.onError()
+                                }
+                            })
                     }
                     callback.onSuccess()
                 } else if (error != null) {
@@ -52,24 +52,24 @@ class NotebookRemoteDataSource : NotebookDataSource {
             return
         }
         mDatabase.child(mUser.uid).addListenerForSingleValueEvent(
-                object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError?) {
+            object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError?) {
+                    callback.onDataNotAvailable()
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                    if (dataSnapshot != null) {
+                        val notebooks: ArrayList<Notebook> = ArrayList()
+                        var notebook: Notebook? = null
+                        for (data in dataSnapshot.children) {
+                            notebook = data.getValue(Notebook::class.java)
+                            notebook?.let { notebooks.add(it) }
+                        }
+                        callback.onNotebooksLoaded(ArrayList(notebooks.sorted()))
+                    } else {
                         callback.onDataNotAvailable()
                     }
-
-                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                        if (dataSnapshot != null) {
-                            val notebooks: ArrayList<Notebook> = ArrayList()
-                            var notebook: Notebook? = null
-                            for (data in dataSnapshot.children) {
-                                notebook = data.getValue(Notebook::class.java)
-                                notebook?.let { notebooks.add(it) }
-                            }
-                            callback.onNotebooksLoaded(ArrayList(notebooks.sorted()))
-                        } else {
-                            callback.onDataNotAvailable()
-                        }
-                    }
-                })
+                }
+            })
     }
 }

@@ -45,7 +45,7 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
         mActivity = activity
         try {
             val info = mActivity.packageManager.getPackageInfo(mActivity.packageName,
-                    PackageManager.GET_SIGNATURES)
+                PackageManager.GET_SIGNATURES)
             for (signature in info.signatures) {
                 val md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
@@ -63,7 +63,7 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
                 val isSecurity: Boolean = mPreference[PREF_IS_SECURITY, Boolean::class.java]
                 if (isSecurity) {
                     mActivity.startActivity(
-                            SecurityActivity.newIntent(mContext, SecurityViewModel.TITLE_WELL_COM))
+                        SecurityActivity.newIntent(mContext, SecurityViewModel.TITLE_WELL_COM))
                     mActivity.finish()
                 } else {
                     mActivity.startActivity(MainActivity.newIntent(mContext))
@@ -99,7 +99,7 @@ class LoginViewModel(activity: LoginActivity) : LoginContract.ViewModel(activity
             val isSecurity: Boolean = mPreference[PREF_IS_SECURITY, Boolean::class.java]
             if (isSecurity) {
                 mActivity.startActivity(
-                        SecurityActivity.newIntent(mContext, SecurityViewModel.TITLE_WELL_COM))
+                    SecurityActivity.newIntent(mContext, SecurityViewModel.TITLE_WELL_COM))
             } else {
                 mActivity.startActivity(MainActivity.newIntent(mContext))
             }

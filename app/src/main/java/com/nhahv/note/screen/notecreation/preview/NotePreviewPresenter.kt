@@ -5,7 +5,7 @@ package com.nhahv.note.screen.notecreation.preview
  * the UI as required.
  */
 class NotePreviewPresenter(
-        private val mViewModel: NotePreviewContract.ViewModel) : NotePreviewContract.Presenter {
+    private val mViewModel: NotePreviewContract.ViewModel) : NotePreviewContract.Presenter {
 
     override fun onStart() {}
 

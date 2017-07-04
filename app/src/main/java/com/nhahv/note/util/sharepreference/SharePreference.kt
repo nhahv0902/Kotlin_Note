@@ -16,7 +16,7 @@ import kotlin.String
 
 class SharePreference private constructor(context: Context) : ISharePreference {
     private val mPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(
-            context)
+        context)
 
     companion object {
         private var mInstances: SharePreference? = null

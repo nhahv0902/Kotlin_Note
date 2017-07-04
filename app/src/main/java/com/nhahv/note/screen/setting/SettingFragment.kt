@@ -23,7 +23,7 @@ class SettingFragment : Fragment() {
     var mViewModel: SettingContract.ViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View? {
 
         mViewModel = SettingViewModel(activity as BaseActivity, this)
         val presenter = SettingPresenter(mViewModel as SettingViewModel)

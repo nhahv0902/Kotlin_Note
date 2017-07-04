@@ -5,15 +5,18 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.security.SecurityViewModel" />
+            type="com.nhahv.note.screen.security.SecurityViewModel"
+            />
 
         <variable
             name="numberLabel"
-            type="java.lang.String" />
+            type="java.lang.String"
+            />
 
         <variable
             name="number"
-            type="int" />
+            type="int"
+            />
     </data>
 
     <android.support.v7.widget.AppCompatTextView
@@ -28,5 +31,6 @@
         android:onClick="@{()-> viewModel.onClickNumber(number)}"
         android:text="@{numberLabel}"
         android:textColor="@color/color_white"
-        android:textSize="@dimen/sp_28" />
+        android:textSize="@dimen/sp_28"
+        />
 </layout>

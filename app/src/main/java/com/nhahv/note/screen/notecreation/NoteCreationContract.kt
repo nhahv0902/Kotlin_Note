@@ -21,7 +21,7 @@ interface NoteCreationContract {
         abstract fun onGetAddressSuccess(address: String)
         abstract fun onGetAddressError()
         abstract fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                                grantResults: IntArray)
+            grantResults: IntArray)
 
         abstract fun startLocation()
     }

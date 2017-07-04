@@ -10,7 +10,7 @@ import com.nhahv.note.data.source.picture.PictureStorageRepository
  * <>
  */
 class NoteCreationPresenter(
-        viewModel: NoteCreationContract.ViewModel) : NoteCreationContract.Presenter {
+    viewModel: NoteCreationContract.ViewModel) : NoteCreationContract.Presenter {
 
     val mViewModel: NoteCreationContract.ViewModel = viewModel
     val mNotebookRepository = NotebookRepository()

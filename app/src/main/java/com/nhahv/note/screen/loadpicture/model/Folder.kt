@@ -16,8 +16,8 @@ data class Folder(var name: String, var images: ArrayList<String>) : Parcelable 
     }
 
     constructor(source: Parcel) : this(
-            source.readString(),
-            source.createStringArrayList()
+        source.readString(),
+        source.createStringArrayList()
     )
 
     override fun describeContents() = 0

@@ -6,5 +6,5 @@
         android:id="@+id/action_pick_image"
         android:icon="@drawable/ic_insert_photo_white_24dp"
         android:title="@string/action_pick_image"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 </menu>

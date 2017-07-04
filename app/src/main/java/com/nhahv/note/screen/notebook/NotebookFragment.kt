@@ -23,7 +23,7 @@ class NotebookFragment : Fragment() {
     var mViewModel: NotebookContract.ViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View? {
         mViewModel = NotebookViewModel(activity as BaseActivity)
         val presenter = NotebookPresenter(mViewModel as NotebookViewModel)
         mViewModel?.setPresenter(presenter)

@@ -43,7 +43,7 @@ import kotlin.collections.HashMap
  */
 
 class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContract.ViewModel(
-        activity), TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnLocationUpdatedListener {
+    activity), TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, OnLocationUpdatedListener {
 
     private var mPresenter: NoteCreationContract.Presenter? = null
     private val mContext: Context = activity.applicationContext
@@ -94,9 +94,9 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
         }
 
     init {
-        mNotebook.mDate = mCalendar.timeInMillis
-        mNotebook.mTime = convertTimeToText(mCalendar.get(Calendar.HOUR_OF_DAY),
-                mCalendar.get(Calendar.MINUTE))
+        mNotebook.date = mCalendar.timeInMillis
+        mNotebook.time = convertTimeToText(mCalendar.get(Calendar.HOUR_OF_DAY),
+            mCalendar.get(Calendar.MINUTE))
 
         convertDateTime()
     }
@@ -116,7 +116,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
             REQUEST_PICK_IMAGE -> {
                 val images: ArrayList<String> = data.extras.getStringArrayList(BUNDLE_IMAGES)
                 images.filterNot { mImageMap.containsKey(it) }
-                        .forEach { mImageMap.put(it, it) }
+                    .forEach { mImageMap.put(it, it) }
                 mAdapter.update(mImageMap)
                 mImageSize = mAdapter.count
             }
@@ -124,14 +124,14 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                 val images: ArrayList<String> = data.extras.getStringArrayList(BUNDLE_IMAGES)
                 mImageMap.clear()
                 images.filterNot { mImageMap.containsKey(it) }
-                        .forEach { mImageMap.put(it, it) }
+                    .forEach { mImageMap.put(it, it) }
                 mAdapter.update(mImageMap)
                 mImageSize = mAdapter.count
             }
             REQUEST_PLACE_ADDRESS -> {
                 // get location address search place
                 val place = PlaceAutocomplete.getPlace(mActivity, data)
-                mNotebook.mPlace = place.address.toString()
+                mNotebook.place = place.address.toString()
             }
             PlaceAutocomplete.RESULT_ERROR -> {
                 val status = PlaceAutocomplete.getStatus(mActivity, data)
@@ -141,7 +141,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                            grantResults: IntArray) {
+        grantResults: IntArray) {
         when (requestCode) {
             mHashPermission[Manifest.permission.ACCESS_FINE_LOCATION] -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -164,7 +164,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     fun onDoneCreateNotebook() {
         mActivity.showProgress()
-        mNotebook.mPictures.addAll(mImageMap.values)
+        mNotebook.picture.addAll(mImageMap.values)
         mPresenter?.addNotebook(mNotebook, object : NotebookDataSource.Callback {
             override fun onSuccess() {
                 mContext.toast(mContext, "Add success")
@@ -182,16 +182,16 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     override fun onPreviewImage() {
         mActivity.startActivityForResult(
-                NotePreviewActivity.newIntent(mContext, ArrayList(mImageMap.values)),
-                REQUEST_NOTE_PREVIEW)
+            NotePreviewActivity.newIntent(mContext, ArrayList(mImageMap.values)),
+            REQUEST_NOTE_PREVIEW)
     }
 
     fun onPickDate() {
         val datePicker = DatePickerDialog.newInstance(
-                this,
-                mCalendar.get(Calendar.YEAR),
-                mCalendar.get(Calendar.MONTH),
-                mCalendar.get(Calendar.DAY_OF_MONTH)
+            this,
+            mCalendar.get(Calendar.YEAR),
+            mCalendar.get(Calendar.MONTH),
+            mCalendar.get(Calendar.DAY_OF_MONTH)
         )
         datePicker.accentColor = ContextCompat.getColor(mContext, R.color.colorPrimary)
         datePicker.show(mActivity.fragmentManager, "")
@@ -199,10 +199,10 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
 
     fun onPickTime() {
         val timePicker = TimePickerDialog.newInstance(
-                this,
-                mCalendar.get(Calendar.HOUR_OF_DAY),
-                mCalendar.get(Calendar.MINUTE),
-                false
+            this,
+            mCalendar.get(Calendar.HOUR_OF_DAY),
+            mCalendar.get(Calendar.MINUTE),
+            false
         )
         timePicker.accentColor = ContextCompat.getColor(mContext, R.color.colorPrimary)
         timePicker.show(mActivity.fragmentManager, "")
@@ -218,7 +218,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     override fun onTimeSet(p0: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
         mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         mCalendar.set(Calendar.MILLISECOND, minute)
-        mNotebook.mTime = convertTimeToText(hourOfDay, minute)
+        mNotebook.time = convertTimeToText(hourOfDay, minute)
     }
 
     private fun convertTimeToText(hourOfDay: Int, minute: Int): String {
@@ -231,11 +231,11 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     private fun convertDateTime() {
         mDayOfMonth = "${mCalendar.get(Calendar.DAY_OF_MONTH)}"
         mDayOfWeek = mCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG,
-                Locale.getDefault())
+            Locale.getDefault())
         mMonthYear = "${mCalendar.getDisplayName(Calendar.MONTH, Calendar.SHORT,
-                Locale.getDefault())} ${mCalendar.get(Calendar.YEAR)}"
+            Locale.getDefault())} ${mCalendar.get(Calendar.YEAR)}"
 
-        mNotebook.mDate = mCalendar.timeInMillis
+        mNotebook.date = mCalendar.timeInMillis
     }
 
     override fun onUpPictureError() {
@@ -251,20 +251,20 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
     override fun onSearchPlaceAddress() {
         try {
             val intent: Intent = PlaceAutocomplete.IntentBuilder(
-                    PlaceAutocomplete.MODE_OVERLAY).build(
-                    mActivity)
+                PlaceAutocomplete.MODE_OVERLAY).build(
+                mActivity)
             mActivity.startActivityForResult(intent, REQUEST_PLACE_ADDRESS)
         } catch (exception: GooglePlayServicesRepairableException) {
             mActivity.toast(mActivity.applicationContext,
-                    R.string.msg_device_not_support_place_address)
+                R.string.msg_device_not_support_place_address)
         } catch (exception: GooglePlayServicesNotAvailableException) {
             mActivity.toast(mActivity.applicationContext,
-                    R.string.msg_device_not_support_place_address)
+                R.string.msg_device_not_support_place_address)
         }
     }
 
     override fun onGetAddressSuccess(address: String) {
-        mNotebook.mPlace = address
+        mNotebook.place = address
     }
 
     override fun onGetAddressError() {
@@ -297,7 +297,7 @@ class NoteCreationViewModel(activity: NoteCreationActivity) : NoteCreationContra
                                 addressString.append(address.getAddressLine(index)).append(", ")
                             }
                         }
-                        mNotebook.mPlace = addressString.toString()
+                        mNotebook.place = addressString.toString()
                     }
                 }
             }

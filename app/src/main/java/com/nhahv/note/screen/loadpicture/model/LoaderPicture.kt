@@ -14,8 +14,8 @@ class LoaderPicture(context: Context) {
     private val MIME_TYPE = MediaStore.Images.Media.MIME_TYPE
     private val SELECTION = "$MIME_TYPE=? or $MIME_TYPE=?"
     private val IMAGE_PROJECTION = arrayOf(MediaStore.Images.Media.DATA,
-            MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_ADDED,
-            MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME)
+        MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_ADDED,
+        MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME)
 
     val mContext: Context = context
 
@@ -23,8 +23,8 @@ class LoaderPicture(context: Context) {
         val folders: ArrayList<Folder> = ArrayList()
 
         val cursor: Cursor? = mContext.contentResolver.query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION, SELECTION,
-                SELECTION_ARGS, IMAGE_PROJECTION[2] + " DESC", null)
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION, SELECTION,
+            SELECTION_ARGS, IMAGE_PROJECTION[2] + " DESC", null)
 
         if (cursor == null || !cursor.moveToFirst()) return folders
         val indexPath = cursor.getColumnIndex(IMAGE_PROJECTION[0])

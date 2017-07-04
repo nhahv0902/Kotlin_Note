@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools"
+    >
 
     <data>
 
-        <import type="java.lang.String" />
+        <import type="java.lang.String"/>
 
-        <import type="org.apache.commons.lang3.StringUtils" />
+        <import type="org.apache.commons.lang3.StringUtils"/>
 
         <variable
             name="folder"
-            type="com.nhahv.note.screen.loadpicture.model.Folder" />
+            type="com.nhahv.note.screen.loadpicture.model.Folder"
+            />
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.loadpicture.folder.AlbumViewModel" />
+            type="com.nhahv.note.screen.loadpicture.folder.AlbumViewModel"
+            />
 
         <variable
             name="position"
-            type="int" />
+            type="int"
+            />
 
     </data>
 
@@ -28,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
         android:onClick="@{()->viewModel.onStartImagePicker(folder)}"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,7 +41,8 @@
             android:paddingBottom="@dimen/dp_4"
             android:paddingLeft="@dimen/dp_16"
             android:paddingRight="@dimen/dp_16"
-            android:paddingTop="@dimen/dp_4">
+            android:paddingTop="@dimen/dp_4"
+            >
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_folder"
@@ -44,7 +50,8 @@
                 android:layout_height="@dimen/dp_82"
                 android:scaleType="centerCrop"
                 bind:bindError="@{@drawable/icon_photo_48dp}"
-                bind:imageUrl="@{folder.images.get(0)}" />
+                bind:imageUrl="@{folder.images.get(0)}"
+                />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -55,7 +62,8 @@
                 android:layout_toEndOf="@+id/image_folder"
                 android:layout_toRightOf="@+id/image_folder"
                 android:text="@{StringUtils.capitalize(folder.name)}"
-                android:textSize="@dimen/sp_17" />
+                android:textSize="@dimen/sp_17"
+                />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -65,7 +73,8 @@
                 android:layout_toStartOf="@id/image_arrow"
                 android:padding="@dimen/dp_4"
                 android:text="@{String.valueOf(folder.images.size())}"
-                bind:ignore="RelativeOverlap" />
+                bind:ignore="RelativeOverlap"
+                />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_arrow"
@@ -75,10 +84,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_arrow_right_grey_24dp" />
+                app:srcCompat="@drawable/ic_arrow_right_grey_24dp"
+                />
         </RelativeLayout>
 
-        <include layout="@layout/layout_line_brown" />
+        <include layout="@layout/layout_line_brown"/>
 
     </LinearLayout>
 </layout>

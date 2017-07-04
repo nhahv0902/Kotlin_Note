@@ -5,12 +5,14 @@ package com.nhahv.note.screen.security.emaildialog
  * <>
  */
 class EmailDialogPresenter(
-        viewModel: EmailDialogContract.ViewModel) : EmailDialogContract.Presenter {
+    viewModel: EmailDialogContract.ViewModel) : EmailDialogContract.Presenter {
     override fun onStart() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO(
+            "not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onStop() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO(
+            "not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

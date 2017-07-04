@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/tools"
+    >
 
     <data>
 
         <variable
             name="position"
-            type="int" />
+            type="int"
+            />
 
         <variable
             name="viewModel"
-            type="com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerViewModel" />
+            type="com.nhahv.note.screen.loadpicture.imagepicker.ImagePickerViewModel"
+            />
 
         <variable
             name="image"
-            type="String" />
+            type="String"
+            />
     </data>
 
     <com.nhahv.note.widget.SquareRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/dp_1">
+        android:layout_margin="@dimen/dp_1"
+        >
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -29,7 +34,8 @@
             android:onClick="@{()->viewModel.onImagePicker(position)}"
             android:scaleType="fitCenter"
             bind:bindError="@{@drawable/icon_photo_48dp}"
-            bind:imageUrl="@{image}" />
+            bind:imageUrl="@{image}"
+            />
 
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
@@ -38,6 +44,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/dp_8"
             android:button="@drawable/state_image_picker"
-            android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedPickImage(checked, image, position)}" />
+            android:onCheckedChanged="@{(switch, checked) -> viewModel.onCheckedPickImage(checked, image, position)}"
+            />
     </com.nhahv.note.widget.SquareRelativeLayout>
 </layout>

@@ -23,12 +23,12 @@ class ViewPagerAdapter(images: ArrayList<String>?) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup?, position: Int): Any {
         val photoView: PhotoView = PhotoView(container?.context)
         Glide.with(container?.context)
-                .load(mImages?.get(position))
-                .asBitmap()
-                .thumbnail(0.5f)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .fitCenter()
-                .into(photoView)
+            .load(mImages?.get(position))
+            .asBitmap()
+            .thumbnail(0.5f)
+            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+            .fitCenter()
+            .into(photoView)
         container?.addView(photoView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         return photoView
     }

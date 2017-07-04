@@ -19,8 +19,8 @@ import com.nhahv.note.util.BundleConstant.BUNDLE_IMAGES
  */
 
 class ImagePickerViewModel(activity: ImagePickerActivity,
-                           folder: Folder?) : ImagePickerContract.ViewModel(
-        activity) {
+    folder: Folder?) : ImagePickerContract.ViewModel(
+    activity) {
 
     private val mContext: Context = activity.applicationContext
     private val mFolder: Folder? = folder
@@ -68,7 +68,7 @@ class ImagePickerViewModel(activity: ImagePickerActivity,
 
     fun onImagePicker(position: Int) {
         mActivity.startActivity(
-                mFolder?.images?.let { PreviewPictureActivity.newIntent(mContext, it, position) })
+            mFolder?.images?.let { PreviewPictureActivity.newIntent(mContext, it, position) })
     }
 
     fun onDonePickImage() {
@@ -86,8 +86,8 @@ class ImagePickerViewModel(activity: ImagePickerActivity,
             mImagePicks.add(imagePick)
         } else {
             mImagePicks
-                    .filter { TextUtils.equals(it, imagePick) }
-                    .forEach { mImagePicks.remove(it) }
+                .filter { TextUtils.equals(it, imagePick) }
+                .forEach { mImagePicks.remove(it) }
         }
     }
 }

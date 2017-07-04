@@ -3,7 +3,9 @@ package com.nhahv.note.screen.security
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import com.nhahv.note.R
 import com.nhahv.note.databinding.ActivitySecurityBinding
 import com.nhahv.note.screen.BaseActivity
@@ -40,7 +42,11 @@ class SecurityActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivitySecurityBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_security)
+            R.layout.activity_security)
         binding.viewModel = mViewModel as SecurityViewModel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window?.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
     }
 }

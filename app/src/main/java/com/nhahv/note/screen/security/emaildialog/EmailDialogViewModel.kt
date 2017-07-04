@@ -17,7 +17,7 @@ import com.nhahv.note.util.toast
  * <>
  */
 class EmailDialogViewModel(activity: BaseActivity,
-                           dialog: EmailDialogFragment, password: String) : EmailDialogContract.ViewModel(activity) {
+    dialog: EmailDialogFragment, password: String) : EmailDialogContract.ViewModel(activity) {
 
     private val mContext: Context = activity.applicationContext
     private val mPassword: String = password
@@ -51,7 +51,7 @@ class EmailDialogViewModel(activity: BaseActivity,
 
     fun onClickAgree() {
         if (!TextUtils.isEmpty(mEmail)
-                && android.util.Patterns.EMAIL_ADDRESS.matcher(mEmail?.trim()).matches()) {
+            && android.util.Patterns.EMAIL_ADDRESS.matcher(mEmail?.trim()).matches()) {
             mPreference.put(PREF_PASSWORD_SECURITY, mPassword)
             mPreference.put(PREF_IS_SECURITY, true)
             mDialog.dismiss()

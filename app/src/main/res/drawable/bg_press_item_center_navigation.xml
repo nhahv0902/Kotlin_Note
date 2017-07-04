@@ -2,14 +2,14 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <stroke
-        android:width="3dp"
-        android:color="@color/color_teal_600" />
+        android:color="@color/color_teal_600"
+        android:width="3dp"/>
     <gradient
         android:angle="45"
         android:centerColor="#e177e4"
         android:endColor="#6c6fea"
-        android:startColor="#57ead7" />
+        android:startColor="#57ead7"/>
     <size
-        android:width="60dp"
-        android:height="60dp" />
+        android:height="60dp"
+        android:width="60dp"/>
 </shape>

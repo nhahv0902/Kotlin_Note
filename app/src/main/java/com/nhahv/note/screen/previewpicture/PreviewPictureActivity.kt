@@ -48,7 +48,7 @@ class PreviewPictureActivity : BaseActivity() {
         mViewModel!!.setPresenter(presenter)
 
         val binding: ActivityPreviewPictureBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_preview_picture)
+            R.layout.activity_preview_picture)
         binding.viewModel = mViewModel as PreviewPictureViewModel?
     }
 

@@ -35,11 +35,11 @@ class NoteCreationActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedL
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivityNoteCreationBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_note_creation)
+            R.layout.activity_note_creation)
         binding.viewModel = mViewModel as NoteCreationViewModel
 
         if (requestAccessFineLocationPermission(this,
-                R.string.msg_permission_request_access_fine_location, this)) {
+            R.string.msg_permission_request_access_fine_location, this)) {
             mViewModel?.startLocation()
         }
     }
@@ -50,7 +50,7 @@ class NoteCreationActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedL
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                            grantResults: IntArray) {
+        grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         mViewModel?.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }

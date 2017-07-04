@@ -40,7 +40,7 @@ class ImagePickerActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding: ActivityImagePickerBinding = DataBindingUtil.setContentView(this,
-                R.layout.activity_image_picker)
+            R.layout.activity_image_picker)
         binding.viewModel = mViewModel
     }
 }

@@ -26,25 +26,25 @@ class NotebookFacebook(context: AppCompatActivity, callback: LoginViewModel.ICal
     init {
         mCallbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(mCallbackManager,
-                object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(loginResult: LoginResult) {
-                        handlerFacebook(loginResult.accessToken, mCallback)
-                    }
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    handlerFacebook(loginResult.accessToken, mCallback)
+                }
 
-                    override fun onCancel() {
-                        mCallback.onLoginError()
-                    }
+                override fun onCancel() {
+                    mCallback.onLoginError()
+                }
 
-                    override fun onError(exception: FacebookException) {
-                        mCallback.onLoginError()
-                    }
-                })
+                override fun onError(exception: FacebookException) {
+                    mCallback.onLoginError()
+                }
+            })
     }
 
     private fun handlerFacebook(token: AccessToken?, callback: LoginViewModel.ICallback) {
         val credential = FacebookAuthProvider.getCredential(token!!.token)
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(
-                mContext) { task ->
+            mContext) { task ->
             run {
                 if (task.isComplete) {
                     callback.onLoginSuccess(FirebaseAuth.getInstance().currentUser!!)
@@ -57,7 +57,7 @@ class NotebookFacebook(context: AppCompatActivity, callback: LoginViewModel.ICal
 
     fun onClickLogin() {
         LoginManager.getInstance().logInWithReadPermissions(mContext,
-                Arrays.asList("public_profile"))
+            Arrays.asList("public_profile"))
     }
 
 }

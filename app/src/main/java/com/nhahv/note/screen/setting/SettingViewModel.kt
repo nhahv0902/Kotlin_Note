@@ -25,8 +25,8 @@ import com.nhahv.note.util.sharepreference.SharePreference
  */
 
 class SettingViewModel(activity: BaseActivity,
-                       fragment: SettingFragment) : SettingContract.ViewModel(
-        activity) {
+    fragment: SettingFragment) : SettingContract.ViewModel(
+    activity) {
 
     private var mPresenter: SettingContract.Presenter? = null
     val mContext: Context = activity.applicationContext
@@ -76,12 +76,12 @@ class SettingViewModel(activity: BaseActivity,
     fun onClickSecurity() {
         if (mChecked) {
             mFragment.startActivityForResult(
-                    SecurityActivity.newIntent(mContext, TITLE_CANCEL_SECURITY),
-                    REQUEST_SECURITY)
+                SecurityActivity.newIntent(mContext, TITLE_CANCEL_SECURITY),
+                REQUEST_SECURITY)
         } else {
             mFragment.startActivityForResult(
-                    SecurityActivity.newIntent(mContext, TITLE_INPUT_SECURITY),
-                    REQUEST_SECURITY)
+                SecurityActivity.newIntent(mContext, TITLE_INPUT_SECURITY),
+                REQUEST_SECURITY)
         }
     }
 

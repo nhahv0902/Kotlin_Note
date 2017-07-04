@@ -13,7 +13,7 @@ import com.nhahv.note.screen.notebook.NotebookAdapter.NotebookHolder
  */
 
 class NotebookAdapter(viewModel: NotebookViewModel,
-                      notebooks: List<Notebook>?) : RecyclerView.Adapter<NotebookHolder>() {
+    notebooks: List<Notebook>?) : RecyclerView.Adapter<NotebookHolder>() {
 
     var mInflater: LayoutInflater? = null
     val mNotebooks = notebooks
@@ -40,7 +40,7 @@ class NotebookAdapter(viewModel: NotebookViewModel,
     class NotebookHolder(binding: ItemNotebookBinding) : RecyclerView.ViewHolder(binding.root) {
         val mBinding = binding
         fun bind(viewModel: NotebookViewModel, notebook: Notebook, position: Int) {
-            val adapter = GridImageAdapter(viewModel, notebook.mPictures)
+            val adapter = GridImageAdapter(viewModel, notebook.picture)
             mBinding.notebook = notebook
             mBinding.position = position
             mBinding.adapter = adapter

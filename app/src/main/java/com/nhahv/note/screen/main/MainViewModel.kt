@@ -32,7 +32,7 @@ class MainViewModel(activity: MainActivity) : MainContract.ViewModel(activity) {
 
     fun onStartNoteCreation() {
         mActivity.startActivityForResult(NoteCreationActivity.newIntent(mContext),
-                REQUEST_CREATE_NOTE)
+            REQUEST_CREATE_NOTE)
     }
 
     fun onStartNotebook() {

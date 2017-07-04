@@ -92,16 +92,16 @@ fun fontFamily(view: TextView, font: String) {
 @BindingAdapter(value = *arrayOf("imageUrl", "imageUri", "bindError"), requireAll = false)
 fun imageUrl(view: ImageView, url: String?, uri: Uri?, error: Drawable) {
     Glide.with(view.context)
-            .load(url ?: uri)
-            .asBitmap()
-            .error(error)
-            .placeholder(error)
-            .dontTransform()
-            .dontAnimate()
-            .thumbnail(0.5F)
-            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-            .centerCrop()
-            .into(view)
+        .load(url ?: uri)
+        .asBitmap()
+        .error(error)
+        .placeholder(error)
+        .dontTransform()
+        .dontAnimate()
+        .thumbnail(0.5F)
+        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        .centerCrop()
+        .into(view)
 }
 
 /*

@@ -79,14 +79,14 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
 
     fun onStartImagePicker(folder: Folder) {
         mActivity.startActivityForResult(ImagePickerActivity.newIntent(mContext, folder),
-                REQUEST_PICK_IMAGE)
+            REQUEST_PICK_IMAGE)
     }
 
     fun onOpenCamera() {
         if (checkCameraHardware()) {
             if (cameraPermission(mContext, R.string.msg_permission_request_camera,
-                    mActivity) && writeStoragePermission(mContext,
-                    R.string.msg_permission_request_read_storage_external, mActivity)) {
+                mActivity) && writeStoragePermission(mContext,
+                R.string.msg_permission_request_read_storage_external, mActivity)) {
                 openCamera()
             }
         } else {
@@ -111,7 +111,7 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     photoURI = FileProvider.getUriForFile(mContext, "com.nhahv.note",
-                            createImageFile())
+                        createImageFile())
                 }
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 mActivity.startActivityForResult(intent, REQUEST_CAMERA)
@@ -149,8 +149,8 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
         var storageDir: File? = null
         if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
             storageDir = File(
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    getAlbumName())
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                getAlbumName())
 
             if (!storageDir.mkdirs()) {
                 if (!storageDir.exists()) {
@@ -160,7 +160,7 @@ class AlbumViewModel(activity: AlbumActivity) : AlbumContract.ViewModel(activity
             }
         } else {
             Log.v(mContext.getString(R.string.app_name),
-                    "External storage is not mounted READ/WRITE.")
+                "External storage is not mounted READ/WRITE.")
         }
         return storageDir
     }

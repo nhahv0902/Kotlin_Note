@@ -13,7 +13,7 @@ import java.util.*
  */
 
 class ReminderViewModel(activity: ReminderActivity) : ReminderContract.ViewModel(
-        activity), TimePickerDialog.OnTimeSetListener {
+    activity), TimePickerDialog.OnTimeSetListener {
 
     val MAX_DAY = 7
     val mContext = activity.applicationContext
@@ -75,10 +75,10 @@ class ReminderViewModel(activity: ReminderActivity) : ReminderContract.ViewModel
     fun onPickDate() {
         @SuppressLint("WrongConstant")
         val timePicker = TimePickerDialog.newInstance(
-                this,
-                mCalendar.get(Calendar.HOUR_OF_DAY),
-                mCalendar.get(Calendar.MINUTE),
-                false
+            this,
+            mCalendar.get(Calendar.HOUR_OF_DAY),
+            mCalendar.get(Calendar.MINUTE),
+            false
         )
         timePicker.show(mActivity.fragmentManager, "")
 

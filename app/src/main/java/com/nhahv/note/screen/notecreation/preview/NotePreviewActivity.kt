@@ -39,7 +39,7 @@ class NotePreviewActivity : BaseActivity() {
         mViewModel?.setPresenter(presenter)
 
         val binding = DataBindingUtil.setContentView<ActivityNotePreviewBinding>(this,
-                R.layout.activity_note_preview)
+            R.layout.activity_note_preview)
         binding.viewModel = mViewModel as NotePreviewViewModel?
     }
 

@@ -25,25 +25,25 @@ class PictureStorageRemoteDataSource : PictureStorageDataSource {
 
 
     override fun upLoadPicture(pathPicture: String, isLast: Boolean, notebook: Notebook,
-                               callback: UpLoadPictureCallback) {
+        callback: UpLoadPictureCallback) {
         if (mUser == null) {
             callback.onUpLoadPictureError()
             return
         }
         val uri: Uri = Uri.fromFile(File(pathPicture))
-        notebook.mKey?.let {
+        notebook.key?.let {
             mStorage.child(uri.lastPathSegment).putFile(uri)
-                    .addOnSuccessListener({})
-                    .addOnFailureListener({ exception ->
-                        Log.d(NOTE_TAG, "path = ${exception.message}")
-                        callback.onUpLoadPictureError()
+                .addOnSuccessListener({})
+                .addOnFailureListener({ exception ->
+                    Log.d(NOTE_TAG, "path = ${exception.message}")
+                    callback.onUpLoadPictureError()
 
-                    })
+                })
         }
     }
 
     override fun upLoadMultiple(pathPictures: ArrayList<String>, notebook: Notebook,
-                                callback: UpLoadPictureCallback) {
+        callback: UpLoadPictureCallback) {
         if (mUser == null) {
             callback.onUpLoadPictureError()
             return
